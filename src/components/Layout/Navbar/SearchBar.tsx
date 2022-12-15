@@ -6,7 +6,7 @@ import { useTheme } from "@mui/material";
 
 const SearchBar: React.FC = (props) => {
   const theme = useTheme();
-  const { palette } = theme;
+  const { palette, typography } = theme;
 
   return (
     <Fragment>
@@ -19,9 +19,11 @@ const SearchBar: React.FC = (props) => {
         placeholder="Search for product"
         sx={{
           input: { color: palette.primary.contrastText },
+          fontFamily: typography.h1.fontFamily,
           marginLeft: "3rem",
+          marginRight: "1.5rem",
           flexGrow: 2,
-          maxWidth: "600px"
+          maxWidth: "400px"
         }}
         InputProps={{
           endAdornment: (
