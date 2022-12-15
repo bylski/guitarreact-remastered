@@ -5,7 +5,7 @@ import { useTheme } from "@mui/material/styles";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const Cart: React.FC = (props) => {
-  const { palette } = useTheme();
+  const { palette, breakpoints } = useTheme();
   return (
     <IconButton
       sx={[
@@ -38,9 +38,9 @@ const Cart: React.FC = (props) => {
         fontSize="20px"
         fontWeight="600"
         marginRight="0.5rem"
-        sx={{ flexGrow: 1 }}
+        sx={{ flexGrow: 1, [breakpoints.down("md")]: {fontSize: "16px"} }}
       >
-        Cart{" "}
+        Cart
       </Typography>
       <ShoppingCartIcon
         // fontSize={"medium"}
@@ -48,6 +48,7 @@ const Cart: React.FC = (props) => {
           fontSize: "22px",
           fill: palette.primary.contrastText,
           transition: "0.2s ease-in-out",
+          [breakpoints.down("md")]: {fontSize: "18px"}
         }}
       />
     </IconButton>

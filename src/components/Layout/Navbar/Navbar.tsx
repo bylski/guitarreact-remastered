@@ -16,10 +16,13 @@ const Navbar: React.FC = (props) => {
   const { palette } = useTheme();
   const trigger = useScrollTrigger({ threshold: 400 });
 
-  const { lgView } = useBreakpoints({
-    breakpointName: "lgView",
-    breakpointVal: 1100,
-  });
+  const { lgView, mdView } = useBreakpoints(
+    {
+      breakpointName: "lgView",
+      breakpointVal: 1100,
+    },
+    { breakpointName: "mdView", breakpointVal: 700 }
+  );
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -36,7 +39,7 @@ const Navbar: React.FC = (props) => {
               }}
             >
               <NavbarLogo />
-              <SearchBar />
+              {mdView && <SearchBar />}
               {lgView && <NavLinks />}
             </Box>
             <Cart />

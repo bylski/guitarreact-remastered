@@ -4,6 +4,7 @@ import { PaletteMode } from "@mui/material";
 import React from "react";
 import { Theme } from "@mui/material";
 import { SERVFAIL } from "dns";
+import { throwStatement } from "@babel/types";
 
 const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
   const [mode, setMode] = useState<"light" | "dark">(chosenMode);
@@ -11,6 +12,19 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
   useEffect(() => {
     setMode(chosenMode);
   }, [chosenMode]);
+
+
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 400,
+        sm: 500,
+        md: 700,
+        lg: 1100,
+        xl: 1536,
+      },
+    },
+  })
 
   const lightThemePalette = {
     primary: {
@@ -38,6 +52,7 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
   const typography = {
     h1: {
       fontFamily: "Montserrat, sans-serif",
+      [theme.breakpoints.down("md")]: {fontSize: "22px"},
     },
   };
 
@@ -61,14 +76,15 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
     MuiToolbar: {
       styleOverrides: {
         regular: {
-          height: "70px",
-          minHeight: "70px",
+          [theme.breakpoints.down("md")]: {height: "60px", minHeight: "60px", paddingRight: 0},
+          [theme.breakpoints.up("md")]: {height: "70px", minHeight: "70px"}
         },
       },
     },
   };
 
   const getTheme = (mode: PaletteMode) => ({
+    breakpoints: theme.breakpoints,
     transitions,
     components,
     typography,
