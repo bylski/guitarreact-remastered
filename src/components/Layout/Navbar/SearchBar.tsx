@@ -11,20 +11,20 @@ const SearchBar: React.FC = (props) => {
   return (
     <Fragment>
       <TextField
-        hiddenLabel
-        //   id="filled-hidden-label-small"
-        color="primary"
-        variant="outlined"
-        size="small"
-        placeholder="Search for product"
         sx={{
           input: { color: palette.primary.contrastText },
           fontFamily: typography.h1.fontFamily,
           marginLeft: "3rem",
           marginRight: "1.5rem",
           flexGrow: 2,
-          maxWidth: "400px"
+          maxWidth: "400px",
         }}
+        hiddenLabel
+        //   id="filled-hidden-label-small"
+        color="primary"
+        variant="outlined"
+        size="small"
+        placeholder="Search for product"
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
