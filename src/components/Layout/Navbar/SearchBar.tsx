@@ -12,7 +12,7 @@ const SearchBar: React.FC = (props) => {
     <Fragment>
       <TextField
         sx={{
-          input: { color: palette.primary.contrastText },
+          input: { color: palette.secondary.contrastText },
           fontFamily: typography.h1.fontFamily,
           marginLeft: "3rem",
           marginRight: "1.5rem",

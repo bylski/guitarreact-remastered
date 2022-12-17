@@ -10,7 +10,7 @@ const NavLinks: React.FC = (props) => {
       <Button
         variant={"text"}
         sx={{
-          color: palette.primary.contrastText,
+          color: palette.secondary.contrastText,
           height: "100%",
           paddingInline: "1rem",
           fontFamily: typography.h1.fontFamily,
@@ -21,7 +21,7 @@ const NavLinks: React.FC = (props) => {
       <Button
         variant={"text"}
         sx={{
-          color: palette.primary.contrastText,
+          color: palette.secondary.contrastText,
           height: "100%",
           paddingInline: "1rem",
           fontFamily: typography.h1.fontFamily,
@@ -32,7 +32,7 @@ const NavLinks: React.FC = (props) => {
       <Button
         variant={"text"}
         sx={{
-          color: palette.primary.contrastText,
+          color: palette.secondary.contrastText,
           height: "100%",
           paddingInline: "1rem",
           fontFamily: typography.h1.fontFamily,

@@ -5,12 +5,12 @@ import Box from "@mui/material/Box";
 import { SvgIcon } from "@mui/material";
 
 const NavbarLogo: React.FC = (props) => {
-  const { palette } = useTheme();
+  const { palette, breakpoints } = useTheme();
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
       <Typography
         sx={{ flexGrow: 1, maxWidth: "fit-content" }}
-        color={palette.primary.contrastText}
+        color={palette.secondary.contrastText}
         variant="h1"
         fontSize="30px"
         fontWeight="600"
@@ -32,6 +32,7 @@ const NavbarLogo: React.FC = (props) => {
       </Typography>
       <SvgIcon
         sx={{
+          [breakpoints.down("md")]: {fontSize: "27px", top: "4px"},
           fontSize: "35px",
           width: "fit-content",
           fill: palette.primary.main,

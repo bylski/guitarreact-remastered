@@ -13,7 +13,6 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
     setMode(chosenMode);
   }, [chosenMode]);
 
-
   const theme = createTheme({
     breakpoints: {
       values: {
@@ -24,60 +23,65 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
         xl: 1536,
       },
     },
-  })
+  });
 
   const lightThemePalette = {
     primary: {
-      main: "#20CEF9",
-      contrastText: "white",
+      main: "#20CEF9", // Accent Color - bright color which adds character (React color)
+      onHover: "#05bfed", // Color that is used for exmaple on buttons to improve accessability
+      contrastText: "#FFFFFF" // Color contrasting to the background
     },
     secondary: {
-      main: "#212529",
+      main: "#FFFFFF",// Main background color (React color)
+      contrastText: "#000000", // Color contrasting to the background
     },
   };
 
   const darkThemePalette = {
-    neutral: {
-      main: "blue",
-    },
     primary: {
-      main: "#FFFFFF",
-      contrastText: "#FFFFFF",
+      main: "#20CEF9", // Accent Color - bright color which adds character (React color)
+      onHover: "#04abd4", // Color that is used for exmaple on buttons to improve accessability
+      contrastText: "#FFFFFF" // Contrast text for accent color
     },
     secondary: {
-      main: "#212529",
+      main: "#272727",// Accent Color - bright color which adds character (React color)
+      contrastText: "#FFFFFF", // Color that is used for exmaple on buttons to improve accessability
     },
   };
 
   const typography = {
     h1: {
       fontFamily: "Montserrat, sans-serif",
-      [theme.breakpoints.down("md")]: {fontSize: "22px"},
+      [theme.breakpoints.down("md")]: { fontSize: "22px" },
     },
   };
 
   const transitions = {
     duration: {
-        shortest: 150,
-        shorter: 200,
-        short: 250,
-        // most basic recommended timing
-        standard: 300,
-        // this is to be used in complex animations
-        complex: 375,
-        // recommended when something is entering screen
-        enteringScreen: 225,
-        // recommended when something is leaving screen
-        leavingScreen: 195,
-      },
-  }
+      shortest: 150,
+      shorter: 200,
+      short: 250,
+      // most basic recommended timing
+      standard: 300,
+      // this is to be used in complex animations
+      complex: 375,
+      // recommended when something is entering screen
+      enteringScreen: 225,
+      // recommended when something is leaving screen
+      leavingScreen: 195,
+    },
+  };
 
   const components = {
     MuiToolbar: {
       styleOverrides: {
         regular: {
-          [theme.breakpoints.down("md")]: {height: "60px", minHeight: "60px", paddingRight: 0},
-          [theme.breakpoints.up("md")]: {height: "70px", minHeight: "70px"}
+          [theme.breakpoints.down("md")]: {
+            height: "60px",
+            minHeight: "60px",
+            paddingRight: 0,
+          },
+          [theme.breakpoints.up("md")]: { height: "70px", minHeight: "70px" },
         },
       },
     },

@@ -5,7 +5,7 @@ import useThemeMode from "./utils/hooks/useThemeMode";
 
 function App() {
 
-  let theme = useThemeMode("light"); // SET IT LIGHT-MODE FOR NOW
+  let theme = useThemeMode("dark"); // SET IT LIGHT-MODE FOR NOW
 
   return (
     <div className="App">

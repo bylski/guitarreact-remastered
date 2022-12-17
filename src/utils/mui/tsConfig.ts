@@ -14,9 +14,11 @@
     }
   
     interface PaletteColor {
+      onHover?: string;
     //   darker?: string;
     }
     interface SimplePaletteColorOptions {
+      onHover?: string,
     //   darker?: string;
     }
   

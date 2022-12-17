@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import { useTheme } from "@mui/material/styles";
 import NavLinks from "./NavLinks";
 import useBreakpoints from "../../../utils/hooks/useBreakpoints";
+import { ThemeContext } from "@emotion/react";
 
 const Navbar: React.FC = (props) => {
   const { palette } = useTheme();
@@ -27,7 +28,7 @@ const Navbar: React.FC = (props) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Slide direction="down" in={!trigger} mountOnEnter unmountOnExit>
-        <AppBar position="fixed" color={"secondary"}>
+        <AppBar position="fixed" sx={{backgroundColor: palette.secondary.main}}>
           <Toolbar variant={"regular"} sx={{ justifyContent: "space-between" }}>
             <Box
               sx={{

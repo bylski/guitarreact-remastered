@@ -15,13 +15,14 @@ const Cart: React.FC = (props) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: palette.primary.dark,
+          backgroundColor: palette.primary.main,
           paddingInline: "1.5rem",
           borderRadius: "0",
+          transition: "0.2s background-color ease-in"
         },
         {
           "&:hover": {
-            backgroundColor: palette.primary.main,
+            backgroundColor: palette.primary.onHover,
           },
         },
         {
@@ -33,7 +34,7 @@ const Cart: React.FC = (props) => {
       color="primary"
     >
       <Typography
-        color={palette.primary.contrastText}
+        color={"white"}
         variant="h1"
         fontSize="20px"
         fontWeight="600"
@@ -46,7 +47,7 @@ const Cart: React.FC = (props) => {
         // fontSize={"medium"}
         sx={{
           fontSize: "22px",
-          fill: palette.primary.contrastText,
+          fill: "white",
           transition: "0.2s ease-in-out",
           [breakpoints.down("md")]: {fontSize: "18px"}
         }}
