@@ -5,6 +5,7 @@
     //     danger: React.CSSProperties['color'];
     //   };
     }
+
   
     interface Palette {
     //   neutral: Palette['primary'];

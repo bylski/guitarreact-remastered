@@ -12,8 +12,10 @@ import { useTheme } from "@mui/material/styles";
 import NavLinks from "./NavLinks";
 import useBreakpoints from "../../../utils/hooks/useBreakpoints";
 import { ThemeContext } from "@emotion/react";
+import useThemeMode from "../../../utils/hooks/useThemeMode";
 
 const Navbar: React.FC = (props) => {
+  let theme = useThemeMode("dark"); // SET IT LIGHT-MODE FOR NOW
   const { palette } = useTheme();
   const trigger = useScrollTrigger({ threshold: 400 });
 
