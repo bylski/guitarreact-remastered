@@ -20,6 +20,7 @@ const HomePage: React.FC = () => {
           marginTop: `calc(70px + ${theme.spacing(5)})`,
         },
         maxWidth: "100%",
+        minHeight: "fit-content"
         // backgroundColor: palette.secondary.dark,
       }}
       maxWidth={false}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
@@ -7,6 +7,8 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useTheme } from "@mui/material/styles";
 import CSS from "csstype";
+import Fade from "@mui/material/Fade";
+import { TransitionGroup } from "react-transition-group";
 
 const SalesCarousel: React.FC = () => {
   const { palette } = useTheme();
@@ -16,42 +18,27 @@ const SalesCarousel: React.FC = () => {
     width: "100%",
     objectFit: "cover",
     borderRadius: "15px",
+    filter: "brightness(90%)",
+    WebkitFilter: "brightness(90%)",
   };
 
+  const [salesImgs, setSalesImgs] = useState([
+    "/sale1.png",
+    "/sale2.png",
+    "/sale3.png",
+  ]);
 
-  return (
-    <Box
-      sx={{
-        position: "relative",
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      <Grid2
-        container
-        spacing={2}
-        flexWrap="nowrap"
-        sx={{
-          height: "fit-content",
-          maxWidth: "2520px",
-          paddingInline: 0,
-          position: "absolute",
-          overflow: "hidden",
-          top: "0px",
-        }}
-      >
+  const forwardBtnHandler = () => {
+  };
+
+  const backwardBtnHandler = () => {
+  };
+
+  const images: JSX.Element[] = salesImgs.map((imgSrc, i) => {
+    if (i == 1) {
+      return (
         <Grid2
-          sx={{
-            height: "325px",
-            width: "840px",
-            minWidth: "840px",
-          }}
-          xs={4}
-        >
-          <img style={imgStyles} src="/sale1.png"></img>
-        </Grid2>
-        {/* The middle child is the main one. That's where the controls are located*/}
-        <Grid2
+          key={`carouselElement${i}`}
           sx={{
             height: "325px",
             width: "840px",
@@ -60,8 +47,9 @@ const SalesCarousel: React.FC = () => {
           }}
           xs={4}
         >
-          <img style={imgStyles} src="/sale2.png"></img>
+          <img style={imgStyles} src={imgSrc}></img>
           <IconButton
+            onClick={backwardBtnHandler}
             sx={{
               position: "absolute",
               width: "fit-content",
@@ -85,6 +73,7 @@ const SalesCarousel: React.FC = () => {
             />
           </IconButton>
           <IconButton
+            onClick={forwardBtnHandler}
             sx={{
               position: "absolute",
               width: "fit-content",
@@ -108,6 +97,59 @@ const SalesCarousel: React.FC = () => {
             />
           </IconButton>
         </Grid2>
+      );
+    } else {
+      return (
+        <Grid2
+          key={`carouselElement${i}`}
+          sx={{
+            height: "325px",
+            width: "840px",
+            minWidth: "840px",
+          }}
+          xs={4}
+        >
+          <Fade mountOnEnter in={true}>
+            <img style={imgStyles} src={imgSrc}></img>
+          </Fade>
+        </Grid2>
+      );
+    }
+  });
+
+  return (
+    <Box
+      sx={{
+        position: "relative",
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <Grid2
+        container
+        spacing={2}
+        flexWrap="nowrap"
+        sx={{
+          height: "fit-content",
+          maxWidth: "2520px",
+          paddingInline: 0,
+          position: "absolute",
+          overflow: "hidden",
+          top: "0px",
+        }}
+      >
+        {images}
+        {/* <Grid2
+          sx={{
+            height: "325px",
+            width: "840px",
+            minWidth: "840px",
+          }}
+          xs={4}
+        >
+          <img style={imgStyles} src="/sale1.png"></img>
+        </Grid2>
+  
         <Grid2
           sx={{ height: "325px", width: "840px", minWidth: "840px" }}
           xs={4}
@@ -116,7 +158,7 @@ const SalesCarousel: React.FC = () => {
             style={imgStyles}
             src="/sale3.png"
           ></img>
-        </Grid2>
+        </Grid2> */}
       </Grid2>
     </Box>
   );
