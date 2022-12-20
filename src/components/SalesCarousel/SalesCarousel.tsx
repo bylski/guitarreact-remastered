@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import { Box } from "@mui/system";
+import { Box, SxProps } from "@mui/system";
 import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -12,50 +13,100 @@ import { TransitionGroup } from "react-transition-group";
 
 const SalesCarousel: React.FC = () => {
   const { palette } = useTheme();
+  const imgWidth = 800;
 
   const imgStyles: CSS.Properties = {
     height: "100%",
     width: "100%",
     objectFit: "cover",
-    borderRadius: "15px",
     filter: "brightness(90%)",
     WebkitFilter: "brightness(90%)",
+    borderRadius: "15px",
+    overflow: "hidden",
+  };
+
+  const carouselElementStyles: SxProps = {
+    boxSizing: "border-box",
+    height: "100%",
+    width: `${imgWidth}px`,
+    minWidth: `${imgWidth}px`,
+    position: "relative",
+    // border: "1px solid transparent",
   };
 
   const [salesImgs, setSalesImgs] = useState([
     "/sale1.png",
     "/sale2.png",
     "/sale3.png",
+    "/sale4.png",
+    "/sale5.png",
   ]);
 
+  const [carouselPos, setCarouselPos] = useState(0);
+
   const forwardBtnHandler = () => {
+    setCarouselPos((prev) => prev - imgWidth);
   };
 
   const backwardBtnHandler = () => {
+    setCarouselPos((prev) => prev + imgWidth);
   };
 
   const images: JSX.Element[] = salesImgs.map((imgSrc, i) => {
-    if (i == 1) {
-      return (
-        <Grid2
-          key={`carouselElement${i}`}
+    const sxStyles: SxProps =
+      i !== salesImgs.length
+        ? { ...carouselElementStyles, paddingRight: "20px" }
+        : carouselElementStyles;
+
+    return (
+      <Box key={`carouselElement${i}`} sx={{ ...sxStyles }}>
+        <img style={imgStyles} src={imgSrc}></img>
+      </Box>
+    );
+  });
+
+  return (
+    <Box
+      sx={{
+        position: "relative",
+        display: "flex",
+        justifyContent: "center",
+        height: "325px",
+      }}
+    >
+      <Container
+        maxWidth={false}
+        disableGutters={true}
+        sx={{
+          height: "100%",
+          maxWidth: `calc(${imgWidth}px * 3)`,
+          width: `calc(${imgWidth}px * 3)`,
+          overflow: "hidden",
+          position: "relative",
+          top: "0px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Box
           sx={{
-            height: "325px",
-            width: "840px",
-            minWidth: "840px",
-            position: "relative",
+            height: "100%",
+            width: `${imgWidth}px`,
+            minWidth: `${imgWidth}px`,
+            position: "absolute",
+            paddingRight: "20px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            top: "0px",
+            zIndex: "5",
           }}
-          xs={4}
         >
-          <img style={imgStyles} src={imgSrc}></img>
           <IconButton
             onClick={backwardBtnHandler}
             sx={{
-              position: "absolute",
               width: "fit-content",
               height: "fit-content",
-              left: "-10px",
-              top: "145px",
               backgroundColor: "#000000",
               "&:hover": {
                 backgroundColor: palette.primary.main,
@@ -75,11 +126,8 @@ const SalesCarousel: React.FC = () => {
           <IconButton
             onClick={forwardBtnHandler}
             sx={{
-              position: "absolute",
               width: "fit-content",
               height: "fit-content",
-              right: "-10px",
-              top: "145px",
               backgroundColor: "#000000",
               "&:hover": {
                 backgroundColor: palette.primary.main,
@@ -96,70 +144,25 @@ const SalesCarousel: React.FC = () => {
               }}
             />
           </IconButton>
-        </Grid2>
-      );
-    } else {
-      return (
-        <Grid2
-          key={`carouselElement${i}`}
+        </Box>
+        {/* CAROUSEL'S TRACK */}
+        <Container
+          maxWidth={false}
+          disableGutters={true}
           sx={{
-            height: "325px",
-            width: "840px",
-            minWidth: "840px",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            position: "absolute",
+            top: "0px",
+            willChange: "transform",
+            transition: "0.3s transform ease",
+            transform: `translateX(${carouselPos}px)`,
           }}
-          xs={4}
         >
-          <Fade mountOnEnter in={true}>
-            <img style={imgStyles} src={imgSrc}></img>
-          </Fade>
-        </Grid2>
-      );
-    }
-  });
-
-  return (
-    <Box
-      sx={{
-        position: "relative",
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      <Grid2
-        container
-        spacing={2}
-        flexWrap="nowrap"
-        sx={{
-          height: "fit-content",
-          maxWidth: "2520px",
-          paddingInline: 0,
-          position: "absolute",
-          overflow: "hidden",
-          top: "0px",
-        }}
-      >
-        {images}
-        {/* <Grid2
-          sx={{
-            height: "325px",
-            width: "840px",
-            minWidth: "840px",
-          }}
-          xs={4}
-        >
-          <img style={imgStyles} src="/sale1.png"></img>
-        </Grid2>
-  
-        <Grid2
-          sx={{ height: "325px", width: "840px", minWidth: "840px" }}
-          xs={4}
-        >
-          <img
-            style={imgStyles}
-            src="/sale3.png"
-          ></img>
-        </Grid2> */}
-      </Grid2>
+          {images}
+        </Container>
+      </Container>
     </Box>
   );
 };
