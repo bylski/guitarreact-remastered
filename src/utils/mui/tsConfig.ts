@@ -9,6 +9,7 @@
   
     interface Palette {
     //   neutral: Palette['primary'];
+        complementary: Palette['primary']
     }
     interface PaletteOptions {
     //   neutral: PaletteOptions['primary'];
@@ -16,6 +17,7 @@
   
     interface PaletteColor {
       onHover?: string;
+      background?: string,
     //   darker?: string;
     }
     interface SimplePaletteColorOptions {

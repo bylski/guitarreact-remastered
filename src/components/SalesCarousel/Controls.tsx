@@ -45,7 +45,7 @@ const Controls: React.FC<{
           sx={{
             width: "fit-content",
             height: "fit-content",
-            backgroundColor: "#000000",
+            backgroundColor: palette.complementary.background,
             "&:hover": {
               backgroundColor: palette.primary.main,
             },
@@ -66,7 +66,7 @@ const Controls: React.FC<{
           sx={{
             width: "fit-content",
             height: "fit-content",
-            backgroundColor: "#000000",
+            backgroundColor: palette.complementary.background,
             "&:hover": {
               backgroundColor: palette.primary.main,
             },

@@ -35,6 +35,9 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
       main: "#FFFFFF",// Main background color (React color)
       contrastText: "#000000", // Color contrasting to the background
     },
+    complementary: {
+      background: "#c9c9c9", 
+    }
   };
 
   const darkThemePalette = {
@@ -47,6 +50,9 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
       main: "#272727",// Accent Color - bright color which adds character (React color)
       contrastText: "#FFFFFF", // Color that is used for exmaple on buttons to improve accessability
     },
+    complementary: {
+      background: "#000000", 
+    }
   };
 
   const typography = {
