@@ -1,17 +1,23 @@
-import React, { useState } from "react";
-import { Box, SxProps } from "@mui/system";
-import IconButton from "@mui/material/IconButton";
-import { Grid, Typography } from "@mui/material";
+import React, { useContext } from "react";
+import {  SxProps } from "@mui/system";
 import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
 import { useTheme } from "@mui/material/styles";
-import SvgIcon, { SvgIconProps } from "@mui/material/SvgIcon";
-import { Variants, motion } from "framer-motion";
-import path from "node:path/win32";
+import { Variants } from "framer-motion";
 import GuitarsCategory from "./GuitarsCategory";
 import AmplifiersCategory from "./AmplifiersCategory";
 import AccessoriesCategory from "./AccessoriesCategory";
+import { AppContext, AppContextType } from "../../store/AppContext";
 
 const CategorySelector: React.FC = (props) => {
+  const ctx = useContext(AppContext);
+  const isContext = (ctx: AppContextType | null): ctx is AppContextType => {
+    return (ctx as AppContextType).selectedCategory !== undefined
+  }
+
+  if (!isContext(ctx)) {
+    throw new Error("No React Context was provided");
+  }
+
   const { palette, typography } = useTheme();
   const gridElementAttributes = {
     display: "flex",
@@ -26,7 +32,7 @@ const CategorySelector: React.FC = (props) => {
     // display: "flex",
     // flexDirection: "column",
     // border: `1px solid ${palette.primary.main}`,
-
+    transition: "background-color 0.2s ease",
     backgroundColor: palette.secondary.dark,
     "&:hover": {
       backgroundColor: palette.primary.onHoverDark,
@@ -56,22 +62,29 @@ const CategorySelector: React.FC = (props) => {
   return (
     <Grid2 container sx={{ width: "100%", height: "100px", marginTop: "50px" }}>
       <GuitarsCategory
+        onSelectCategory={ctx.onSelectCategory}
+        isSelected={ctx.selectedCategory === "guitars"}
         animationVariant={iconVariants}
         iconButtonSx={iconButtonSx}
         typographyAttributes={typographyAttributes}
         gridElementAttributes={gridElementAttributes}
       />
-    <AmplifiersCategory
+      <AmplifiersCategory
+        onSelectCategory={ctx.onSelectCategory}
+        isSelected={ctx.selectedCategory === "amplifiers"}
         animationVariant={iconVariants}
         iconButtonSx={iconButtonSx}
         typographyAttributes={typographyAttributes}
         gridElementAttributes={gridElementAttributes}
       />
-      <AccessoriesCategory 
+      <AccessoriesCategory
+        onSelectCategory={ctx.onSelectCategory}
+        isSelected={ctx.selectedCategory === "accessories"}
         animationVariant={iconVariants}
         iconButtonSx={iconButtonSx}
         typographyAttributes={typographyAttributes}
-        gridElementAttributes={gridElementAttributes}/>
+        gridElementAttributes={gridElementAttributes}
+      />
     </Grid2>
   );
 };
