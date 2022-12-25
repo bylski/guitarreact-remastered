@@ -16,14 +16,14 @@ const Cart: React.FC = (props) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: palette.primary.main,
+          backgroundColor: palette.primary.dark,
           paddingInline: "1.5rem",
           borderRadius: "0",
           transition: "0.2s background-color ease-in",
         },
         {
           "&:hover": {
-            backgroundColor: palette.primary.onHover,
+            backgroundColor: palette.primary.onHoverLight,
           },
         },
         {

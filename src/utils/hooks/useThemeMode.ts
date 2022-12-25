@@ -28,7 +28,7 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
   const lightThemePalette = {
     primary: {
       main: "#20CEF9", // Accent Color - bright color which adds character (React color)
-      onHover: "#05bfed", // Color that is used for exmaple on buttons to improve accessability
+      onHoverDark: "#05bfed", // Color that is used for exmaple on buttons to improve accessability
       contrastText: "#FFFFFF" // Color contrasting to the background
     },
     secondary: {
@@ -43,7 +43,8 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
   const darkThemePalette = {
     primary: {
       main: "#20CEF9", // Accent Color - bright color which adds character (React color)
-      onHover: "#04abd4", // Color that is used for exmaple on buttons to improve accessability
+      onHoverDark: "#006680", // Color that is used for exmaple on buttons to improve accessability
+      onHoverLight: "#05bfed",
       contrastText: "#FFFFFF" // Contrast text for accent color
     },
     secondary: {

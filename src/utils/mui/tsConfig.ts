@@ -16,7 +16,8 @@
     }
   
     interface PaletteColor {
-      onHover?: string;
+      onHoverDark?: string;
+      onHoverLight?: string;
       background?: string,
     //   darker?: string;
     }

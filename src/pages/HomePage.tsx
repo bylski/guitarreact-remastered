@@ -1,10 +1,9 @@
 import Container from "@mui/material/Container";
 import React from "react";
 import { useTheme } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
-import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
 import SalesCarousel from "../components/SalesCarousel/SalesCarousel";
+import CategorySelector from "../components/CategorySelector/CategorySelector";
 
 const HomePage: React.FC = () => {
   const theme = useTheme();
@@ -12,6 +11,7 @@ const HomePage: React.FC = () => {
 
   return (
     <Container
+      id={"mainContainer"}
       sx={{
         [theme.breakpoints.down("md")]: {
           marginTop: `calc(60px + ${theme.spacing(5)})`,
@@ -20,19 +20,16 @@ const HomePage: React.FC = () => {
           marginTop: `calc(70px + ${theme.spacing(5)})`,
         },
         maxWidth: "100%",
-        minHeight: "fit-content"
+        minHeight: "fit-content",
         // backgroundColor: palette.secondary.dark,
       }}
       maxWidth={false}
       disableGutters={true}
     >
-      <SalesCarousel/>
-      {/* <Container maxWidth={false} disableGutters={true} sx={{}}>
-        <Typography variant="h3" textAlign="center" sx={{ color: palette.secondary.contrastText }}>
-          HOT SALES
-        </Typography>
-      </Container> */}
-     
+      <SalesCarousel />
+      <Container id={"pageContent"} maxWidth={false} sx={{maxWidth: "1800px"}}>
+        <CategorySelector/>
+      </Container>
     </Container>
   );
 };
