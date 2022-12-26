@@ -60,7 +60,7 @@ const CategorySelector: React.FC = (props) => {
   };
 
   return (
-    <Grid2 container sx={{ width: "100%", height: "100px", marginTop: "50px" }}>
+    <Grid2 container columnSpacing={2} sx={{ width: "100%", height: "100px", marginTop: "50px" }}>
       <GuitarsCategory
         onSelectCategory={ctx.onSelectCategory}
         isSelected={ctx.selectedCategory === "guitars"}
