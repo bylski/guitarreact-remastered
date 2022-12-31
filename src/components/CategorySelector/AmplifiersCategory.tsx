@@ -47,13 +47,14 @@ const AmplifiersCategory: React.FC<{
   };
 
   return (
-    <Grid2 {...gridElementAttributes}>
+    <Grid2 {...gridElementAttributes} sx={{}}>
       <IconButton
         sx={
           isSelected
             ? {
                 ...iconButtonSx,
                 backgroundColor: `${palette.primary.dark} !important`,
+                borderColor: `${palette.primary.main} !important`,
               }
             : { ...iconButtonSx }
         }

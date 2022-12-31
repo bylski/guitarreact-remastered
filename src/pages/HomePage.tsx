@@ -4,6 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import { Box } from "@mui/system";
 import SalesCarousel from "../components/SalesCarousel/SalesCarousel";
 import CategorySelector from "../components/CategorySelector/CategorySelector";
+import ProductsDisplay from "../components/ProductsDisplay.tsx/ProductsDisplay";
 
 const HomePage: React.FC = () => {
   const theme = useTheme();
@@ -27,8 +28,9 @@ const HomePage: React.FC = () => {
       disableGutters={true}
     >
       <SalesCarousel />
-      <Container id={"pageContent"} maxWidth={false} sx={{maxWidth: "1800px"}}>
+      <Container id={"pageContent"} disableGutters={true} maxWidth={false} sx={{maxWidth: "1800px"}}>
         <CategorySelector/>
+        <ProductsDisplay/>
       </Container>
     </Container>
   );

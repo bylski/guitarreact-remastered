@@ -28,22 +28,19 @@ const CategorySelector: React.FC = (props) => {
   const iconButtonSx: SxProps = {
     width: "100%",
     height: "100%",
-    borderRadius: "0",
-    // display: "flex",
-    // flexDirection: "column",
-    // border: `1px solid ${palette.primary.main}`,
+    borderRadius: "15px",
     transition: "background-color 0.2s ease",
     backgroundColor: palette.secondary.dark,
+    border: `3px solid ${palette.secondary.light}`,
     "&:hover": {
       backgroundColor: palette.primary.onHoverDark,
+      borderColor: palette.primary.onHoverLight
     },
   };
 
   const typographyAttributes = {
     fontSize: "20px",
     fontFamily: typography.h1.fontFamily,
-
-    // color: palette.primary.main,
   };
 
   const iconVariants: Variants = {
@@ -60,7 +57,7 @@ const CategorySelector: React.FC = (props) => {
   };
 
   return (
-    <Grid2 container columnSpacing={2} sx={{ width: "100%", height: "100px", marginTop: "50px" }}>
+    <Grid2 container columnSpacing={2} sx={{ height: "100px", marginTop: "50px", backgroundColor: palette.secondary.main }}>
       <GuitarsCategory
         onSelectCategory={ctx.onSelectCategory}
         isSelected={ctx.selectedCategory === "guitars"}

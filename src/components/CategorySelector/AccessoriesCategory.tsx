@@ -54,6 +54,7 @@ const AccessoriesCategory: React.FC<{
             ? {
                 ...iconButtonSx,
                 backgroundColor: `${palette.primary.dark} !important`,
+                borderColor: `${palette.primary.main} !important`,
               }
             : { ...iconButtonSx }
         }
