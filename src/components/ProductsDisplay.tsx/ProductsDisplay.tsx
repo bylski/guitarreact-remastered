@@ -9,7 +9,7 @@ const ProductsDisplay: React.FC = (props) => {
   const { palette } = theme;
 
   return (
-      <Grid2 container sx={{marginTop: "1rem"}} columnSpacing={4}>
+      <Grid2 minHeight="fit-content" container sx={{marginTop: "1rem"}} columnSpacing={4}>
         <Grid2 display="flex" justifyContent="flex-start" xs={3}>
           <FiltersMenu/>
         </Grid2>
