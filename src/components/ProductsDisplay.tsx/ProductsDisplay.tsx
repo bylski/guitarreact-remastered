@@ -9,14 +9,26 @@ const ProductsDisplay: React.FC = (props) => {
   const { palette } = theme;
 
   return (
-      <Grid2 minHeight="fit-content" container sx={{marginTop: "1rem"}} columnSpacing={4}>
-        <Grid2 display="flex" justifyContent="flex-start" xs={3}>
-          <FiltersMenu/>
-        </Grid2>
-        <Grid2 display="flex" justifyContent="flex-start" xs={9} bgcolor={palette.secondary.dark} borderRadius={"15px"}>
-          <Products/>
-        </Grid2>
+    <Grid2
+      minHeight="fit-content"
+      container
+      sx={{ marginTop: "1rem" }}
+      columnSpacing={4}
+    >
+      <Grid2 display="flex" justifyContent="flex-start" xs={3}>
+        <FiltersMenu />
       </Grid2>
+      <Grid2
+        display="flex"
+        justifyContent="flex-start"
+        xs={9}
+        bgcolor={palette.secondary.dark}
+        borderRadius={"15px"}
+        p="1rem"
+      >
+        <Products />
+      </Grid2>
+    </Grid2>
   );
 };
 

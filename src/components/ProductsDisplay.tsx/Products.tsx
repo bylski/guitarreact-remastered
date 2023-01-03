@@ -21,13 +21,13 @@ const guitarProducts: ProductType[] = [
 
 const ProductsToRender = guitarProducts.map((product, i) => {
     return (
-        <Product product={product}/>
+        <Product key={`product${i}`} product={product}/>
     )
 })
 
 const Products: React.FC = (props) => {
     return (
-        <Grid2 container>
+        <Grid2 container columns={12} columnSpacing={2} rowSpacing={3}>
             { ProductsToRender }
         </Grid2>
     )
