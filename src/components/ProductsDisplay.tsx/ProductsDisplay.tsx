@@ -13,9 +13,9 @@ const ProductsDisplay: React.FC = (props) => {
       minHeight="fit-content"
       container
       sx={{ marginTop: "1rem" }}
-      columnSpacing={4}
+      // columnSpacing={4}
     >
-      <Grid2 display="flex" justifyContent="flex-start" xs={3}>
+      <Grid2 display="flex" justifyContent="flex-start" xs={3} pr="1rem">
         <FiltersMenu />
       </Grid2>
       <Grid2
