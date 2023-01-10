@@ -1,4 +1,4 @@
-import { Box, Fade, Stack, Typography } from "@mui/material";
+import { Box, Fade, IconButton, Stack, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useState } from "react";
 import { useTheme } from "@mui/material/styles";
@@ -8,7 +8,8 @@ import { ProductType } from "../../types/app-interfaces";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { rgbToHex } from "@mui/system";
-import { type } from "os";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 
 const Product: React.FC<{
   product: ProductType;
@@ -103,7 +104,7 @@ const Product: React.FC<{
                 textDecoration: "none",
                 color: palette.secondary.contrastText,
               }}
-              to="guitarId"
+              to="/"
             >
               {
                 <motion.span whileHover={{ textDecoration: "underline" }}>
@@ -114,35 +115,51 @@ const Product: React.FC<{
           }
         </Typography>
 
-        <Typography
-          sx={{ flexGrow: 1 }}
-          color={palette.primary.main}
-          fontFamily={typography.h2.fontFamily}
-          fontSize="23px"
-          fontWeight="600"
-          textAlign={"left"}
-        >
-          {`$${product.price}`}
-        </Typography>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Rating
-            size="small"
-            name="product-rating"
-            precision={0.5}
-            readOnly
-            value={product.rating || 0}
-            sx={{ position: "relative", top: "1px" }}
-          ></Rating>
-          <Typography
-            sx={{ flexGrow: 1 }}
-            color={palette.secondary.light}
-            fontFamily={typography.h2.fontFamily}
-            fontSize="14px"
-            fontWeight="200"
-            ml="0.3rem"
+        <Box sx={{ display: "flex", justifyContent: "start" }}>
+          <Stack justifyContent="flex-end">
+            <Typography
+              sx={{ height: "fit-content" }}
+              color={palette.primary.main}
+              fontFamily={typography.h2.fontFamily}
+              fontSize="23px"
+              fontWeight="600"
+              textAlign={"left"}
+            >
+              {`$${product.price}`}
+            </Typography>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Rating
+                size="small"
+                name="product-rating"
+                precision={0.5}
+                readOnly
+                value={product.rating || 0}
+                sx={{ position: "relative", top: "1px" }}
+              ></Rating>
+              <Typography
+                sx={{ flexGrow: 1 }}
+                color={palette.secondary.light}
+                fontFamily={typography.h2.fontFamily}
+                fontSize="14px"
+                fontWeight="200"
+                position={"relative"}
+                top="2px"
+                ml="0.3rem"
+              >
+                {`(${product.ratingsNum})` || "(0)"}
+              </Typography>
+            </Box>
+          </Stack>
+          <Box
+            sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}
           >
-            {`(${product.ratingsNum})` || "(0)"}
-          </Typography>
+            <IconButton title="Compare Product" sx={{borderRadius: "0px", paddingInline: "12px"}}>
+              <CompareArrowsIcon />
+            </IconButton>
+            <IconButton title="Add to Cart" sx={{borderRadius: "0px", paddingInline: "12px"}}>
+              <AddShoppingCartIcon />
+            </IconButton>
+          </Box>
         </Box>
       </Stack>
     </Grid2>

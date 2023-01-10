@@ -1,5 +1,6 @@
 import React, { useState, createContext } from "react";
 import { AppContext } from "./AppContext";
+import { useLocation } from "react-router";
 
 const AppProvider: React.FC<{children?: React.ReactNode}> = (props) => {
 
@@ -11,9 +12,14 @@ const onSelectCategory = (
   setSelectedCategory(selectedCategory);
 };
 
+const location = useLocation();
+const [currentPath, setCurrentPath] = useState(location.pathname);
+
 const AppContextValues = {
   selectedCategory: selectedCategory,
   onSelectCategory,
+  currentPath,
+  // onSetPath: () => setCurrentPath()
 };
 
 
