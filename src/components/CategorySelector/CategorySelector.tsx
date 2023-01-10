@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {  SxProps } from "@mui/system";
 import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
 import { useTheme } from "@mui/material/styles";
@@ -17,6 +17,12 @@ const CategorySelector: React.FC = (props) => {
   if (!isContext(ctx)) {
     throw new Error("No React Context was provided");
   }
+
+  useEffect(() => {
+    const { currentPath } = ctx; 
+    if (currentPath === "/")
+    ctx.onSelectCategory("guitars");
+  }, [ctx.currentPath])
 
   const { palette, typography } = useTheme();
   const gridElementAttributes = {

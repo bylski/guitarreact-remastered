@@ -53,6 +53,7 @@ const Product: React.FC<{
           }}
         >
           <img
+            alt="Image of the product"
             style={{ width: "100%", height: "100%", objectFit: "contain" }}
             src={
               product.imgSrc ||
@@ -153,11 +154,11 @@ const Product: React.FC<{
           <Box
             sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}
           >
-            <IconButton title="Compare Product" sx={{borderRadius: "0px", paddingInline: "12px"}}>
-              <CompareArrowsIcon />
+            <IconButton size="large" title="Compare Products" sx={{borderRadius: "0px", paddingInline: "12px"}}>
+              <CompareArrowsIcon fontSize="inherit"/>
             </IconButton>
-            <IconButton title="Add to Cart" sx={{borderRadius: "0px", paddingInline: "12px"}}>
-              <AddShoppingCartIcon />
+            <IconButton size="large" title="Add to Cart" sx={{borderRadius: "0px", paddingInline: "12px"}}>
+              <AddShoppingCartIcon fontSize="inherit"/>
             </IconButton>
           </Box>
         </Box>
