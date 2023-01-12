@@ -7,6 +7,7 @@ import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
 import { Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Categories } from "../../store/AppContext";
+import { useNavigate } from "react-router";
 
 const GuitarsCategory: React.FC<{
   animationVariant: Variants;
@@ -24,6 +25,7 @@ const GuitarsCategory: React.FC<{
     iconButtonSx,
   } = props;
 
+  const navigate = useNavigate();
   const { palette } = useTheme();
 
   const [isHovered, setIsHovered] = useState(false);
@@ -37,6 +39,7 @@ const GuitarsCategory: React.FC<{
   };
 
   const mouseClickHandler = () => {
+    navigate("/guitars");
     props.onSelectCategory("guitars");
   };
 

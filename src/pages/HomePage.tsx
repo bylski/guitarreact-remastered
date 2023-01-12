@@ -5,6 +5,7 @@ import { Box } from "@mui/system";
 import SalesCarousel from "../components/SalesCarousel/SalesCarousel";
 import CategorySelector from "../components/CategorySelector/CategorySelector";
 import ProductsDisplay from "../components/ProductsDisplay.tsx/ProductsDisplay";
+import { Outlet } from "react-router";
 
 const HomePage: React.FC = () => {
   const theme = useTheme();
@@ -30,7 +31,7 @@ const HomePage: React.FC = () => {
       <SalesCarousel />
       <Container id={"pageContent"} disableGutters={true} maxWidth={false} sx={{maxWidth: "1800px", paddingInline: "24px"}}>
         <CategorySelector/>
-        <ProductsDisplay/>
+        <Outlet/>
       </Container>
     </Container>
   );

@@ -4,7 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import FiltersMenu from "./FiltersMenu";
 import Products from "./Products";
 
-const ProductsDisplay: React.FC = (props) => {
+const ProductsDisplay: React.FC<{productType: "guitars" | "amplifiers" | "accessories"}> = (props) => {
   const theme = useTheme();
   const { palette } = theme;
 

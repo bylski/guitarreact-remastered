@@ -7,6 +7,7 @@ import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
 import { Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Categories } from "../../store/AppContext";
+import { useNavigate } from "react-router";
 
 const AmplifiersCategory: React.FC<{
   animationVariant: Variants;
@@ -25,6 +26,7 @@ const AmplifiersCategory: React.FC<{
   } = props;
 
   const { palette } = useTheme();
+  const navigate = useNavigate();
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -37,6 +39,7 @@ const AmplifiersCategory: React.FC<{
   };
 
   const mouseClickHandler = () => {
+    navigate("/amplifiers");
     props.onSelectCategory("amplifiers");
   };
 
