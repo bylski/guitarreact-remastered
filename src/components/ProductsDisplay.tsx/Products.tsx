@@ -4,28 +4,16 @@ import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { ProductType } from "../../types/app-interfaces";
 
 
-const guitarProducts: ProductType[] = [
-    {name: "Ibanez GRGR120EX", price: 229.99, rating: 4.5, ratingsNum: 96},
-    {name: "Ibanez RGA42HPTQM Blue Iceberg Gradation", price: 999.99, rating: 4.5, ratingsNum: 96},
-    {name: "Ibanez GRGR120EX", price: 229.99, rating: 4.5, ratingsNum: 96},
-    {name: "Ibanez RGA42HPTQM Blue Iceberg Gradation", price: 999.99, rating: 4.5, ratingsNum: 96},
-    {name: "Ibanez GRGR120EX", price: 229.99, rating: 4.5, ratingsNum: 96},
-    {name: "Ibanez RGA42HPTQM Blue Iceberg Gradation", price: 999.99, rating: 4.5, ratingsNum: 96},
-    {name: "Ibanez GRGR120EX", price: 229.99, rating: 4.5, ratingsNum: 96},
-    {name: "Ibanez RGA42HPTQM Blue Iceberg Gradation", price: 999.99, rating: 4.5, ratingsNum: 96},
-    {name: "Ibanez GRGR120EX", price: 229.99, rating: 4.5, ratingsNum: 96},
-    {name: "Ibanez RGA42HPTQM Blue Iceberg Gradation", price: 999.99, rating: 4.5, ratingsNum: 96},
-    {name: "Ibanez GRGR120EX", price: 229.99, rating: 4.5, ratingsNum: 96},
-    {name: "Ibanez RGA42HPTQM Blue Iceberg Gradation", price: 999.99, rating: 4.5, ratingsNum: 96}
-]
 
-const ProductsToRender = guitarProducts.map((product, i) => {
-    return (
-        <Product key={`product${i}`} product={product}/>
-    )
-})
+const Products: React.FC<{products: ProductType[], productType: "guitars" | "amplifiers" | "accessories";}> = (props) => {
 
-const Products: React.FC = (props) => {
+
+    const ProductsToRender = props.products.map((product, i) => {
+        return (
+            <Product key={`product${i}`} product={product} productType={props.productType}/>
+        )
+    })
+
     return (
         <Grid2 container columns={12} columnSpacing={2} rowSpacing={3}>
             { ProductsToRender }

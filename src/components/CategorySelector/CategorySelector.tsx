@@ -18,7 +18,6 @@ const CategorySelector: React.FC = (props) => {
     throw new Error("No React Context was provided");
   }
 
-  console.log(ctx.selectedCategory)
   useEffect(() => {
     const { currentPath } = ctx;
     if (currentPath === "/" || "/guitars") {
