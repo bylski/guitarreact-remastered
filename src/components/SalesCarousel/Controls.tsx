@@ -26,6 +26,7 @@ const Controls: React.FC<{
   return (
     <Fade in={props.areControlsShown}>
       <Box
+      id="carousel-controls"
         ref={ref}
         sx={{
           height: "100%",
@@ -38,6 +39,7 @@ const Controls: React.FC<{
           alignItems: "center",
           top: "0px",
           zIndex: "5",
+          pointerEvents: "none",
         }}
       >
         <IconButton
@@ -46,6 +48,7 @@ const Controls: React.FC<{
             width: "fit-content",
             height: "fit-content",
             backgroundColor: palette.complementary.background,
+            pointerEvents: "all",
             "&:hover": {
               backgroundColor: palette.primary.main,
             },
@@ -67,6 +70,7 @@ const Controls: React.FC<{
             width: "fit-content",
             height: "fit-content",
             backgroundColor: palette.complementary.background,
+            pointerEvents: "all",
             "&:hover": {
               backgroundColor: palette.primary.main,
             },
