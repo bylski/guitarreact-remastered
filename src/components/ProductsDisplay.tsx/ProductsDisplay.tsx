@@ -108,6 +108,45 @@ const ProductsDisplay: React.FC<{
     },
   ];
 
+  const accessoriesProducts: ProductType[] = [
+    {
+      name: "Dunlop Tortex Flow Guitar Picks STD-12",
+      price: 229.99,
+      rating: 4.5,
+      ratingsNum: 96,
+    },
+    {
+      name: "Mogami Gold Series Instrument Cable 6 ft",
+      price: 999.99,
+      rating: 4.5,
+      ratingsNum: 96,
+    },
+    {
+      name: "Dunlop Tortex Flow Guitar Picks STD-12",
+      price: 229.99,
+      rating: 4.5,
+      ratingsNum: 96,
+    },
+    {
+      name: "Mogami Gold Series Instrument Cable 6 ft",
+      price: 999.99,
+      rating: 4.5,
+      ratingsNum: 96,
+    },
+    {
+      name: "Dunlop Tortex Flow Guitar Picks STD-12",
+      price: 229.99,
+      rating: 4.5,
+      ratingsNum: 96,
+    },
+    {
+      name: "Mogami Gold Series Instrument Cable 6 ft",
+      price: 999.99,
+      rating: 4.5,
+      ratingsNum: 96,
+    },
+  ]
+
   const [productsToDisplay, setProductsToDisplay] = useState<
     ProductType[] | null
   >(null);
@@ -117,7 +156,10 @@ const ProductsDisplay: React.FC<{
       setProductsToDisplay(guitarProducts);
     } else if (props.productType === "amplifiers") {
       setProductsToDisplay(amplifierProducts);
+    } else if (props.productType === "accessories") {
+      setProductsToDisplay(accessoriesProducts);
     }
+    
   }, [props.productType]);
 
   return (

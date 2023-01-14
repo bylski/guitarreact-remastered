@@ -35,8 +35,11 @@ const Product: React.FC<{
     imagePath = "/products/electric-guitars";
   } else if (props.productType === "amplifiers") {
     imagePath = "/products/amplifiers";
+  } else if (props.productType === "accessories") {
+    imagePath = "/products/accessories";
   }
 
+  console.log(productSrcName)
 
 // console.log(breakpoints.lgScreen);
 //   useEffect(() => {
