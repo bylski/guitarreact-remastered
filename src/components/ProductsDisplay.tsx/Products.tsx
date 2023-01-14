@@ -15,7 +15,7 @@ const Products: React.FC<{products: ProductType[], productType: "guitars" | "amp
     })
 
     return (
-        <Grid2 container columns={12} columnSpacing={2} rowSpacing={3}>
+        <Grid2 container columns={60} columnSpacing={2} rowSpacing={3}>
             { ProductsToRender }
         </Grid2>
     )

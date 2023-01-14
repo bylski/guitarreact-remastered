@@ -20,7 +20,7 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
         sm: 500,
         md: 700,
         lg: 1100,
-        xl: 1536,
+        xl: 1636,
       },
     },
   });

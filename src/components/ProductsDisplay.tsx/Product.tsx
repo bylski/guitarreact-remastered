@@ -1,6 +1,6 @@
 import { Box, Fade, IconButton, Stack, Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import Rating from "@mui/material/Rating";
@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { rgbToHex } from "@mui/system";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
+import useBreakpoints from "../../utils/hooks/useBreakpoints";
 
 const Product: React.FC<{
   product: ProductType;
@@ -19,6 +20,9 @@ const Product: React.FC<{
   const { palette, typography } = theme;
   const { product } = props;
   const productSrcName = product.name.replace(/\s/g, "");
+
+  // const [variablesByBreakpoints, setVariablesByBreakpoints] = useState({itemsInGridRow: 12});
+  const breakpoints = useBreakpoints({breakpointName: "lgScreen", breakpointVal: 1700});
 
   const [hideQuickShow, setHideQuickShow] = useState(true);
   const quickShowHandler = (e: React.MouseEvent) => {
@@ -33,8 +37,21 @@ const Product: React.FC<{
     imagePath = "/products/amplifiers";
   }
 
+
+// console.log(breakpoints.lgScreen);
+//   useEffect(() => {
+//     if (breakpoints.lgScreen === true) {
+//       setVariablesByBreakpoints((prev) => ({...prev, itemsInGridRow: 12}))
+//     } else {
+//       setVariablesByBreakpoints((prev) => ({...prev, itemsInGridRow: 15}))
+//     }
+
+//   }, [breakpoints])
+
+
+
   return (
-    <Grid2 xs={3} height="fit-content" minHeight="460px">
+    <Grid2 xl={12} lg={15} height="fit-content" minHeight="460px">
       <Stack
         onMouseEnter={quickShowHandler}
         onMouseLeave={quickShowHandler}
@@ -66,7 +83,7 @@ const Product: React.FC<{
           <img
             alt="Image of the product"
             style={{
-              width: props.productType === "guitars" ? "100%" : "80%",
+              width: "100%",
               height: "100%",
               objectFit: "contain",
             }}

@@ -125,15 +125,16 @@ const ProductsDisplay: React.FC<{
       minHeight="fit-content"
       container
       sx={{ marginTop: "1rem" }}
+      columns={20}
       columnSpacing={4}
     >
-      <Grid2 display="flex" justifyContent="flex-start" xs={3}>
+      <Grid2 display="flex" justifyContent="flex-start" xs={4}>
         <FiltersMenu />
       </Grid2>
       <Grid2
         display="flex"
         justifyContent="flex-start"
-        xs={9}
+        xs={16}
         bgcolor={palette.secondary.dark}
         borderRadius={"15px"}
         p="1rem"
