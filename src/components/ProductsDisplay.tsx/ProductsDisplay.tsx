@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { useTheme } from "@mui/material/styles";
-import FiltersMenu from "./FiltersMenu";
+import FiltersMenu from "../FiltersMenu/FiltersMenu";
 import Products from "./Products";
 import { ProductType } from "../../types/app-interfaces";
 import { useDeprecatedAnimatedState } from "framer-motion";
@@ -169,6 +169,7 @@ const ProductsDisplay: React.FC<{
       sx={{ marginTop: "1rem" }}
       columns={20}
       columnSpacing={4}
+      width="101%"
     >
       <Grid2 display="flex" justifyContent="flex-start" xs={4}>
         <FiltersMenu />

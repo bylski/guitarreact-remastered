@@ -14,13 +14,13 @@ const SwitchButton: React.FC<{
   // Diffrentiate between active buttons with innerText of the button
   const buttonSelectHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.currentTarget as HTMLButtonElement;
-    console.log(target.innerText)
     setActiveButton(target.innerText.toUpperCase());
   };
 
   const commonSx: SxProps = {
     borderColor: palette.secondary.light,
     color: palette.secondary.contrastText,
+    paddingBlock: "0.5rem",
     transition: "0.2s ease",
     "&:hover": {
       color: palette.primary.main,
@@ -35,7 +35,7 @@ const SwitchButton: React.FC<{
   };
 
   const buttonsToRender = props.buttons.map((button, i) => {
-    let marginBottom = "5px";
+    let marginBottom = "8px";
     if (i === props.buttons.length - 1) {
       marginBottom = "0px";
     }

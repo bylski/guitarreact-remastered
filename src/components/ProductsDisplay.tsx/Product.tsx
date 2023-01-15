@@ -39,7 +39,6 @@ const Product: React.FC<{
     imagePath = "/products/accessories";
   }
 
-  console.log(productSrcName)
 
 // console.log(breakpoints.lgScreen);
 //   useEffect(() => {

@@ -3,6 +3,7 @@ import { Stack, Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import SwitchButton from "../UI/SwitchButton";
+import GuitarFilters from "./GuitarFilters";
 
 const FiltersMenu: React.FC = (props) => {
   const theme = useTheme();
@@ -17,19 +18,22 @@ const FiltersMenu: React.FC = (props) => {
       bgcolor={palette.secondary.dark}
       borderRadius={"15px"}
     >
-      <Box mb="1rem" borderBottom={"1px solid"} borderColor={ palette.secondary.light }>
+      <Box mb="1rem">
         <Typography
           sx={{ flexGrow: 1 }}
           color={palette.secondary.contrastText}
           fontFamily={typography.h2.fontFamily}
-          fontSize="26px"
-          fontWeight="400"
+          fontSize="28px"
+          fontWeight="300"
           textAlign={"center"}  
+          borderBottom={"1px solid"}
+          borderColor={ palette.secondary.light }
         >
-          Guitar Filters
+          Filter Products
         </Typography>
       </Box>
       <SwitchButton buttons={[{text: "Acoustic Guitars"}, {text: "Electric Guitars"}]} preActivate={{ buttonText: "Electric" }}/>
+      <GuitarFilters/>
     </Stack>
   );
 };

@@ -29,7 +29,7 @@ const HomePage: React.FC = () => {
       disableGutters={true}
     >
       <SalesCarousel />
-      <Container id={"pageContent"} disableGutters={true} maxWidth={false} sx={{maxWidth: "1800px", paddingInline: "24px"}}>
+      <Container id={"pageContent"} disableGutters={true} maxWidth={false} sx={{maxWidth: "1800px", paddingInline: "12px"}}>
         <CategorySelector/>
         <Outlet/>
       </Container>
