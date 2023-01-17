@@ -46,13 +46,14 @@ const GuitarFilters: React.FC = () => {
       </Filter>
       <AccordionFilter
         filterOptions={producerBrands}
+        maxOptionsShown={5}
         name="Brand"
         mt={"1.5rem"}
       ></AccordionFilter>
       <AccordionFilter
         filterOptions={pickupConfigurations}
         name="Pickup Configuration"
-        mt={"1.5rem"}
+        mt={"1rem"}
       >
         {pickupConfigurations}
       </AccordionFilter>

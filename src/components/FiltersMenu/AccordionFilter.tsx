@@ -1,6 +1,4 @@
 import {
-  TextField,
-  Box,
   Typography,
   AccordionDetails,
   Button,
@@ -12,22 +10,19 @@ import {
   CheckboxProps,
 } from "@mui/material";
 
-
-
 import React, { Fragment, useState, useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
-import { Stack } from "@mui/system";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const AccordionFilter: React.FC<{
-  filterOptions: Array<string>
+  filterOptions: Array<string>;
   name: string;
   mt: string;
   children?: React.ReactNode;
+  maxOptionsShown?: number;
 }> = (props) => {
   const theme = useTheme();
   const { palette, typography } = theme;
-
 
   const [checkBoxes, setCheckBoxes] = useState<{
     content: Array<{ name: string; isChecked: boolean }>;
@@ -51,8 +46,7 @@ const AccordionFilter: React.FC<{
     });
   };
 
-  useEffect(() => {
-  }, [checkBoxes]);
+  useEffect(() => {}, [checkBoxes]);
 
   const children = checkBoxes.content.map((checkbox) => {
     let additionalAttributes: CheckboxProps = {};
@@ -76,7 +70,6 @@ const AccordionFilter: React.FC<{
     );
   });
 
-
   const [accordionShowAll, setAccordionShowAll] = useState(false);
   const [accordionButtonText, setAccordionButtonText] = useState<
     "Show More" | "Show Less"
@@ -93,6 +86,19 @@ const AccordionFilter: React.FC<{
     });
   };
 
+  let checkboxesToRender = children;
+  if (props.maxOptionsShown !== undefined) {
+    if (
+      React.Children.count(children) > props.maxOptionsShown &&
+      !accordionShowAll &&
+      props.maxOptionsShown
+    ) {
+      checkboxesToRender = React.Children.toArray(children).slice(
+        0,
+        props.maxOptionsShown
+      ) as JSX.Element[];
+    }
+  }
   return (
     <Accordion
       sx={{
@@ -127,12 +133,12 @@ const AccordionFilter: React.FC<{
           paddingTop: "0px",
         }}
       >
-        {React.Children.count(children) > 5 && !accordionShowAll
-          ? React.Children.toArray(children).slice(0, 5)
-          : children}
-        <Button type="button" onClick={toggleShowAll} variant="text">
-          {accordionButtonText}
-        </Button>
+        {checkboxesToRender}
+        {props.maxOptionsShown !== undefined && (
+          <Button type="button" onClick={toggleShowAll} variant="text">
+            {accordionButtonText}
+          </Button>
+        )}
       </AccordionDetails>
     </Accordion>
   );
