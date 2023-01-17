@@ -13,6 +13,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import { Stack } from "@mui/system";
 import Filter from "./Filter";
+import AccordionFilter from "./AccordionFilter";
 
 const GuitarFilters: React.FC = () => {
   const theme = useTheme();
@@ -99,9 +100,9 @@ const GuitarFilters: React.FC = () => {
           <TextField variant="outlined" label="To" />
         </Box>
       </Filter>
-      <Filter accordion={true} name="Brand" mt={"1.5rem"}>
+      <AccordionFilter name="Brand" mt={"1.5rem"}>
         {brandCheckBoxes}
-      </Filter>
+      </AccordionFilter>
     </Fragment>
   );
 };
