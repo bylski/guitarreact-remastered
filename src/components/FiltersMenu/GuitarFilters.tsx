@@ -1,14 +1,4 @@
-import {
-  TextField,
-  Box,
-  Typography,
-  Checkbox,
-  FormGroup,
-  FormControlLabel,
-  Accordion,
-  AccordionSummary,
-  CheckboxProps,
-} from "@mui/material";
+import { TextField, Box, Typography } from "@mui/material";
 import React, { Fragment, useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import { Stack } from "@mui/system";
@@ -28,53 +18,7 @@ const GuitarFilters: React.FC = () => {
     "Chapman",
   ];
 
-  const [checkBoxes, setCheckBoxes] = useState<{
-    content: Array<{ name: string; isChecked: boolean }>;
-    change: boolean;
-  }>({
-    content: producerBrands.map((name) => ({ name, isChecked: false })),
-    change: false,
-  });
-
-  const checkboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, checked } = e.target;
-    const checkboxToChange = { name: value, isChecked: checked };
-    setCheckBoxes((prev) => {
-      const newContent = prev.content;
-      for (let i = 0; i < newContent.length; i++) {
-        if (newContent[i].name === checkboxToChange.name) {
-          newContent[i].isChecked = checkboxToChange.isChecked;
-        }
-      }
-      return { content: newContent, change: !prev.change };
-    });
-  };
-
-  useEffect(() => {
-    console.log("HEY");
-  }, [checkBoxes]);
-
-  const brandCheckBoxes = checkBoxes.content.map((checkbox) => {
-    let additionalAttributes: CheckboxProps = {};
-    if (checkbox.isChecked) {
-      additionalAttributes = { defaultChecked: true };
-    }
-    return (
-      <FormGroup>
-        <FormControlLabel
-          sx={{ color: palette.secondary.contrastText }}
-          label={checkbox.name}
-          control={
-            <Checkbox
-              {...additionalAttributes}
-              value={checkbox.name}
-              onChange={checkboxHandler}
-            />
-          }
-        ></FormControlLabel>
-      </FormGroup>
-    );
-  });
+  const pickupConfigurations = ["HH", "HSH", "HSS", "SS", "SSS"];
 
   return (
     <Fragment>
@@ -100,8 +44,17 @@ const GuitarFilters: React.FC = () => {
           <TextField variant="outlined" label="To" />
         </Box>
       </Filter>
-      <AccordionFilter name="Brand" mt={"1.5rem"}>
-        {brandCheckBoxes}
+      <AccordionFilter
+        filterOptions={producerBrands}
+        name="Brand"
+        mt={"1.5rem"}
+      ></AccordionFilter>
+      <AccordionFilter
+        filterOptions={pickupConfigurations}
+        name="Pickup Configuration"
+        mt={"1.5rem"}
+      >
+        {pickupConfigurations}
       </AccordionFilter>
     </Fragment>
   );
