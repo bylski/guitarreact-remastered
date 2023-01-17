@@ -18,7 +18,11 @@ const GuitarFilters: React.FC = () => {
     "Chapman",
   ];
 
+  const numberOfStrings = ["6 String", "7 String", "8 String", "9 String"];
+
   const pickupConfigurations = ["HH", "HSH", "HSS", "SS", "SSS"];
+
+  const bridgeTypes = ["Fixed", "Tremolo", "Floyd Rose"]
 
   return (
     <Fragment>
@@ -47,16 +51,26 @@ const GuitarFilters: React.FC = () => {
       <AccordionFilter
         filterOptions={producerBrands}
         maxOptionsShown={5}
+        isRevealed
         name="Brand"
         mt={"1.5rem"}
       ></AccordionFilter>
       <AccordionFilter
+        filterOptions={numberOfStrings}
+        name="Number of Strings"
+        isRevealed
+        mt={"0.5rem"}
+      ></AccordionFilter>
+      <AccordionFilter
         filterOptions={pickupConfigurations}
         name="Pickup Configuration"
-        mt={"1rem"}
-      >
-        {pickupConfigurations}
-      </AccordionFilter>
+        mt={"0.5rem"}
+      ></AccordionFilter>
+       <AccordionFilter
+        filterOptions={bridgeTypes}
+        name="Bridge Type"
+        mt={"0.5rem"}
+      ></AccordionFilter>
     </Fragment>
   );
 };

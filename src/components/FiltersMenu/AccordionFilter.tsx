@@ -20,6 +20,7 @@ const AccordionFilter: React.FC<{
   mt: string;
   children?: React.ReactNode;
   maxOptionsShown?: number;
+  isRevealed?: boolean;
 }> = (props) => {
   const theme = useTheme();
   const { palette, typography } = theme;
@@ -71,6 +72,7 @@ const AccordionFilter: React.FC<{
   });
 
   const [accordionShowAll, setAccordionShowAll] = useState(false);
+  const [expandAccordion, setExpandAccordion] = useState(props.isRevealed || false);
   const [accordionButtonText, setAccordionButtonText] = useState<
     "Show More" | "Show Less"
   >("Show More");
@@ -101,6 +103,7 @@ const AccordionFilter: React.FC<{
   }
   return (
     <Accordion
+      defaultExpanded={props.isRevealed}
       sx={{
         marginTop: props.mt,
         boxShadow: "none",
