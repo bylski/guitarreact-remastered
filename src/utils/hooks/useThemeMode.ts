@@ -92,6 +92,31 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
         },
       },
     },
+    MuiAccordionDetails: {
+      styleOverrides: {
+        root: {
+          margin: "0px",
+          paddingBottom: "0px",
+        },
+        expanded: {
+          margin: "0px"
+        },
+      }
+    },
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          marginBottom: "0px !important",
+        },
+      }
+    },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        content: {
+          marginBottom: "10px !important",
+        },
+      }
+    },
   };
 
   const getTheme = (mode: PaletteMode) => ({
