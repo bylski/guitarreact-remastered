@@ -20,7 +20,7 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
         sm: 500,
         md: 700,
         lg: 1100,
-        xl: 1536,
+        xl: 1636,
       },
     },
   });
@@ -91,6 +91,28 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
           [theme.breakpoints.up("md")]: { height: "70px", minHeight: "70px" },
         },
       },
+    },
+    MuiAccordionDetails: {
+      styleOverrides: {
+        root: {
+          margin: "0px",
+          paddingBottom: "0px",
+        },
+      }
+    },
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          marginBottom: "0px !important",
+        },
+      }
+    },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        content: {
+          marginBottom: "10px !important",
+        },
+      }
     },
   };
 

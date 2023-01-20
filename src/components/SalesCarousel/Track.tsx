@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import Container from "@mui/material/Container";
 import { SxProps, Box } from "@mui/system";
 import { imgStyles } from "./styles/carouselStyles";
+import { motion } from "framer-motion";
+import Sale from "./Sale";
 
 const Track: React.FC<{
   carouselImgs: string[];
@@ -12,42 +14,41 @@ const Track: React.FC<{
 }> = (props) => {
   const { carouselImgs, carouselElementStyles } = props;
 
+  const sxStyles: SxProps = {
+    ...carouselElementStyles,
+    paddingRight: "20px",
+    transition: "0.2s ease",
+    top: "0px",
+  };
+
   const images: JSX.Element[] = carouselImgs.map((imgSrc, i) => {
-    const sxStyles: SxProps = {
-      ...carouselElementStyles,
-      paddingRight: "20px",
-    };
 
     return (
-      <Box key={`carouselElement${i}`} sx={{ ...sxStyles }}>
-        <img style={imgStyles} src={imgSrc}></img>
-      </Box>
+      <Sale key={`carouselSale${i}`} sxStyles={sxStyles} imgSrc={imgSrc} />
     );
   });
 
   const imagesCpy1: JSX.Element[] = carouselImgs.map((imgSrc, i) => {
-    const sxStyles: SxProps = {
-      ...carouselElementStyles,
-      paddingRight: "20px",
-    };
+
 
     return (
-      <Box key={`carouselElement${5 + i}`} sx={{ ...sxStyles }}>
-        <img style={imgStyles} src={imgSrc}></img>
-      </Box>
+      <Sale
+        key={`carouselElement${5 + i}`}
+        sxStyles={sxStyles}
+        imgSrc={imgSrc}
+      />
     );
   });
 
   const imagesCpy2: JSX.Element[] = carouselImgs.map((imgSrc, i) => {
-    const sxStyles: SxProps = {
-      ...carouselElementStyles,
-      paddingRight: "20px",
-    };
+
 
     return (
-      <Box key={`carouselElement${10 + i}`} sx={{ ...sxStyles }}>
-        <img style={imgStyles} src={imgSrc}></img>
-      </Box>
+      <Sale
+      key={`carouselElement${10 + i}`}
+      sxStyles={sxStyles}
+      imgSrc={imgSrc}
+    />
     );
   });
 
@@ -68,7 +69,6 @@ const Track: React.FC<{
         if (trackRef.current) trackRef.current.style.transition = "";
       }, 300);
     }
-
   }, [props.carouselPos]);
 
   return (

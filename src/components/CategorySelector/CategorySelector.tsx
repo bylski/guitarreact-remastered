@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import {  SxProps } from "@mui/system";
+import React, { useContext, useEffect } from "react";
+import { SxProps } from "@mui/system";
 import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
 import { useTheme } from "@mui/material/styles";
 import { Variants } from "framer-motion";
@@ -11,12 +11,23 @@ import { AppContext, AppContextType } from "../../store/AppContext";
 const CategorySelector: React.FC = (props) => {
   const ctx = useContext(AppContext);
   const isContext = (ctx: AppContextType | null): ctx is AppContextType => {
-    return (ctx as AppContextType).selectedCategory !== undefined
-  }
+    return (ctx as AppContextType).selectedCategory !== undefined;
+  };
 
   if (!isContext(ctx)) {
     throw new Error("No React Context was provided");
   }
+
+  useEffect(() => {
+    const { currentPath } = ctx;
+    if (currentPath === "/" || "/guitars") {
+      ctx.onSelectCategory("guitars");
+    } if (currentPath === "/amplifiers") {
+      ctx.onSelectCategory("amplifiers");
+    } if (currentPath === "/accessories") {
+      ctx.onSelectCategory("accessories");
+    }
+  }, [ctx.currentPath]);
 
   const { palette, typography } = useTheme();
   const gridElementAttributes = {
@@ -34,7 +45,7 @@ const CategorySelector: React.FC = (props) => {
     border: `3px solid ${palette.secondary.light}`,
     "&:hover": {
       backgroundColor: palette.primary.onHoverDark,
-      borderColor: palette.primary.onHoverLight
+      borderColor: palette.primary.onHoverLight,
     },
   };
 
@@ -57,7 +68,15 @@ const CategorySelector: React.FC = (props) => {
   };
 
   return (
-    <Grid2 container columnSpacing={2} sx={{ height: "100px", marginTop: "50px", backgroundColor: palette.secondary.main }}>
+    <Grid2
+      container
+      columnSpacing={2}
+      sx={{
+        height: "100px",
+        marginTop: "50px",
+        backgroundColor: palette.secondary.main,
+      }}
+    >
       <GuitarsCategory
         onSelectCategory={ctx.onSelectCategory}
         isSelected={ctx.selectedCategory === "guitars"}

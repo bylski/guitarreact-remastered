@@ -1,6 +1,6 @@
-import { Box, Fade, Stack, Typography } from "@mui/material";
+import { Box, Fade, IconButton, Stack, Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import Rating from "@mui/material/Rating";
@@ -8,15 +8,21 @@ import { ProductType } from "../../types/app-interfaces";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { rgbToHex } from "@mui/system";
-import { type } from "os";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
+import useBreakpoints from "../../utils/hooks/useBreakpoints";
 
 const Product: React.FC<{
   product: ProductType;
+  productType: "guitars" | "amplifiers" | "accessories";
 }> = (props) => {
   const theme = useTheme();
   const { palette, typography } = theme;
   const { product } = props;
   const productSrcName = product.name.replace(/\s/g, "");
+
+  // const [variablesByBreakpoints, setVariablesByBreakpoints] = useState({itemsInGridRow: 12});
+  const breakpoints = useBreakpoints({breakpointName: "lgScreen", breakpointVal: 1700});
 
   const [hideQuickShow, setHideQuickShow] = useState(true);
   const quickShowHandler = (e: React.MouseEvent) => {
@@ -24,19 +30,42 @@ const Product: React.FC<{
     e.type === "mouseenter" ? setHideQuickShow(false) : setHideQuickShow(true);
   };
 
+  let imagePath = "";
+  if (props.productType === "guitars") {
+    imagePath = "/products/electric-guitars";
+  } else if (props.productType === "amplifiers") {
+    imagePath = "/products/amplifiers";
+  } else if (props.productType === "accessories") {
+    imagePath = "/products/accessories";
+  }
+
+
+// console.log(breakpoints.lgScreen);
+//   useEffect(() => {
+//     if (breakpoints.lgScreen === true) {
+//       setVariablesByBreakpoints((prev) => ({...prev, itemsInGridRow: 12}))
+//     } else {
+//       setVariablesByBreakpoints((prev) => ({...prev, itemsInGridRow: 15}))
+//     }
+
+//   }, [breakpoints])
+
+
+
   return (
-    <Grid2 xs={3} height="fit-content">
+    <Grid2 xl={12} lg={15} height="fit-content" minHeight="460px">
       <Stack
         onMouseEnter={quickShowHandler}
         onMouseLeave={quickShowHandler}
         minWidth="200px"
-        minHeight="fit-content"
+        minHeight="400px"
         height="100%"
         px="1rem"
         py="1rem"
         border="2px solid"
         borderRadius="15px"
         borderColor={palette.secondary.light}
+        justifyContent={"space-between"}
         sx={{
           transition: "border-color 0.2s ease",
           "&:hover": { borderColor: palette.primary.dark },
@@ -49,14 +78,18 @@ const Product: React.FC<{
             position: "relative",
             marginBottom: "1rem",
             "&:hover": { cursor: "pointer" },
+            display: "flex",
+            justifyContent: "center",
           }}
         >
           <img
-            style={{ width: "100%", height: "100%", objectFit: "contain" }}
-            src={
-              product.imgSrc ||
-              `/products/electric-guitars/${productSrcName}.png`
-            }
+            alt="Image of the product"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+            }}
+            src={product.imgSrc || `${imagePath}/${productSrcName}.png`}
           ></img>
           <Fade in={!hideQuickShow}>
             <Box
@@ -83,67 +116,94 @@ const Product: React.FC<{
             </Box>
           </Fade>
         </Box>
-
-        <Typography
-          height="40px"
-          width="fit-content"
-          sx={{
-            flexGrow: 1,
-            marginBottom: "0.5rem",
-          }}
-          color={palette.secondary.contrastText}
-          fontFamily={typography.h2.fontFamily}
-          fontSize="14px"
-          fontWeight="400"
-          textAlign={"left"}
-        >
-          {
-            <Link
-              style={{
-                textDecoration: "none",
-                color: palette.secondary.contrastText,
-              }}
-              to="guitarId"
-            >
-              {
-                <motion.span whileHover={{ textDecoration: "underline" }}>
-                  {product.name}
-                </motion.span>
-              }
-            </Link>
-          }
-        </Typography>
-
-        <Typography
-          sx={{ flexGrow: 1 }}
-          color={palette.primary.main}
-          fontFamily={typography.h2.fontFamily}
-          fontSize="23px"
-          fontWeight="600"
-          textAlign={"left"}
-        >
-          {`$${product.price}`}
-        </Typography>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Rating
-            size="small"
-            name="product-rating"
-            precision={0.5}
-            readOnly
-            value={product.rating || 0}
-            sx={{ position: "relative", top: "1px" }}
-          ></Rating>
+        <Stack>
           <Typography
-            sx={{ flexGrow: 1 }}
-            color={palette.secondary.light}
+            width="fit-content"
+            sx={{
+              marginBottom: "0.5rem",
+            }}
+            color={palette.secondary.contrastText}
             fontFamily={typography.h2.fontFamily}
             fontSize="14px"
-            fontWeight="200"
-            ml="0.3rem"
+            fontWeight="400"
+            textAlign={"left"}
           >
-            {`(${product.ratingsNum})` || "(0)"}
+            {
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: palette.secondary.contrastText,
+                }}
+                to="/"
+              >
+                {
+                  <motion.span whileHover={{ textDecoration: "underline" }}>
+                    {product.name}
+                  </motion.span>
+                }
+              </Link>
+            }
           </Typography>
-        </Box>
+
+          <Box sx={{ display: "flex", justifyContent: "start" }}>
+            <Stack justifyContent="flex-end">
+              <Typography
+                sx={{ height: "fit-content" }}
+                color={palette.primary.main}
+                fontFamily={typography.h2.fontFamily}
+                fontSize="23px"
+                fontWeight="600"
+                textAlign={"left"}
+              >
+                {`$${product.price}`}
+              </Typography>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Rating
+                  size="small"
+                  name="product-rating"
+                  precision={0.5}
+                  readOnly
+                  value={product.rating || 0}
+                  sx={{ position: "relative", top: "1px" }}
+                ></Rating>
+                <Typography
+                  sx={{ flexGrow: 1 }}
+                  color={palette.secondary.light}
+                  fontFamily={typography.h2.fontFamily}
+                  fontSize="14px"
+                  fontWeight="200"
+                  position={"relative"}
+                  top="2px"
+                  ml="0.3rem"
+                >
+                  {`(${product.ratingsNum})` || "(0)"}
+                </Typography>
+              </Box>
+            </Stack>
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "flex-end",
+              }}
+            >
+              <IconButton
+                size="large"
+                title="Compare Products"
+                sx={{ borderRadius: "0px", paddingInline: "12px" }}
+              >
+                <CompareArrowsIcon fontSize="inherit" />
+              </IconButton>
+              <IconButton
+                size="large"
+                title="Add to Cart"
+                sx={{ borderRadius: "0px", paddingInline: "12px" }}
+              >
+                <AddShoppingCartIcon fontSize="inherit" />
+              </IconButton>
+            </Box>
+          </Box>
+        </Stack>
       </Stack>
     </Grid2>
   );
