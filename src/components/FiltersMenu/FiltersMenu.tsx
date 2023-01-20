@@ -2,7 +2,7 @@ import React from "react";
 import { Stack, Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import SwitchButton from "../UI/SwitchButton";
+
 import GuitarFilters from "./GuitarFilters";
 
 const FiltersMenu: React.FC = (props) => {
@@ -32,7 +32,6 @@ const FiltersMenu: React.FC = (props) => {
           Filter Products
         </Typography>
       </Box>
-      <SwitchButton buttons={[{text: "Acoustic Guitars"}, {text: "Electric Guitars"}]} preActivate={{ buttonText: "Electric" }}/>
       <GuitarFilters/>
     </Stack>
   );
