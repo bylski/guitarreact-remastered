@@ -49,13 +49,13 @@ const AccordionFilter: React.FC<{
 
   useEffect(() => {}, [checkBoxes]);
 
-  const children = checkBoxes.content.map((checkbox) => {
+  const children = checkBoxes.content.map((checkbox, i) => {
     let additionalAttributes: CheckboxProps = {};
     if (checkbox.isChecked) {
       additionalAttributes = { defaultChecked: true };
     }
     return (
-      <FormGroup>
+      <FormGroup key={`checkboxElement${i}`}>
         <FormControlLabel
           sx={{ color: palette.secondary.contrastText }}
           label={checkbox.name}

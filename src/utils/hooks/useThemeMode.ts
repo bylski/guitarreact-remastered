@@ -98,9 +98,6 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
           margin: "0px",
           paddingBottom: "0px",
         },
-        expanded: {
-          margin: "0px"
-        },
       }
     },
     MuiAccordion: {

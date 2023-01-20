@@ -6,6 +6,7 @@ import Filter from "./Filter";
 import AccordionFilter from "./AccordionFilter";
 import SwitchButton from "../UI/SwitchButton";
 import Rating from "@mui/material/Rating";
+import RatingFilter from "./RatingFilter";
 
 const GuitarFilters: React.FC = () => {
   const theme = useTheme();
@@ -53,22 +54,9 @@ const GuitarFilters: React.FC = () => {
           <TextField variant="outlined" label="To" />
         </Box>
       </Filter>
-      <Filter name="Minimum Rating" mt="1.5rem">
-        <Box sx={{display: "flex", alignItems: "center"}}>
-          <Rating name="read-only" defaultValue={0} size="medium"></Rating>
-          <Typography
-            color={palette.secondary.contrastText}
-            fontFamily={typography.h2.fontFamily}
-            fontSize="14px"
-            fontWeight="300"
-            textAlign={"center"}
-            px="0.5rem"
-            display="inline"
-          >
-            4 & Up
-          </Typography>
-        </Box>
-      </Filter>
+
+      <RatingFilter/>
+      
       <AccordionFilter
         filterOptions={producerBrands}
         maxOptionsShown={5}
