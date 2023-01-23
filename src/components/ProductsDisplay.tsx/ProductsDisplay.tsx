@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { useTheme } from "@mui/material/styles";
 import FiltersMenu from "../FiltersMenu/FiltersMenu";
 import Products from "./Products";
 import { ProductType } from "../../types/app-interfaces";
 import { useDeprecatedAnimatedState } from "framer-motion";
+import { AppContext } from "../../store/AppContext";
 
 const ProductsDisplay: React.FC<{
   productType: "guitars" | "amplifiers" | "accessories";
 }> = (props) => {
+  const ctx = useContext(AppContext);
   const theme = useTheme();
   const { palette } = theme;
 
@@ -161,6 +163,8 @@ const ProductsDisplay: React.FC<{
     }
     
   }, [props.productType]);
+
+  console.log(ctx?.appliedFilters);
 
   return (
     <Grid2

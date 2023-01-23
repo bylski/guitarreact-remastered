@@ -1,16 +1,24 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useContext } from "react";
 import { useTheme } from "@mui/material/styles";
 import { Typography, TextField, Box } from "@mui/material";
 import Filter from "./Filter";
+import { AppContext } from "../../store/AppContext";
+import {
+  AcousticGuitarFilters,
+  ElectricGuitarFilters,
+} from "../../types/app-interfaces";
 
 const PriceFilter: React.FC = () => {
+  const ctx = useContext(AppContext);
   const theme = useTheme();
   const { palette, typography } = theme;
 
-  const [priceFromValue, setPriceFromValue] = useState<string | null>("");
-  const [priceToValue, setPriceToValue] = useState<string | null>("");
+  const [priceFromValue, setPriceFromValue] = useState<string>("");
+  const [priceToValue, setPriceToValue] = useState<string>("");
 
   const [isKeyValid, setIsKeyValid] = useState(true);
+
+  // Allow only numeric values and backspace
   const keyValidationHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const inputVal = e.key;
     if (isNaN(parseInt(inputVal)) && inputVal !== "Backspace") {
@@ -20,11 +28,14 @@ const PriceFilter: React.FC = () => {
     }
   };
 
+  // Check if overall input is valid
   const isInputValid = (input: string, key?: string): boolean => {
     if (input.length <= 5 && isKeyValid === true) return true;
     else return false;
   };
 
+
+  // If input is valid, update the state
   const priceFromHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fieldValue = e.target.value;
     if (isInputValid(fieldValue) === true) {
@@ -37,6 +48,19 @@ const PriceFilter: React.FC = () => {
       setPriceToValue(fieldValue);
     }
   };
+
+  // Pass the state of the text fields to the context to use in other components
+  useEffect(() => {
+    const prevFilters = ctx?.appliedFilters;
+    const newFilters: typeof prevFilters = {
+      GUITAR_TYPE: "Electric",
+      price: { from: parseInt(priceFromValue), to: parseInt(priceToValue) },
+    };
+    ctx?.onApplyFilters({
+      ...prevFilters,
+      ...newFilters,
+    });
+  }, [priceFromValue, priceToValue]);
 
   return (
     <Filter name="Price ($)" mt={"1.5rem"}>
