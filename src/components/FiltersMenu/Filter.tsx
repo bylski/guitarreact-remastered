@@ -23,7 +23,7 @@ const Filter: React.FC<{
  
 
   return (
-    <Stack mt={props.mt} height="fit-content">
+    <Stack mt={props.mt} height="fit-content" width="100%">
       <Typography
         sx={{ flexGrow: 1 }}
         color={palette.secondary.contrastText}

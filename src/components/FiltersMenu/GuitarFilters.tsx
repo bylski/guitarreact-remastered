@@ -7,6 +7,7 @@ import AccordionFilter from "./AccordionFilter";
 import SwitchButton from "../UI/SwitchButton";
 import Rating from "@mui/material/Rating";
 import RatingFilter from "./RatingFilter";
+import PriceFilter from "./PriceFilter";
 
 const GuitarFilters: React.FC = () => {
   const theme = useTheme();
@@ -32,31 +33,9 @@ const GuitarFilters: React.FC = () => {
         buttons={[{ text: "Acoustic Guitars" }, { text: "Electric Guitars" }]}
         preActivate={{ buttonText: "Electric Guitars" }}
       />
-      <Filter name="Price ($)" mt={"1.5rem"}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "flex-start",
-            alignItems: "center",
-          }}
-        >
-          <TextField variant="outlined" label="From" />
-          <Typography
-            color={palette.secondary.contrastText}
-            fontFamily={typography.h2.fontFamily}
-            fontSize="22px"
-            fontWeight="300"
-            textAlign={"center"}
-            px="0.5rem"
-          >
-            -
-          </Typography>
-          <TextField variant="outlined" label="To" />
-        </Box>
-      </Filter>
+      <PriceFilter />
+      <RatingFilter />
 
-      <RatingFilter/>
-      
       <AccordionFilter
         filterOptions={producerBrands}
         maxOptionsShown={5}
