@@ -21,6 +21,7 @@ const AccordionFilter: React.FC<{
   children?: React.ReactNode;
   maxOptionsShown?: number;
   isRevealed?: boolean;
+  onChange?: (state: Array<{ name: string; isChecked: boolean }>) => void;
 }> = (props) => {
   const theme = useTheme();
   const { palette, typography } = theme;
@@ -47,7 +48,11 @@ const AccordionFilter: React.FC<{
     });
   };
 
-  useEffect(() => {}, [checkBoxes]);
+  useEffect(() => {
+    if (props.onChange) {
+      props.onChange(checkBoxes.content);
+    }
+  }, [checkBoxes]);
 
   const children = checkBoxes.content.map((checkbox, i) => {
     let additionalAttributes: CheckboxProps = {};
@@ -72,7 +77,9 @@ const AccordionFilter: React.FC<{
   });
 
   const [accordionShowAll, setAccordionShowAll] = useState(false);
-  const [expandAccordion, setExpandAccordion] = useState(props.isRevealed || false);
+  const [expandAccordion, setExpandAccordion] = useState(
+    props.isRevealed || false
+  );
   const [accordionButtonText, setAccordionButtonText] = useState<
     "Show More" | "Show Less"
   >("Show More");

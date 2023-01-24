@@ -3,7 +3,7 @@ import { Stack, Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-import GuitarFilters from "./GuitarFilters";
+import GuitarFilters from "./GuitarFilters/GuitarFilters";
 
 const FiltersMenu: React.FC = (props) => {
   const theme = useTheme();

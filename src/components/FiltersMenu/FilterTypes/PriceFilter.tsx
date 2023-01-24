@@ -2,11 +2,13 @@ import React, { Fragment, useState, useEffect, useContext } from "react";
 import { useTheme } from "@mui/material/styles";
 import { Typography, TextField, Box } from "@mui/material";
 import Filter from "./Filter";
-import { AppContext } from "../../store/AppContext";
+import { AppContext } from "../../../store/AppContext";
 import {
   AcousticGuitarFilters,
+  BaseFilters,
   ElectricGuitarFilters,
-} from "../../types/app-interfaces";
+  ProductFilters,
+} from "../../../types/app-interfaces";
 
 const PriceFilter: React.FC = () => {
   const ctx = useContext(AppContext);
@@ -34,7 +36,6 @@ const PriceFilter: React.FC = () => {
     else return false;
   };
 
-
   // If input is valid, update the state
   const priceFromHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fieldValue = e.target.value;
@@ -51,15 +52,21 @@ const PriceFilter: React.FC = () => {
 
   // Pass the state of the text fields to the context to use in other components
   useEffect(() => {
-    const prevFilters = ctx?.appliedFilters;
-    const newFilters: typeof prevFilters = {
-      GUITAR_TYPE: "Electric",
+    const newFilters: BaseFilters = {
       price: { from: parseInt(priceFromValue), to: parseInt(priceToValue) },
     };
-    ctx?.onApplyFilters({
-      ...prevFilters,
-      ...newFilters,
-    });
+
+    if (ctx?.appliedFilters !== undefined) {
+      const prevFilters = ctx?.appliedFilters;
+      ctx?.onApplyFilters({
+        ...prevFilters,
+        baseFilters: { ...prevFilters.baseFilters, ...newFilters },
+      });
+    } else {
+      ctx?.onApplyFilters({
+        baseFilters: { ...newFilters },
+      });
+    }
   }, [priceFromValue, priceToValue]);
 
   return (

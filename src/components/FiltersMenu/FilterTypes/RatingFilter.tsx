@@ -1,18 +1,39 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Box, Typography, Rating } from "@mui/material";
 import Filter from "./Filter";
 import { useTheme } from "@mui/material/styles";
+import { createTextChangeRange } from "typescript";
+import { AppContext } from "../../../store/AppContext";
+import { BaseFilters } from "../../../types/app-interfaces";
 
 const RatingFilter: React.FC = () => {
   const theme = useTheme();
+  const ctx = useContext(AppContext);
   const { palette, typography } = theme;
 
-  const [ratingVal, setRatingVal] = useState(0);
-  const ratingChangeHandler = (e: React.SyntheticEvent<Element, Event>, newValue: number | null) => {
-    if (newValue !== null) {
-        setRatingVal(newValue);
+  const [ratingVal, setRatingVal] = useState<number | null>(0);
+  const ratingChangeHandler = (
+    e: React.SyntheticEvent<Element, Event>,
+    ratingValue: number | null
+  ) => {
+    const newFilters: BaseFilters = {
+      ratingFrom: ratingValue,
+    };
+
+    setRatingVal(ratingValue);
+
+    if (ctx?.appliedFilters.baseFilters !== undefined) {
+      const prevFilters = ctx?.appliedFilters;
+      ctx?.onApplyFilters({
+        ...prevFilters,
+        baseFilters: { ...prevFilters.baseFilters, ...newFilters },
+      });
+    } else {
+      ctx?.onApplyFilters({
+        baseFilters: { ...newFilters },
+      });
     }
-  }
+  };
 
   return (
     <Filter name="Minimum Rating" mt="1.5rem">

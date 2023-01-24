@@ -1,11 +1,11 @@
 import React, { useState, createContext } from "react";
-import { AcousticGuitarFilters, ElectricGuitarFilters } from "../types/app-interfaces";
+import {  ProductFilters } from "../types/app-interfaces";
 
 type Categories = "none" | "guitars" | "amplifiers" | "accessories";
 
 type AppContextType = {
-  appliedFilters: ElectricGuitarFilters | AcousticGuitarFilters;
-  onApplyFilters: (newFilters: ElectricGuitarFilters | AcousticGuitarFilters) => void
+  appliedFilters: ProductFilters;
+  onApplyFilters: (newFilters: ProductFilters) => void
   selectedCategory: Categories;
   onSelectCategory: (selectedCategory: Categories) => void;
   currentPath: string,

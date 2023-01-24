@@ -8,21 +8,21 @@ export interface ProductType {
   imgSrc?: string;
 }
 
-interface BaseFilters {
+export interface BaseFilters {
   price?: {
     from: number;
     to: number;
   };
-  ratingFrom?: number;
+  ratingFrom?: number | null;
 }
 
-interface GuitarFilters extends BaseFilters {
-  brand?: string;
+interface GuitarFilters {
+  brand?: Array<{ name: string; isChecked: boolean }>;
   stringsNum?: number;
 }
 
 export interface ElectricGuitarFilters extends GuitarFilters {
-  GUITAR_TYPE: "Electric" | "Undecided"
+  // GUITAR_TYPE: "Electric" | "Undecided"
   pickupConfig?: "HH" | "HSH" | "HSS" | "SS" | "SSS";
   bridgeType?: "Fixed" | "Tremolo" | "Floyd Rose";
   bodyType?: "Stratocaster" | "Telecaster" | "Superstrat" | "Les Paul";
@@ -30,6 +30,12 @@ export interface ElectricGuitarFilters extends GuitarFilters {
 }
 
 export interface AcousticGuitarFilters extends GuitarFilters {
-  GUITAR_TYPE: "Acoustic" | "Undecided"
+  // GUITAR_TYPE: "Acoustic" | "Undecided"
   electroAcoustic?: boolean,
+}
+
+export interface ProductFilters {
+  electricGuitarFilters?: ElectricGuitarFilters,
+  acousticGuitarFilters?: AcousticGuitarFilters,
+  baseFilters?: BaseFilters
 }

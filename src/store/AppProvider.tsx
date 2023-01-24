@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { AppContext, AppContextType } from "./AppContext";
 import { useLocation } from "react-router";
-import { AcousticGuitarFilters, ElectricGuitarFilters } from "../types/app-interfaces";
+import { AcousticGuitarFilters, ElectricGuitarFilters, ProductFilters } from "../types/app-interfaces";
 
 const AppProvider: React.FC<{children?: React.ReactNode}> = (props) => {
 
 type Categories = "none" | "guitars" | "amplifiers" | "accessories";
 const [selectedCategory, setSelectedCategory] = useState<Categories>("none");
-const [appliedFilters, setAppliedFilters] = useState<ElectricGuitarFilters | AcousticGuitarFilters>({GUITAR_TYPE: "Undecided"})
+const [appliedFilters, setAppliedFilters] = useState<ProductFilters>({})
 const onSelectCategory = (
   selectedCategory: Categories
 ) => {
   setSelectedCategory(selectedCategory);
 };
 
-const onApplyFilters = (newFilters: ElectricGuitarFilters | AcousticGuitarFilters) => {
+const onApplyFilters = (newFilters: ProductFilters) => {
   setAppliedFilters(newFilters);
 }
 

@@ -164,7 +164,6 @@ const ProductsDisplay: React.FC<{
     
   }, [props.productType]);
 
-  console.log(ctx?.appliedFilters);
 
   return (
     <Grid2
