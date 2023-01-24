@@ -19,43 +19,53 @@ const ProductsDisplay: React.FC<{
     {
       name: "Ibanez RGA42HPTQM Blue Iceberg Gradation",
       price: 999.99,
-      rating: 4.5,
-      ratingsNum: 96,
+      rating: 4,
+      ratingsNum: 5,
     },
-    { name: "Ibanez GRGR120EX", price: 229.99, rating: 4.5, ratingsNum: 96 },
     {
-      name: "Ibanez RGA42HPTQM Blue Iceberg Gradation",
-      price: 999.99,
-      rating: 4.5,
-      ratingsNum: 96,
+      name: "Jackson Dinky JS11 Electric Guitar Black",
+      price: 159.99,
+      rating: 5.0,
+      ratingsNum: 7,
     },
-    { name: "Ibanez GRGR120EX", price: 229.99, rating: 4.5, ratingsNum: 96 },
     {
-      name: "Ibanez RGA42HPTQM Blue Iceberg Gradation",
-      price: 999.99,
-      rating: 4.5,
-      ratingsNum: 96,
+      name: "Jackson X Series Signature Scott Ian King V KVXT Electric Guitar Ivory",
+      price: 799.99,
+      rating: 0.0,
+      ratingsNum: 0,
     },
-    { name: "Ibanez GRGR120EX", price: 229.99, rating: 4.5, ratingsNum: 96 },
     {
-      name: "Ibanez RGA42HPTQM Blue Iceberg Gradation",
-      price: 999.99,
-      rating: 4.5,
-      ratingsNum: 96,
+      name: "Charvel Pro-Mod DK24 HSS FR M Poplar Electric Guitar Purple Sunset",
+      price: 1249.99,
+      rating: 3.5,
+      ratingsNum: 15,
     },
-    { name: "Ibanez GRGR120EX", price: 229.99, rating: 4.5, ratingsNum: 96 },
     {
-      name: "Ibanez RGA42HPTQM Blue Iceberg Gradation",
-      price: 999.99,
+      name: "Gibson Les Paul Traditional Pro V Flame Top Electric Guitar Washed Cherry Burst",
+      price: 2599.00,
       rating: 4.5,
-      ratingsNum: 96,
+      ratingsNum: 22,
     },
-    { name: "Ibanez GRGR120EX", price: 229.99, rating: 4.5, ratingsNum: 96 },
+    { name: "Gibson SG Standard Electric Guitar Ebony", price: 1799.00, rating: 5, ratingsNum: 28 },
     {
-      name: "Ibanez RGA42HPTQM Blue Iceberg Gradation",
-      price: 999.99,
-      rating: 4.5,
-      ratingsNum: 96,
+      name: "Gibson Les Paul Studio Limited-Edition Electric Guitar Black Cherry Burst",
+      price: 1699.00,
+      rating: 5,
+      ratingsNum: 11,
+    },
+    { name: "Chapman ML1 Modern V2 Electric Guitar Abyss", price: 599.99, rating: 4.5, ratingsNum: 11 },
+    {
+      name: "Epiphone Riviera Semi-Hollow Electric Guitar Royal Tan",
+      price: 699.00,
+      rating: 5,
+      ratingsNum: 13,
+    },
+    { name: "Epiphone SG Special (P-90) Electric Guitar", price: 449.99, rating: 4.5, ratingsNum: 11 },
+    {
+      name: "Fender American Ultra Stratocaster Maple Fingerboard",
+      price: 2149.99,
+      rating: 5,
+      ratingsNum: 25,
     },
   ];
 
@@ -147,7 +157,7 @@ const ProductsDisplay: React.FC<{
       rating: 4.5,
       ratingsNum: 96,
     },
-  ]
+  ];
 
   const [productsToDisplay, setProductsToDisplay] = useState<
     ProductType[] | null
@@ -161,9 +171,7 @@ const ProductsDisplay: React.FC<{
     } else if (props.productType === "accessories") {
       setProductsToDisplay(accessoriesProducts);
     }
-    
   }, [props.productType]);
-
 
   return (
     <Grid2
