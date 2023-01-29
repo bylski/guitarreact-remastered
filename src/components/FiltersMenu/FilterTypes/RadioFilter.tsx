@@ -1,40 +1,64 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Filter from "./Filter";
 import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
+import RadioGroup, { useRadioGroup } from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { useTheme } from "@mui/material/styles";
 import { Box } from "@mui/system";
 
-const RadioFilter: React.FC<{ name: string; mt: string }> = (props) => {
+const RadioFilter: React.FC<{
+  onChange?: (state: string) => void;
+  options: string[];
+  name: string;
+  mt: string;
+}> = (props) => {
   const { palette, typography } = useTheme();
 
+
+  const [selectedRadio, setSelectedRadio] = useState("");
+  const radioChangeHandler = (event: React.SyntheticEvent<Element, Event>, checked: boolean) => {
+    const target = event.currentTarget as HTMLInputElement;
+    setSelectedRadio(target.value);
+  }
+
+  const optionsToRender = props.options.map((option, i) => {
+    return (
+      <FormControlLabel
+        onChange={radioChangeHandler}
+        value={option.toLocaleLowerCase()}
+        control={<Radio />}
+        label={option}
+        key={`radio_${option}`}
+      />
+    );
+  });
+
+
+
+  useEffect(() => {
+    if (props.onChange) {
+      props.onChange(selectedRadio);
+    }
+  }, [selectedRadio]);
 
   return (
     <Fragment>
       <Box sx={{ marginTop: props.mt }}>
         <FormControl>
           <FormLabel
-            sx={{ color: palette.secondary.contrastText }}
+            sx={{ color: `${palette.secondary.contrastText} !important` }}
             id="demo-radio-buttons-group-label"
           >
             {props.name}
           </FormLabel>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="female"
             name="radio-buttons-group"
             sx={{ color: palette.secondary.contrastText }}
           >
-            <FormControlLabel
-              value="head"
-              control={<Radio />}
-              label="Head"
-            />
-            <FormControlLabel value="combo" control={<Radio />} label="Combo" />
-            <FormControlLabel value="other" control={<Radio />} label="Other" />
+            {optionsToRender}
           </RadioGroup>
         </FormControl>
       </Box>

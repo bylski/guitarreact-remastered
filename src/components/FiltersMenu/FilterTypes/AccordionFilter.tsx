@@ -144,7 +144,7 @@ const AccordionFilter: React.FC<{
         }}
       >
         {checkboxesToRender}
-        {props.maxOptionsShown !== undefined && (
+        {props.maxOptionsShown !== undefined && props.maxOptionsShown <= checkboxesToRender.length && (
           <Button type="button" onClick={toggleShowAll} variant="text">
             {accordionButtonText}
           </Button>

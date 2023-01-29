@@ -6,35 +6,15 @@ import ElectricGuitarFilters from "./ElectricGuitarFilters";
 import AcousticGuitarFilters from "./AcousticGuitarFilters";
 
 const GuitarFilters: React.FC = () => {
-  const theme = useTheme();
-  const { palette, typography } = theme;
-  const ctx = useContext(AppContext);
-
-  const producerBrands = [
-    "Ibanez",
-    "Jackson",
-    "Charvel",
-    "Gibson",
-    "Epiphone",
-    "Chapman",
-  ];
-  const numberOfStrings = ["6 String", "7 String", "8 String", "9 String"];
-  const pickupConfigurations = ["HH", "HSH", "HSS", "SS", "SSS"];
-  const bridgeTypes = ["Fixed", "Tremolo", "Floyd Rose"];
-  const bodyTypes = ["Stratocaster", "Telecaster", "Superstrat", "Les Paul"];
-  const numberOfFrets = ["21 Frets", "22 Frets", "24 Frets"];
 
   const [guitarType, setGuitarType] = useState("Electric");
   const switchGuitarTypeHandler = (selectedType: string) => {
-    const prevFilters = ctx?.appliedFilters;
     if (selectedType === "ACOUSTIC GUITARS") {
       setGuitarType("Acoustic");
     } else {
       setGuitarType("Electric");
     }
   };
-
-  console.log(ctx?.appliedFilters)
 
   return (
     <Fragment>
