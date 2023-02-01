@@ -36,13 +36,13 @@ export interface AcousticGuitarFiltersInterface extends GuitarFiltersInterface {
 
 // AMPLIFIERS
 
-export type WattageOptions = "20-45 Watts" | "50-100 Watts";
+export type WattageOptions = Array<"20-45 Watts" | "50-100 Watts">;
 
 export interface AmplifierFiltersInterface extends BaseFilters {
   amplifierType?: "combo" | "head" | "miniamps";
   technology?: "tube" | "solid state" | "hybrid";
-  speakerConfiguration?: WattageOptions;
-  wattage?: "20-45 Watts" | "50-100 Watts";
+  speakerConfiguration?: "1x12" | "1x8" | "2x3";
+  wattage?: WattageOptions;
 }
 
 // ACCESSORIES

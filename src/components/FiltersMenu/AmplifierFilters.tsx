@@ -4,12 +4,14 @@ import RatingFilter from "./FilterTypes/RatingFilter";
 import RadioFilter from "./FilterTypes/RadioFilter";
 import AccordionFilter from "./FilterTypes/AccordionFilter";
 import { AppContext } from "../../store/AppContext";
-import { WattageOptions } from "../../types/app-interfaces";
+import {
+  AmplifierFiltersInterface,
+  WattageOptions,
+} from "../../types/app-interfaces";
+import useApplyFilters from "../../utils/hooks/useApplyFilters";
 
 const AmplifierFilters: React.FC = (props) => {
-
   const ctx = useContext(AppContext);
-
 
   const ampTypes = ["Combo", "Head", "MiniAmps"];
   const ampTechnology = ["Tube", "Solid State", "Hybrid"];
@@ -17,35 +19,57 @@ const AmplifierFilters: React.FC = (props) => {
   const wattageOptions = ["20-45 Watts", "50-100 Watts"];
 
 
+
+  const applyFilters = useApplyFilters();
+
+  const filterChangeHandler = (filtersToUpdate: AmplifierFiltersInterface) => {
+    applyFilters({
+      filterGroup: "amplifier",
+      newFilter: filtersToUpdate,
+    });
+  };
+
+
   return (
     <Fragment>
-      <RadioFilter options={ampTypes} name="Amplifier Type" mt="0.5rem" />
+      <RadioFilter
+        onChange={(state) => {
+          filterChangeHandler({
+            amplifierType: state,
+          } as AmplifierFiltersInterface);
+        }}
+        options={ampTypes}
+        name="Amplifier Type"
+        mt="0.5rem"
+      />
       <PriceFilter />
       <RatingFilter />
       <RadioFilter
+        onChange={(state) => {
+          filterChangeHandler({
+            technology: state,
+          } as AmplifierFiltersInterface);
+        }}
         options={ampTechnology}
         name="Tube or Solid State"
         mt="2rem"
       ></RadioFilter>
       <RadioFilter
-       onChange={(state) => {
-        if (ctx?.onApplyFilters !== undefined) {
-          const prevAmplifierFilters =
-            ctx.appliedFilters.amplifierFilters;
-          ctx?.onApplyFilters({
-            ...ctx.appliedFilters,
-            amplifierFilters: {
-              ...prevAmplifierFilters,
-              speakerConfiguration: state as WattageOptions,
-            },
-          });
-        }
-      }}
+        onChange={(state) => {
+          filterChangeHandler({
+            speakerConfiguration: state,
+          } as AmplifierFiltersInterface);
+        }}
         options={speakerConfigurations}
         name="Speaker Configuration"
         mt="2rem"
       ></RadioFilter>
       <AccordionFilter
+        onChange={(state) => {
+          filterChangeHandler({
+            wattage: state,
+          } as AmplifierFiltersInterface);
+        }}
         filterOptions={wattageOptions}
         maxOptionsShown={5}
         isRevealed

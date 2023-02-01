@@ -18,6 +18,7 @@ const ElectricGuitarFilters: React.FC = () => {
     "Gibson",
     "Epiphone",
     "Chapman",
+    "Fender",
   ];
   const numberOfStrings = ["6 String", "7 String", "8 String", "9 String"];
   const pickupConfigurations = ["HH", "HSH", "HSS", "SS", "SSS"];
@@ -25,13 +26,10 @@ const ElectricGuitarFilters: React.FC = () => {
   const bodyTypes = ["Stratocaster", "Telecaster", "Superstrat", "Les Paul"];
   const numberOfFrets = ["21 Frets", "22 Frets", "24 Frets"];
 
-  console.log(ctx?.appliedFilters);
-
   // Get apply filters function from the hook
   const applyFilters = useApplyFilters();
 
   const filterChangeHandler = (
-    state: Array<string>,
     filtersToUpdate: ElectricGuitarFiltersInterface
   ) => {
     applyFilters({
@@ -40,6 +38,7 @@ const ElectricGuitarFilters: React.FC = () => {
     });
   };
 
+
   return (
     <Fragment>
       <PriceFilter />
@@ -47,7 +46,7 @@ const ElectricGuitarFilters: React.FC = () => {
 
       <AccordionFilter
         onChange={(state) => {
-          filterChangeHandler(state, {
+          filterChangeHandler({
             producerBrands: state,
           } as ElectricGuitarFiltersInterface);
         }}
@@ -59,7 +58,7 @@ const ElectricGuitarFilters: React.FC = () => {
       ></AccordionFilter>
       <AccordionFilter
         onChange={(state) => {
-          filterChangeHandler(state, {
+          filterChangeHandler({
             stringsNum: state,
           } as ElectricGuitarFiltersInterface);
         }}
@@ -70,7 +69,7 @@ const ElectricGuitarFilters: React.FC = () => {
       ></AccordionFilter>
       <AccordionFilter
         onChange={(state) => {
-          filterChangeHandler(state, {
+          filterChangeHandler({
             pickupConfig: state,
           } as ElectricGuitarFiltersInterface);
         }}
@@ -80,7 +79,7 @@ const ElectricGuitarFilters: React.FC = () => {
       ></AccordionFilter>
       <AccordionFilter
         onChange={(state) => {
-          filterChangeHandler(state, {
+          filterChangeHandler({
             bridgeType: state,
           } as ElectricGuitarFiltersInterface);
         }}
@@ -90,7 +89,7 @@ const ElectricGuitarFilters: React.FC = () => {
       ></AccordionFilter>
       <AccordionFilter
         onChange={(state) => {
-          filterChangeHandler(state, {
+          filterChangeHandler({
             bodyType: state,
           } as ElectricGuitarFiltersInterface);
         }}
@@ -100,7 +99,7 @@ const ElectricGuitarFilters: React.FC = () => {
       ></AccordionFilter>
       <AccordionFilter
         onChange={(state) => {
-          filterChangeHandler(state, {
+          filterChangeHandler({
             fretsNum: state,
           } as ElectricGuitarFiltersInterface);
         }}

@@ -11,7 +11,7 @@ const [appliedFilters, setAppliedFilters] = useState<ProductFilters>({})
 const onSelectCategory = (
   selectedCategory: Categories
 ) => {
-  // setAppliedFilters({})
+  setAppliedFilters({})
   setSelectedCategory(selectedCategory);
 };
 

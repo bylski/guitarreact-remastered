@@ -23,7 +23,6 @@ const useApplyFilters = () => {
     const appliedFilters = ctx?.appliedFilters;
     let newFilters: ProductFilters = {};
 
-    console.log(appliedFilters)
     
     if (appliedFilters !== undefined) {
       switch (filterToApply.filterGroup) {
@@ -57,12 +56,13 @@ const useApplyFilters = () => {
       }
     }
 
-    if (ctx?.onApplyFilters !== undefined && filterGroup === "electricGuitar") {
+    if (ctx?.onApplyFilters !== undefined) {
       ctx?.onApplyFilters({
         ...appliedFilters,
         ...newFilters,
       });
     }
+    
   };
 
   return applyFilters;
