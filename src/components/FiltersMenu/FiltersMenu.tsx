@@ -5,6 +5,7 @@ import { useTheme } from "@mui/material/styles";
 import { AppContext } from "../../store/AppContext";
 import GuitarFilters from "./GuitarFilters/GuitarFilters";
 import AmplifierFilters from "./AmplifierFilters";
+import AccessoriesFilters from "./AccessoriesFilters";
 
 const FiltersMenu: React.FC = (props) => {
   const theme = useTheme();
@@ -37,6 +38,7 @@ const FiltersMenu: React.FC = (props) => {
       </Box>
       {ctx?.selectedCategory === "guitars" ? <GuitarFilters/> : null}
       {ctx?.selectedCategory === "amplifiers" ? <AmplifierFilters/> : null}
+      {ctx?.selectedCategory === "accessories" ? <AccessoriesFilters/> : null}
     </Stack>
   );
 };

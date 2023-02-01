@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AppContext, AppContextType } from "./AppContext";
 import { useLocation } from "react-router";
-import { AcousticGuitarFilters, ElectricGuitarFilters, ProductFilters } from "../types/app-interfaces";
+import { AcousticGuitarFiltersInterface, ElectricGuitarFiltersInterface, ProductFilters } from "../types/app-interfaces";
 
 const AppProvider: React.FC<{children?: React.ReactNode}> = (props) => {
 
@@ -11,6 +11,7 @@ const [appliedFilters, setAppliedFilters] = useState<ProductFilters>({})
 const onSelectCategory = (
   selectedCategory: Categories
 ) => {
+  // setAppliedFilters({})
   setSelectedCategory(selectedCategory);
 };
 

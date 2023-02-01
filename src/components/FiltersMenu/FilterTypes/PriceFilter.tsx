@@ -4,9 +4,9 @@ import { Typography, TextField, Box } from "@mui/material";
 import Filter from "./Filter";
 import { AppContext } from "../../../store/AppContext";
 import {
-  AcousticGuitarFilters,
+  AcousticGuitarFiltersInterface,
   BaseFilters,
-  ElectricGuitarFilters,
+  ElectricGuitarFiltersInterface,
   ProductFilters,
 } from "../../../types/app-interfaces";
 

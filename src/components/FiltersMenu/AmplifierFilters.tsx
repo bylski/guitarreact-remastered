@@ -16,7 +16,6 @@ const AmplifierFilters: React.FC = (props) => {
   const speakerConfigurations = ["1x12", "1x8", "2x3"];
   const wattageOptions = ["20-45 Watts", "50-100 Watts"];
 
-  console.log(ctx?.appliedFilters);
 
   return (
     <Fragment>

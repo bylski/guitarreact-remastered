@@ -48,7 +48,7 @@ const RadioFilter: React.FC<{
       <Box sx={{ marginTop: props.mt }}>
         <FormControl>
           <FormLabel
-            sx={{ color: `${palette.secondary.contrastText} !important` }}
+            sx={{ color: `${palette.secondary.contrastText} !important`, marginBottom: "0.5rem"}}
             id="demo-radio-buttons-group-label"
           >
             {props.name}
