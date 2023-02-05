@@ -1,20 +1,32 @@
 import { useTheme } from "@mui/material/styles";
-import { Button, ButtonBase, SxProps } from "@mui/material";
+import {
+  Button,
+  ButtonBase,
+  ButtonPropsSizeOverrides,
+  SxProps,
+} from "@mui/material";
 import React, { Fragment, useState } from "react";
 
 const SwitchButton: React.FC<{
   buttons: { text: string; additionalSx?: SxProps }[];
   preActivate?: { buttonText: string };
+  getSelectedButton?: (selectedButton: string) => void;
 }> = (props) => {
   const theme = useTheme();
   const { palette } = theme;
 
-  const [activeButton, setActiveButton] = useState(props.preActivate?.buttonText.toUpperCase() || "");
+  const [activeButton, setActiveButton] = useState(
+    props.preActivate?.buttonText.toUpperCase() || ""
+  );
 
   // Diffrentiate between active buttons with innerText of the button
   const buttonSelectHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.currentTarget as HTMLButtonElement;
-    setActiveButton(target.innerText.toUpperCase());
+    const buttonSelected = target.innerText.toUpperCase();
+    setActiveButton(buttonSelected);
+    if (props.getSelectedButton) {
+      props.getSelectedButton(buttonSelected);
+    }
   };
 
   const commonSx: SxProps = {
@@ -42,7 +54,7 @@ const SwitchButton: React.FC<{
 
     let active = false;
     if (activeButton === button.text.toUpperCase()) {
-        active = true;
+      active = true;
     }
 
     const sxToUse = active ? activeSx : commonSx;

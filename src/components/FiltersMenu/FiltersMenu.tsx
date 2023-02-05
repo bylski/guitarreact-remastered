@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Stack, Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-
-import GuitarFilters from "./GuitarFilters";
+import { AppContext } from "../../store/AppContext";
+import GuitarFilters from "./GuitarFilters/GuitarFilters";
+import AmplifierFilters from "./AmplifierFilters";
+import AccessoriesFilters from "./AccessoriesFilters";
 
 const FiltersMenu: React.FC = (props) => {
   const theme = useTheme();
   const { palette, typography } = theme;
+  const ctx = useContext(AppContext);
 
+
+ 
   return (
     <Stack
       width="100%"
@@ -32,7 +37,9 @@ const FiltersMenu: React.FC = (props) => {
           Filter Products
         </Typography>
       </Box>
-      <GuitarFilters/>
+      {ctx?.selectedCategory === "guitars" ? <GuitarFilters/> : null}
+      {ctx?.selectedCategory === "amplifiers" ? <AmplifierFilters/> : null}
+      {ctx?.selectedCategory === "accessories" ? <AccessoriesFilters/> : null}
     </Stack>
   );
 };

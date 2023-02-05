@@ -1,8 +1,11 @@
 import React, { useState, createContext } from "react";
+import {  ProductFilters } from "../types/app-interfaces";
 
 type Categories = "none" | "guitars" | "amplifiers" | "accessories";
 
 type AppContextType = {
+  appliedFilters: ProductFilters;
+  onApplyFilters: (newFilters: ProductFilters) => void
   selectedCategory: Categories;
   onSelectCategory: (selectedCategory: Categories) => void;
   currentPath: string,

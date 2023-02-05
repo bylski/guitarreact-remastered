@@ -155,7 +155,7 @@ const Product: React.FC<{
                 fontWeight="600"
                 textAlign={"left"}
               >
-                {`$${product.price}`}
+                {`$${product.price.toFixed(2)}`}
               </Typography>
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <Rating
