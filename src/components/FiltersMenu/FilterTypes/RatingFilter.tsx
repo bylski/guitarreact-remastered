@@ -22,7 +22,7 @@ const RatingFilter: React.FC = () => {
 
     setRatingVal(ratingValue);
 
-    if (ctx?.appliedFilters.baseFilters !== undefined) {
+    if (ctx?.appliedFilters !== undefined) {
       const prevFilters = ctx?.appliedFilters;
       ctx?.onApplyFilters({
         ...prevFilters,
