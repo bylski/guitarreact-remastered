@@ -16,9 +16,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  &::-webkit-scrollbar {
+    width: "6px";
+    background-color: #272727;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    width: "6px";
+    background-color: #1690AE;
+  }
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+

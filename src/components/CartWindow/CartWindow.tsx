@@ -1,4 +1,4 @@
-import { IconButton, Typography, Fade } from "@mui/material";
+import { IconButton, Typography, Fade, Button } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import Backdrop from "@mui/material/Backdrop";
 import React, { useContext, useState, useRef } from "react";
@@ -89,7 +89,12 @@ const CartWindow: React.FC = () => {
               </IconButton>
             </Box>
             <Typography
-              sx={{ flexGrow: 1, marginLeft: "1rem", marginTop: "1rem" }}
+              sx={{
+                flexGrow: 1,
+                marginLeft: "1rem",
+                marginTop: "1rem",
+                marginBottom: "1rem",
+              }}
               color={palette.secondary.contrastText}
               fontFamily={typography.h1.fontFamily}
               fontSize="20px"
@@ -99,6 +104,23 @@ const CartWindow: React.FC = () => {
               Recently Added Items:
             </Typography>
             <CartWindowItems />
+            <Button
+              variant="contained"
+              sx={{
+                height: "4rem",
+                width: "300px",
+                alignSelf: "center",
+                marginTop: "2rem",
+                backgroundColor: palette.primary.onHoverDark,
+                borderRadius: "10px",
+                fontSize: 22,
+                "&:hover": {
+                  backgroundColor: palette.primary.dark,
+                }
+              }}
+            >
+              Proceed to checkout
+            </Button>
           </Stack>
         </Box>
       </Fade>
