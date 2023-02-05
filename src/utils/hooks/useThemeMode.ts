@@ -37,6 +37,7 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
     },
     complementary: {
       background: "#c9c9c9", 
+      alert: "#E63946",
     }
   };
 
@@ -53,6 +54,7 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
     },
     complementary: {
       background: "#000000", 
+      alert: "#E63946",
     }
   };
 

@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import { useTheme } from "@mui/material/styles";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
+import { AppContext } from "../../../store/AppContext";
 
 const Cart: React.FC = (props) => {
   const { palette, breakpoints } = useTheme();
+  const ctx = useContext(AppContext);
+
+  const openCartHandler = () => {
+    ctx?.onOpenCartWindow();
+  }
+
   return (
     <IconButton
+      onClick={openCartHandler}
       sx={[
         {
           height: "100%",
@@ -65,15 +73,15 @@ const Cart: React.FC = (props) => {
           },
         ]}
       > */}
-        <ShoppingCartIcon
-          // fontSize={"medium"}
-          sx={{
-            fontSize: "24px",
-            fill: "white",
-            transition: "0.2s ease-in-out",
-            [breakpoints.down("md")]: { fontSize: "18px" },
-          }}
-        />
+      <ShoppingCartIcon
+        // fontSize={"medium"}
+        sx={{
+          fontSize: "24px",
+          fill: "white",
+          transition: "0.2s ease-in-out",
+          [breakpoints.down("md")]: { fontSize: "18px" },
+        }}
+      />
       {/* </Badge> */}
     </IconButton>
   );

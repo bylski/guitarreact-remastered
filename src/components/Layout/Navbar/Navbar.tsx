@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import SearchBar from "./SearchBar";
 import NavbarLogo from "./NavbarLogo";
-import Cart from "./Cart";
+import CartButton from "./CartButton";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Slide from "@mui/material/Slide";
 import Button from "@mui/material/Button";
@@ -45,7 +45,7 @@ const Navbar: React.FC = (props) => {
               {mdView && <SearchBar />}
               {lgView && <NavLinks />}
             </Box>
-            <Cart />
+            <CartButton />
           </Toolbar>
         </AppBar>
       </Slide>

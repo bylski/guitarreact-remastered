@@ -9,6 +9,9 @@ type AppContextType = {
   selectedCategory: Categories;
   onSelectCategory: (selectedCategory: Categories) => void;
   currentPath: string,
+  isCartWindowOpen: boolean,
+  onOpenCartWindow: () => void,
+  onCloseCartWindow: () => void,
   // onSetPath: (currentPath: "string") => void;
 };
 

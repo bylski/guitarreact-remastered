@@ -4,27 +4,40 @@ import { ThemeProvider } from "@mui/material/styles";
 import useThemeMode from "./utils/hooks/useThemeMode";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import { AppProvider } from "./store/AppProvider";
 import ProductsDisplay from "./components/ProductsDisplay.tsx/ProductsDisplay";
+import CartWindow from "./components/CartWindow/CartWindow";
+import { AppContext } from "./store/AppContext";
 
 function App() {
   let theme = useThemeMode("dark"); // SET IT LIGHT-MODE FOR NOW
-
+  
   return (
     <div className="App">
-      <AppProvider>
+
         <ThemeProvider theme={theme}>
           <Navbar />
+         <CartWindow /> 
           <Routes>
             <Route path="/" element={<HomePage />}>
-              <Route path="guitars" element={<ProductsDisplay productType="guitars"/>}></Route>
-              <Route path="amplifiers" element={<ProductsDisplay productType="amplifiers"/>}></Route>
-              <Route path="accessories" element={<ProductsDisplay productType="accessories"/>}></Route>
-              <Route path="" element={<ProductsDisplay productType="guitars"/>}></Route>
+              <Route
+                path="guitars"
+                element={<ProductsDisplay productType="guitars" />}
+              ></Route>
+              <Route
+                path="amplifiers"
+                element={<ProductsDisplay productType="amplifiers" />}
+              ></Route>
+              <Route
+                path="accessories"
+                element={<ProductsDisplay productType="accessories" />}
+              ></Route>
+              <Route
+                path=""
+                element={<ProductsDisplay productType="guitars" />}
+              ></Route>
             </Route>
           </Routes>
         </ThemeProvider>
-      </AppProvider>
     </div>
   );
 }

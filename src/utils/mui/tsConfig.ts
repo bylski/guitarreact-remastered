@@ -19,6 +19,7 @@
       onHoverDark?: string;
       onHoverLight?: string;
       background?: string,
+      alert?: string,
     //   darker?: string;
     }
     interface SimplePaletteColorOptions {
