@@ -23,7 +23,7 @@ const ElectricGuitarFilters: React.FC = () => {
   const numberOfStrings = ["6 String", "7 String", "8 String", "9 String"];
   const pickupConfigurations = ["HH", "HSH", "HSS", "SS", "SSS"];
   const bridgeTypes = ["Fixed", "Tremolo", "Floyd Rose"];
-  const bodyTypes = ["Stratocaster", "Telecaster", "Superstrat", "Les Paul"];
+  const bodyTypes = ["Stratocaster", "Telecaster", "Superstrat", "Les Paul", "Other"];
   const numberOfFrets = ["21 Frets", "22 Frets", "24 Frets"];
 
   // Get apply filters function from the hook

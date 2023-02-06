@@ -16,7 +16,7 @@ interface GuitarProduct extends ProductBase {
 export interface ElectricGuitarProduct extends GuitarProduct {
   pickupConfig: "HH" | "HSH" | "HSS" | "SS" | "SSS";
   bridgeType: "Fixed" | "Tremolo" | "Floyd Rose";
-  bodyType: "Stratocaster" | "Telecaster" | "Superstrat" | "Les Paul";
+  bodyType: "Stratocaster" | "Telecaster" | "Superstrat" | "Les Paul" | "Other";
   fretsNum: 21 | 22 | 24;
 }
 

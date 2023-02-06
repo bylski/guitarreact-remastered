@@ -3,7 +3,10 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 import { useTheme } from "@mui/material/styles";
 import FiltersMenu from "../FiltersMenu/FiltersMenu";
 import Products from "./Products";
-import { ProductType } from "../../types/product-interfaces";
+import {
+  ElectricGuitarProduct,
+  ProductType,
+} from "../../types/product-interfaces";
 import { useDeprecatedAnimatedState } from "framer-motion";
 import { AppContext } from "../../store/AppContext";
 
@@ -14,58 +17,150 @@ const ProductsDisplay: React.FC<{
   const theme = useTheme();
   const { palette } = theme;
 
-  const guitarProducts: ProductType[] = [
-    { name: "Ibanez GRGR120EX", price: 229.99, rating: 4.5, ratingsNum: 96 },
+  const guitarProducts: ElectricGuitarProduct[] = [
+    {
+      name: "Ibanez GRGR120EX",
+      price: 229.99,
+      rating: 4.5,
+      ratingsNum: 96,
+      brand: "Ibanez",
+      fretsNum: 24,
+      stringsNum: 6,
+      pickupConfig: "HH",
+      bodyType: "Superstrat",
+      bridgeType: "Floyd Rose",
+    },
     {
       name: "Ibanez RGA42HPTQM Blue Iceberg Gradation",
       price: 999.99,
       rating: 4,
       ratingsNum: 5,
+      brand: "Ibanez",
+      fretsNum: 24,
+      stringsNum: 6,
+      pickupConfig: "HH",
+      bodyType: "Superstrat",
+      bridgeType: "Floyd Rose",
     },
     {
       name: "Jackson Dinky JS11 Electric Guitar Black",
       price: 159.99,
       rating: 5.0,
       ratingsNum: 7,
+      brand: "Jackson",
+      fretsNum: 22,
+      stringsNum: 6,
+      pickupConfig: "HH",
+      bodyType: "Superstrat",
+      bridgeType: "Floyd Rose",
     },
     {
       name: "Jackson X Series Signature Scott Ian King V KVXT Electric Guitar Ivory",
       price: 799.99,
       rating: 0.0,
       ratingsNum: 0,
+      brand: "Jackson",
+      fretsNum: 22,
+      stringsNum: 6,
+      pickupConfig: "HH",
+      bodyType: "Other",
+      bridgeType: "Fixed",
     },
     {
       name: "Charvel Pro-Mod DK24 HSS FR M Poplar Electric Guitar Purple Sunset",
       price: 1249.99,
       rating: 3.5,
       ratingsNum: 15,
+      brand: "Charvel",
+      fretsNum: 24,
+      stringsNum: 6,
+      pickupConfig: "HSS",
+      bodyType: "Superstrat",
+      bridgeType: "Floyd Rose",
     },
     {
       name: "Gibson Les Paul Traditional Pro V Flame Top Electric Guitar Washed Cherry Burst",
-      price: 2599.00,
+      price: 2599.0,
       rating: 4.5,
       ratingsNum: 22,
+      brand: "Gibson",
+      fretsNum: 22,
+      stringsNum: 6,
+      pickupConfig: "HH",
+      bodyType: "Les Paul",
+      bridgeType: "Fixed",
     },
-    { name: "Gibson SG Standard Electric Guitar Ebony", price: 1799.00, rating: 5, ratingsNum: 28 },
+    {
+      name: "Gibson SG Standard Electric Guitar Ebony",
+      price: 1799.0,
+      rating: 5,
+      ratingsNum: 28,
+      brand: "Gibson",
+      fretsNum: 22,
+      stringsNum: 6,
+      pickupConfig: "HH",
+      bodyType: "Other",
+      bridgeType: "Floyd Rose",
+    },
     {
       name: "Gibson Les Paul Studio Limited-Edition Electric Guitar Black Cherry Burst",
-      price: 1699.00,
+      price: 1699.0,
       rating: 5,
       ratingsNum: 11,
+      brand: "Gibson",
+      fretsNum: 22,
+      stringsNum: 6,
+      pickupConfig: "HH",
+      bodyType: "Les Paul",
+      bridgeType: "Fixed",
     },
-    { name: "Chapman ML1 Modern V2 Electric Guitar Abyss", price: 599.99, rating: 4.5, ratingsNum: 11 },
+    {
+      name: "Chapman ML1 Modern V2 Electric Guitar Abyss",
+      price: 599.99,
+      rating: 4.5,
+      ratingsNum: 11,
+      brand: "Chapman",
+      fretsNum: 24,
+      stringsNum: 6,
+      pickupConfig: "HH",
+      bodyType: "Superstrat",
+      bridgeType: "Fixed",
+    },
     {
       name: "Epiphone Riviera Semi-Hollow Electric Guitar Royal Tan",
-      price: 699.00,
+      price: 699.0,
       rating: 5,
       ratingsNum: 13,
+      brand: "Epiphone",
+      fretsNum: 22,
+      stringsNum: 6,
+      pickupConfig: "HH",
+      bodyType: "Other",
+      bridgeType: "Fixed",
     },
-    { name: "Epiphone SG Special (P-90) Electric Guitar", price: 449.99, rating: 4.5, ratingsNum: 11 },
+    {
+      name: "Epiphone SG Special (P-90) Electric Guitar",
+      price: 449.99,
+      rating: 4.5,
+      ratingsNum: 11,
+      brand: "Epiphone",
+      fretsNum: 22,
+      stringsNum: 6,
+      pickupConfig: "HH",
+      bodyType: "Other",
+      bridgeType: "Fixed",
+    },
     {
       name: "Fender American Ultra Stratocaster Maple Fingerboard",
       price: 2149.99,
       rating: 5,
       ratingsNum: 25,
+      brand: "Fender",
+      fretsNum: 21,
+      stringsNum: 6,
+      pickupConfig: "SSS",
+      bodyType: "Stratocaster",
+      bridgeType: "Tremolo",
     },
   ];
 
@@ -196,6 +291,8 @@ const ProductsDisplay: React.FC<{
       setProductsToDisplay(accessoriesProducts);
     }
   }, [props.productType]);
+
+
 
   return (
     <Grid2

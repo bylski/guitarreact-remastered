@@ -20,7 +20,7 @@ interface GuitarFiltersInterface {
 export interface ElectricGuitarFiltersInterface extends GuitarFiltersInterface {
   pickupConfig?: Array<"HH" | "HSH" | "HSS" | "SS" | "SSS">;
   bridgeType?: Array<"Fixed" | "Tremolo" | "Floyd Rose">;
-  bodyType?: Array<"Stratocaster" | "Telecaster" | "Superstrat" | "Les Paul">;
+  bodyType?: Array<"Stratocaster" | "Telecaster" | "Superstrat" | "Les Paul" | "Other">;
   fretsNum?: Array<string>;
 }
 
