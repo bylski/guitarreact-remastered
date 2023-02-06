@@ -4,8 +4,8 @@ import RatingFilter from "./FilterTypes/RatingFilter";
 import RadioFilter from "./FilterTypes/RadioFilter";
 import AccordionFilter from "./FilterTypes/AccordionFilter";
 import { AppContext } from "../../store/AppContext";
-import { WattageOptions } from "../../types/app-interfaces";
-import { AccessoriesFiltersInterface } from "../../types/app-interfaces";
+import { WattageOptions } from "../../types/filter-interfaces";
+import { AccessoriesFiltersInterface } from "../../types/filter-interfaces";
 import useApplyFilters from "../../utils/hooks/useApplyFilters";
 
 

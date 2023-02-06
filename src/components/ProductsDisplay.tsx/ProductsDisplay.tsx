@@ -3,7 +3,7 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 import { useTheme } from "@mui/material/styles";
 import FiltersMenu from "../FiltersMenu/FiltersMenu";
 import Products from "./Products";
-import { ProductType } from "../../types/app-interfaces";
+import { ProductType } from "../../types/product-interfaces";
 import { useDeprecatedAnimatedState } from "framer-motion";
 import { AppContext } from "../../store/AppContext";
 

@@ -4,7 +4,7 @@ import Filter from "./Filter";
 import { useTheme } from "@mui/material/styles";
 import { createTextChangeRange } from "typescript";
 import { AppContext } from "../../../store/AppContext";
-import { BaseFilters } from "../../../types/app-interfaces";
+import { BaseFilters } from "../../../types/filter-interfaces";
 
 const RatingFilter: React.FC = () => {
   const theme = useTheme();

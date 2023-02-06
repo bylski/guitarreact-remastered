@@ -5,7 +5,7 @@ import {
   AcousticGuitarFiltersInterface,
   ElectricGuitarFiltersInterface,
   ProductFilters,
-} from "../types/app-interfaces";
+} from "../types/filter-interfaces";
 
 const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   type Categories = "none" | "guitars" | "amplifiers" | "accessories";
@@ -14,7 +14,9 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   const [selectedCategory, setSelectedCategory] = useState<Categories>("none");
   const [appliedFilters, setAppliedFilters] = useState<ProductFilters>({});
   const [isCartWindowOpen, setIsCartWindowOpen] = useState(false);
+  const [cartItems, setCartItems] = useState<Array<object>>([]);
 
+  // Cart State Logic
   const onOpenCartWindow = () => {
     setIsCartWindowOpen(true);
   };
@@ -23,10 +25,20 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
     setIsCartWindowOpen(false);
   };
 
+  const onAddToCart = (item: object) => {
+
+  };
+
+  const onRemoveFromCart = () => {};
+
+  // Cateogry Select state logic
+
   const onSelectCategory = (selectedCategory: Categories) => {
     setAppliedFilters({});
     setSelectedCategory(selectedCategory);
   };
+
+  // Filters state logic
 
   const onApplyFilters = (newFilters: ProductFilters) => {
     setAppliedFilters(newFilters);
@@ -48,6 +60,9 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
     isCartWindowOpen,
     onOpenCartWindow,
     onCloseCartWindow,
+    cartItems,
+    onAddToCart,
+    onRemoveFromCart,
   };
 
   return (

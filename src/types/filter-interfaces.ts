@@ -1,12 +1,6 @@
 import { NumberLiteralType } from "typescript";
 
-export interface ProductType {
-  name: string;
-  price: number;
-  rating: number;
-  ratingsNum: number;
-  imgSrc?: string;
-}
+
 
 export interface BaseFilters {
   price?: {

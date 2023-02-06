@@ -5,7 +5,7 @@ import {
   AmplifierFiltersInterface,
   AccessoriesFiltersInterface,
   ProductFilters,
-} from "../../types/app-interfaces";
+} from "../../types/filter-interfaces";
 import { AppContext } from "../../store/AppContext";
 
 type FilterToApply =

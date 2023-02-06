@@ -7,7 +7,7 @@ import { AppContext } from "../../store/AppContext";
 import {
   AmplifierFiltersInterface,
   WattageOptions,
-} from "../../types/app-interfaces";
+} from "../../types/filter-interfaces";
 import useApplyFilters from "../../utils/hooks/useApplyFilters";
 
 const AmplifierFilters: React.FC = (props) => {

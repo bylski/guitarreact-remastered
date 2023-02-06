@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import Rating from "@mui/material/Rating";
-import { ProductType } from "../../types/app-interfaces";
+import { ProductType } from "../../types/product-interfaces";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { rgbToHex } from "@mui/system";

@@ -8,7 +8,7 @@ import {
   BaseFilters,
   ElectricGuitarFiltersInterface,
   ProductFilters,
-} from "../../../types/app-interfaces";
+} from "../../../types/filter-interfaces";
 
 const PriceFilter: React.FC = () => {
   const ctx = useContext(AppContext);

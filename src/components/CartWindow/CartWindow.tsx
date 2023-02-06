@@ -113,7 +113,7 @@ const CartWindow: React.FC = () => {
                 marginTop: "2rem",
                 backgroundColor: palette.primary.onHoverDark,
                 borderRadius: "10px",
-                fontSize: 22,
+                fontSize: 18,
                 "&:hover": {
                   backgroundColor: palette.primary.dark,
                 }

@@ -5,7 +5,7 @@ import RatingFilter from "../FilterTypes/RatingFilter";
 import PriceFilter from "../FilterTypes/PriceFilter";
 import { AppContext } from "../../../store/AppContext";
 import useApplyFilters from "../../../utils/hooks/useApplyFilters";
-import { ElectricGuitarFiltersInterface } from "../../../types/app-interfaces";
+import { ElectricGuitarFiltersInterface } from "../../../types/filter-interfaces";
 
 const ElectricGuitarFilters: React.FC = () => {
   const theme = useTheme();
