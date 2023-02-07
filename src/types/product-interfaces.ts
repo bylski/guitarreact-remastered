@@ -5,6 +5,7 @@ export interface ProductBase {
   ratingsNum: number;
   imgSrc?: string;
   brand?: string;
+  productType?: "electric guitar" | "acoustic guitar" | "amplifier" | "accessory"
 }
 
 // GUITAR PRODUCT

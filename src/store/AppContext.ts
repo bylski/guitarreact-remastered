@@ -1,5 +1,7 @@
 import React, { useState, createContext } from "react";
 import { ProductFilters } from "../types/filter-interfaces";
+import { ProductType } from "../types/product-interfaces";
+import { CartProduct } from "../types/cart-interfaces";
 
 type Categories = "none" | "guitars" | "amplifiers" | "accessories";
 
@@ -12,9 +14,9 @@ type AppContextType = {
   isCartWindowOpen: boolean;
   onOpenCartWindow: () => void;
   onCloseCartWindow: () => void;
-  cartItems: Array<object>;
-  onAddToCart: (item: object) => void;
-  onRemoveFromCart: () => void;
+  cartItems: Array<{ product: ProductType; quantity: number }>;
+  onAddToCart: (item: CartProduct) => void;
+  onRemoveFromCart: (item: CartProduct) => void;
   // onSetPath: (currentPath: "string") => void;
 };
 

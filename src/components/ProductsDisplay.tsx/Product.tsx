@@ -1,6 +1,6 @@
 import { Box, Fade, IconButton, Stack, Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import Rating from "@mui/material/Rating";
@@ -11,6 +11,8 @@ import { rgbToHex } from "@mui/system";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import useBreakpoints from "../../utils/hooks/useBreakpoints";
+import { createTextChangeRange } from "typescript";
+import { AppContext } from "../../store/AppContext";
 
 const Product: React.FC<{
   product: ProductType;
@@ -20,9 +22,13 @@ const Product: React.FC<{
   const { palette, typography } = theme;
   const { product } = props;
   const productSrcName = product.name.replace(/\s/g, "");
+  const ctx = useContext(AppContext);
 
   // const [variablesByBreakpoints, setVariablesByBreakpoints] = useState({itemsInGridRow: 12});
-  const breakpoints = useBreakpoints({breakpointName: "lgScreen", breakpointVal: 1700});
+  const breakpoints = useBreakpoints({
+    breakpointName: "lgScreen",
+    breakpointVal: 1700,
+  });
 
   const [hideQuickShow, setHideQuickShow] = useState(true);
   const quickShowHandler = (e: React.MouseEvent) => {
@@ -39,18 +45,11 @@ const Product: React.FC<{
     imagePath = "/products/accessories";
   }
 
+  const addToCartHandler = () => {
+    ctx?.onAddToCart({ product: props.product, quantity: 1 });
+  };
 
-// console.log(breakpoints.lgScreen);
-//   useEffect(() => {
-//     if (breakpoints.lgScreen === true) {
-//       setVariablesByBreakpoints((prev) => ({...prev, itemsInGridRow: 12}))
-//     } else {
-//       setVariablesByBreakpoints((prev) => ({...prev, itemsInGridRow: 15}))
-//     }
-
-//   }, [breakpoints])
-
-
+  console.log(ctx?.cartItems);
 
   return (
     <Grid2 xl={12} lg={15} height="fit-content" minHeight="460px">
@@ -195,6 +194,7 @@ const Product: React.FC<{
                 <CompareArrowsIcon fontSize="inherit" />
               </IconButton>
               <IconButton
+                onClick={addToCartHandler}
                 size="large"
                 title="Add to Cart"
                 sx={{ borderRadius: "0px", paddingInline: "12px" }}

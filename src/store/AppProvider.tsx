@@ -7,6 +7,8 @@ import {
   ProductFilters,
 } from "../types/filter-interfaces";
 
+import { CartProduct, CartProducts } from "../types/cart-interfaces";
+
 const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   type Categories = "none" | "guitars" | "amplifiers" | "accessories";
 
@@ -14,7 +16,7 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   const [selectedCategory, setSelectedCategory] = useState<Categories>("none");
   const [appliedFilters, setAppliedFilters] = useState<ProductFilters>({});
   const [isCartWindowOpen, setIsCartWindowOpen] = useState(false);
-  const [cartItems, setCartItems] = useState<Array<object>>([]);
+  const [cartItems, setCartItems] = useState<CartProducts>([]);
 
   // Cart State Logic
   const onOpenCartWindow = () => {
@@ -25,11 +27,38 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
     setIsCartWindowOpen(false);
   };
 
-  const onAddToCart = (item: object) => {
+  const onAddToCart = (item: CartProduct) => {
+    setCartItems((prevCartState) => {
+      // Check if products isn't already in the cart, if it is, increment the quantity accordingly
+      const newCartState = prevCartState;
+      let itemWasInCart = false;
+      prevCartState.forEach((itemInCart, i) => {
+        if (itemInCart.product.name === item.product.name) {
+          newCartState[i].quantity += item.quantity;
+          itemWasInCart = true;
+        }
+      });
 
+      // If product isn't already in the cart, push it to the cart array
+      if (!itemWasInCart) {
+        newCartState.push(item);
+      }
+      return newCartState;
+    });
   };
 
-  const onRemoveFromCart = () => {};
+  const onRemoveFromCart = (item: CartProduct) => {
+    setCartItems((prevCartState) => {
+      // Filter through the previous state array to find the product that needs to be removed from cart
+      const newCartState = prevCartState.filter((itemInCart) => {
+        if (itemInCart.product.name === item.product.name) {
+          return false;
+        } else return true;
+      });
+
+      return newCartState;
+    });
+  };
 
   // Cateogry Select state logic
 
