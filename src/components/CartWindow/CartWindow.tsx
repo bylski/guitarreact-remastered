@@ -36,6 +36,12 @@ const CartWindow: React.FC = () => {
     isCartWindowOpen = true;
   }
 
+  let cartItems = null;
+
+  if (ctx?.cartItems !== undefined) {
+    cartItems = ctx?.cartItems;
+  }
+
   return (
     <Backdrop
       ref={backdropRef}
@@ -88,41 +94,44 @@ const CartWindow: React.FC = () => {
                 <CloseIcon fontSize="medium" />
               </IconButton>
             </Box>
-            <Typography
-              sx={{
-                flexGrow: 1,
-                marginLeft: "1rem",
-                marginTop: "1rem",
-                marginBottom: "1rem",
-              }}
-              color={palette.secondary.contrastText}
-              fontFamily={typography.h1.fontFamily}
-              fontSize="20px"
-              fontWeight="300"
-              textAlign={"left"}
-            >
-              Recently Added Items:
-            </Typography>
-            {ctx?.cartItems !== undefined ? (
-              <CartWindowItems items={ctx?.cartItems} />
+            {cartItems !== null && cartItems.length !== 0 ? (
+              <Typography
+                sx={{
+                  flexGrow: 1,
+                  marginLeft: "1rem",
+                  marginTop: "1rem",
+                  marginBottom: "1rem",
+                }}
+                color={palette.secondary.contrastText}
+                fontFamily={typography.h1.fontFamily}
+                fontSize="20px"
+                fontWeight="300"
+                textAlign={"left"}
+              >
+                Recently Added Items:
+              </Typography>
             ) : null}
-            <Button
-              variant="contained"
-              sx={{
-                height: "4rem",
-                width: "300px",
-                alignSelf: "center",
-                marginTop: "2rem",
-                backgroundColor: palette.primary.onHoverDark,
-                borderRadius: "10px",
-                fontSize: 18,
-                "&:hover": {
-                  backgroundColor: palette.primary.dark,
-                },
-              }}
-            >
-              Proceed to checkout
-            </Button>
+
+            <CartWindowItems items={cartItems} />
+            {cartItems !== null && cartItems.length !== 0 ? (
+              <Button
+                variant="contained"
+                sx={{
+                  height: "4rem",
+                  width: "300px",
+                  alignSelf: "center",
+                  marginTop: "2rem",
+                  backgroundColor: palette.primary.onHoverDark,
+                  borderRadius: "10px",
+                  fontSize: 18,
+                  "&:hover": {
+                    backgroundColor: palette.primary.dark,
+                  },
+                }}
+              >
+                Proceed to checkout
+              </Button>
+            ) : null}
           </Stack>
         </Box>
       </Fade>

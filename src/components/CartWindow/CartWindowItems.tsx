@@ -1,22 +1,59 @@
 import { Stack, Box, Typography, IconButton } from "@mui/material";
-import React from "react";
+import React, { Fragment } from "react";
 import { useTheme } from "@mui/material/styles";
-import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
 import CartWindowItem from "./CartWindowItem";
 import { CartProducts } from "../../types/cart-interfaces";
-import ProductsDisplay from "../ProductsDisplay.tsx/ProductsDisplay";
+import { TransitionGroup } from "react-transition-group";
+import Collapse from "@mui/material/Collapse";
+import Fade from "@mui/material/Fade";
+import ProductionQuantityLimitsOutlinedIcon from "@mui/icons-material/ProductionQuantityLimitsOutlined";
 
 const CartWindowItems: React.FC<{ items: CartProducts | null }> = (props) => {
   const { palette, typography } = useTheme();
 
   let cartItems: JSX.Element[] | null = null;
   if (props.items !== null) {
-    cartItems = props.items.map((item) => {
+    cartItems = props.items.map((item, i) => {
       const { name, price, imgSrc } = item.product;
       const { quantity } = item;
-      return <CartWindowItem name={name} price={price} quantity={quantity} imgSrc={imgSrc || "noimg"}/>;
+      return (
+        <Collapse key={name}>
+          <CartWindowItem
+            name={name}
+            price={price}
+            quantity={quantity}
+            imgSrc={imgSrc || "noimg"}
+            key={name}
+          />
+        </Collapse>
+      );
     });
   }
+
+  const noItemsFallback = (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Fade in={true}>
+        <Typography
+          sx={{ marginTop: "2rem" }}
+          color={palette.secondary.contrastText}
+          fontFamily={typography.h1.fontFamily}
+          fontSize="32px"
+          fontWeight="400"
+          textAlign={"center"}
+        >
+          Your cart is empty!
+        </Typography>
+      </Fade>
+      <ProductionQuantityLimitsOutlinedIcon sx={{marginTop: "1rem", fontSize: "80px"}} />
+    </Box>
+  );
 
   return (
     <Stack
@@ -38,7 +75,11 @@ const CartWindowItems: React.FC<{ items: CartProducts | null }> = (props) => {
         "&::-webkit-scrollbar-track": { color: "green" },
       }}
     >
-      {cartItems !== null ? cartItems : null}
+      <TransitionGroup>
+        {cartItems !== null && cartItems.length !== 0
+          ? cartItems
+          : noItemsFallback}
+      </TransitionGroup>
     </Stack>
   );
 };
