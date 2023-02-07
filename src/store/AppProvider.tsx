@@ -12,13 +12,13 @@ import { CartProduct, CartProducts } from "../types/cart-interfaces";
 const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   type Categories = "none" | "guitars" | "amplifiers" | "accessories";
 
-  // Context internal states
+  //  CONTEXT INTERNAL STATES
   const [selectedCategory, setSelectedCategory] = useState<Categories>("none");
   const [appliedFilters, setAppliedFilters] = useState<ProductFilters>({});
   const [isCartWindowOpen, setIsCartWindowOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartProducts>([]);
 
-  // Cart State Logic
+  // CART STATE LOGIC
   const onOpenCartWindow = () => {
     setIsCartWindowOpen(true);
   };
@@ -47,11 +47,11 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
     });
   };
 
-  const onRemoveFromCart = (item: CartProduct) => {
+  const onRemoveFromCart = (itemName: string) => {
     setCartItems((prevCartState) => {
       // Filter through the previous state array to find the product that needs to be removed from cart
       const newCartState = prevCartState.filter((itemInCart) => {
-        if (itemInCart.product.name === item.product.name) {
+        if (itemInCart.product.name === itemName) {
           return false;
         } else return true;
       });
@@ -60,14 +60,14 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
     });
   };
 
-  // Cateogry Select state logic
+  // CATEGORY SELECT STATE LOGIC
 
   const onSelectCategory = (selectedCategory: Categories) => {
     setAppliedFilters({});
     setSelectedCategory(selectedCategory);
   };
 
-  // Filters state logic
+  // FILTERS STATE LOGIC
 
   const onApplyFilters = (newFilters: ProductFilters) => {
     setAppliedFilters(newFilters);

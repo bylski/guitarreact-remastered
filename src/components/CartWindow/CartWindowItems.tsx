@@ -3,9 +3,20 @@ import React from "react";
 import { useTheme } from "@mui/material/styles";
 import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
 import CartWindowItem from "./CartWindowItem";
+import { CartProducts } from "../../types/cart-interfaces";
+import ProductsDisplay from "../ProductsDisplay.tsx/ProductsDisplay";
 
-const CartWindowItems: React.FC = () => {
+const CartWindowItems: React.FC<{ items: CartProducts | null }> = (props) => {
   const { palette, typography } = useTheme();
+
+  let cartItems: JSX.Element[] | null = null;
+  if (props.items !== null) {
+    cartItems = props.items.map((item) => {
+      const { name, price, imgSrc } = item.product;
+      const { quantity } = item;
+      return <CartWindowItem name={name} price={price} quantity={quantity} imgSrc={imgSrc || "noimg"}/>;
+    });
+  }
 
   return (
     <Stack
@@ -14,18 +25,20 @@ const CartWindowItems: React.FC = () => {
         paddingTop: "1rem",
         overflowY: "auto",
         overflowX: "hidden",
-        "&::-webkit-scrollbar": { width: "5px", height: "10px" , backgroundColor: palette.secondary.dark},
-        "&::-webkit-scrollbar-thumb": { width: "5px", height: "10px" , backgroundColor: palette.secondary.light},
+        "&::-webkit-scrollbar": {
+          width: "5px",
+          height: "10px",
+          backgroundColor: palette.secondary.dark,
+        },
+        "&::-webkit-scrollbar-thumb": {
+          width: "5px",
+          height: "10px",
+          backgroundColor: palette.secondary.light,
+        },
         "&::-webkit-scrollbar-track": { color: "green" },
       }}
     >
-      <CartWindowItem />
-      <CartWindowItem />
-      {/* <CartWindowItem />
-      <CartWindowItem />
-      <CartWindowItem />
-      <CartWindowItem />
-      <CartWindowItem /> */}
+      {cartItems !== null ? cartItems : null}
     </Stack>
   );
 };

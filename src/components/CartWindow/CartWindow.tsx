@@ -103,7 +103,9 @@ const CartWindow: React.FC = () => {
             >
               Recently Added Items:
             </Typography>
-            <CartWindowItems />
+            {ctx?.cartItems !== undefined ? (
+              <CartWindowItems items={ctx?.cartItems} />
+            ) : null}
             <Button
               variant="contained"
               sx={{
@@ -116,7 +118,7 @@ const CartWindow: React.FC = () => {
                 fontSize: 18,
                 "&:hover": {
                   backgroundColor: palette.primary.dark,
-                }
+                },
               }}
             >
               Proceed to checkout

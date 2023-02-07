@@ -16,7 +16,7 @@ type AppContextType = {
   onCloseCartWindow: () => void;
   cartItems: Array<{ product: ProductType; quantity: number }>;
   onAddToCart: (item: CartProduct) => void;
-  onRemoveFromCart: (item: CartProduct) => void;
+  onRemoveFromCart: (itemName: string) => void;
   // onSetPath: (currentPath: "string") => void;
 };
 

@@ -1,10 +1,23 @@
 import { Stack, Box, Typography, IconButton } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { useTheme } from "@mui/material/styles";
 import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
+import { createTextChangeRange } from "typescript";
+import { AppContext } from "../../store/AppContext";
+import { limitStr } from "../../utils/helper-functions/helper-functions";
 
-const CartWindowItem: React.FC = () => {
+const CartWindowItem: React.FC<{
+  name: string;
+  price: number;
+  quantity: number;
+  imgSrc: string;
+}> = (props) => {
   const { palette, typography } = useTheme();
+
+  const ctx = useContext(AppContext)
+  const removeFromCartHandler = () => {
+    ctx?.onRemoveFromCart(props.name);
+  }
 
   return (
     <Box
@@ -26,7 +39,7 @@ const CartWindowItem: React.FC = () => {
       >
         <img
           style={{ width: "100%", height: "100%", objectFit: "contain" }}
-          src={"/products/amplifiers/BlackstarHTVenueSeriesClub4040W1x12.png"}
+          src={`/products/electric-guitars/${props.name}.png`}
         ></img>
       </Box>
       <Stack
@@ -47,7 +60,7 @@ const CartWindowItem: React.FC = () => {
             fontWeight="300"
             textAlign={"left"}
           >
-            Blackstar HT Venue Series
+            { limitStr(props.name, 20) }
           </Typography>
           <Typography
             sx={{}}
@@ -57,7 +70,7 @@ const CartWindowItem: React.FC = () => {
             fontWeight="400"
             textAlign={"left"}
           >
-            Quantity: 1
+            {`Quantity: ${props.quantity}`}
           </Typography>
           <Typography
             sx={{}}
@@ -67,11 +80,12 @@ const CartWindowItem: React.FC = () => {
             fontWeight="600"
             textAlign={"left"}
           >
-            1999.99$
+            { `$${props.price}` }
           </Typography>
         </Box>
         <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
           <IconButton
+            onClick={removeFromCartHandler}
             title={"Delete from Cart"}
             sx={{ border: `3px solid ${palette.complementary.alert}` }}
             size="medium"

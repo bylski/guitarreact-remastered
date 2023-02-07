@@ -21,7 +21,8 @@ const Product: React.FC<{
   const theme = useTheme();
   const { palette, typography } = theme;
   const { product } = props;
-  const productSrcName = product.name.replace(/\s/g, "");
+  // const productSrcName = product.name.replace(/\s/g, "");
+  const productSrcName = product.name;
   const ctx = useContext(AppContext);
 
   // const [variablesByBreakpoints, setVariablesByBreakpoints] = useState({itemsInGridRow: 12});
@@ -49,7 +50,6 @@ const Product: React.FC<{
     ctx?.onAddToCart({ product: props.product, quantity: 1 });
   };
 
-  console.log(ctx?.cartItems);
 
   return (
     <Grid2 xl={12} lg={15} height="fit-content" minHeight="460px">
