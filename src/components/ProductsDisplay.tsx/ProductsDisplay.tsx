@@ -9,6 +9,7 @@ import {
 } from "../../types/product-interfaces";
 import { useDeprecatedAnimatedState } from "framer-motion";
 import { AppContext } from "../../store/AppContext";
+import useFilterProducts from "../../utils/hooks/useFilterProducts";
 
 const ProductsDisplay: React.FC<{
   productType: "guitars" | "amplifiers" | "accessories";
@@ -24,8 +25,8 @@ const ProductsDisplay: React.FC<{
       rating: 4.5,
       ratingsNum: 96,
       brand: "Ibanez",
-      fretsNum: 24,
-      stringsNum: 6,
+      fretsNum: "24 Frets",
+      stringsNum: "6 String",
       pickupConfig: "HH",
       bodyType: "Superstrat",
       bridgeType: "Floyd Rose",
@@ -36,8 +37,8 @@ const ProductsDisplay: React.FC<{
       rating: 4,
       ratingsNum: 5,
       brand: "Ibanez",
-      fretsNum: 24,
-      stringsNum: 6,
+      fretsNum: "24 Frets",
+      stringsNum: "6 String",
       pickupConfig: "HH",
       bodyType: "Superstrat",
       bridgeType: "Floyd Rose",
@@ -48,8 +49,8 @@ const ProductsDisplay: React.FC<{
       rating: 5.0,
       ratingsNum: 7,
       brand: "Jackson",
-      fretsNum: 22,
-      stringsNum: 6,
+      fretsNum: "22 Frets",
+      stringsNum: "6 String",
       pickupConfig: "HH",
       bodyType: "Superstrat",
       bridgeType: "Floyd Rose",
@@ -60,8 +61,8 @@ const ProductsDisplay: React.FC<{
       rating: 0.0,
       ratingsNum: 0,
       brand: "Jackson",
-      fretsNum: 22,
-      stringsNum: 6,
+      fretsNum: "22 Frets",
+      stringsNum: "6 String",
       pickupConfig: "HH",
       bodyType: "Other",
       bridgeType: "Fixed",
@@ -72,8 +73,8 @@ const ProductsDisplay: React.FC<{
       rating: 3.5,
       ratingsNum: 15,
       brand: "Charvel",
-      fretsNum: 24,
-      stringsNum: 6,
+      fretsNum: "24 Frets",
+      stringsNum: "6 String",
       pickupConfig: "HSS",
       bodyType: "Superstrat",
       bridgeType: "Floyd Rose",
@@ -84,8 +85,8 @@ const ProductsDisplay: React.FC<{
       rating: 4.5,
       ratingsNum: 22,
       brand: "Gibson",
-      fretsNum: 22,
-      stringsNum: 6,
+      fretsNum: "22 Frets",
+      stringsNum: "6 String",
       pickupConfig: "HH",
       bodyType: "Les Paul",
       bridgeType: "Fixed",
@@ -96,8 +97,8 @@ const ProductsDisplay: React.FC<{
       rating: 5,
       ratingsNum: 28,
       brand: "Gibson",
-      fretsNum: 22,
-      stringsNum: 6,
+      fretsNum: "22 Frets",
+      stringsNum: "6 String",
       pickupConfig: "HH",
       bodyType: "Other",
       bridgeType: "Floyd Rose",
@@ -108,8 +109,8 @@ const ProductsDisplay: React.FC<{
       rating: 5,
       ratingsNum: 11,
       brand: "Gibson",
-      fretsNum: 22,
-      stringsNum: 6,
+      fretsNum: "22 Frets",
+      stringsNum: "6 String",
       pickupConfig: "HH",
       bodyType: "Les Paul",
       bridgeType: "Fixed",
@@ -120,8 +121,8 @@ const ProductsDisplay: React.FC<{
       rating: 4.5,
       ratingsNum: 11,
       brand: "Chapman",
-      fretsNum: 24,
-      stringsNum: 6,
+      fretsNum: "24 Frets",
+      stringsNum: "6 String",
       pickupConfig: "HH",
       bodyType: "Superstrat",
       bridgeType: "Fixed",
@@ -132,8 +133,8 @@ const ProductsDisplay: React.FC<{
       rating: 5,
       ratingsNum: 13,
       brand: "Epiphone",
-      fretsNum: 22,
-      stringsNum: 6,
+      fretsNum: "22 Frets",
+      stringsNum: "6 String",
       pickupConfig: "HH",
       bodyType: "Other",
       bridgeType: "Fixed",
@@ -144,8 +145,8 @@ const ProductsDisplay: React.FC<{
       rating: 4.5,
       ratingsNum: 11,
       brand: "Epiphone",
-      fretsNum: 22,
-      stringsNum: 6,
+      fretsNum: "22 Frets",
+      stringsNum: "6 String",
       pickupConfig: "HH",
       bodyType: "Other",
       bridgeType: "Fixed",
@@ -156,8 +157,8 @@ const ProductsDisplay: React.FC<{
       rating: 5,
       ratingsNum: 25,
       brand: "Fender",
-      fretsNum: 21,
-      stringsNum: 6,
+      fretsNum: "21 Frets",
+      stringsNum: "6 String",
       pickupConfig: "SSS",
       bodyType: "Stratocaster",
       bridgeType: "Tremolo",
@@ -278,6 +279,9 @@ const ProductsDisplay: React.FC<{
     },
   ];
 
+
+  const filteredProducts = useFilterProducts(guitarProducts);
+
   const [productsToDisplay, setProductsToDisplay] = useState<
     ProductType[] | null
   >(null);
@@ -317,7 +321,7 @@ const ProductsDisplay: React.FC<{
         {productsToDisplay && (
           <Products
             productType={props.productType}
-            products={productsToDisplay}
+            products={filteredProducts!}
           />
         )}
       </Grid2>

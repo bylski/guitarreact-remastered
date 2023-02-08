@@ -11,14 +11,14 @@ export interface ProductBase {
 // GUITAR PRODUCT
 
 interface GuitarProduct extends ProductBase {
-  stringsNum: 6 | 7 | 8 | 12;
+  stringsNum: "6 String" | "7 String" | "8 String" | "12 String";
 }
 
 export interface ElectricGuitarProduct extends GuitarProduct {
   pickupConfig: "HH" | "HSH" | "HSS" | "SS" | "SSS";
   bridgeType: "Fixed" | "Tremolo" | "Floyd Rose";
   bodyType: "Stratocaster" | "Telecaster" | "Superstrat" | "Les Paul" | "Other";
-  fretsNum: 21 | 22 | 24;
+  fretsNum: "21 Frets" | "22 Frets" | "24 Frets";
 }
 
 export interface AcousticGuitarProduct extends GuitarProduct {

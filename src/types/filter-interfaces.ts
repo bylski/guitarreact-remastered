@@ -1,6 +1,3 @@
-
-
-
 export interface BaseFilters {
   price?: {
     from: number;
@@ -19,8 +16,10 @@ interface GuitarFiltersInterface {
 export interface ElectricGuitarFiltersInterface extends GuitarFiltersInterface {
   pickupConfig?: Array<"HH" | "HSH" | "HSS" | "SS" | "SSS">;
   bridgeType?: Array<"Fixed" | "Tremolo" | "Floyd Rose">;
-  bodyType?: Array<"Stratocaster" | "Telecaster" | "Superstrat" | "Les Paul" | "Other">;
-  fretsNum?: Array<string>;
+  bodyType?: Array<
+    "Stratocaster" | "Telecaster" | "Superstrat" | "Les Paul" | "Other"
+  >;
+  fretsNum?: Array<"21 Frets" | "22 Frets" | "24 Frets">;
 }
 
 export interface AcousticGuitarFiltersInterface extends GuitarFiltersInterface {
@@ -61,3 +60,10 @@ export interface ProductFilters {
   accesoriesFilters?: AccessoriesFiltersInterface;
   baseFilters?: BaseFilters;
 }
+
+export type ProductFiltersTypes =
+  | ElectricGuitarFiltersInterface
+  | AcousticGuitarFiltersInterface
+  | AmplifierFiltersInterface
+  | AccessoriesCategories
+  | BaseFilters;

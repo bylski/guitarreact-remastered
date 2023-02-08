@@ -47,7 +47,7 @@ const ElectricGuitarFilters: React.FC = () => {
       <AccordionFilter
         onChange={(state) => {
           filterChangeHandler({
-            producerBrands: state,
+            brand: state,
           } as ElectricGuitarFiltersInterface);
         }}
         filterOptions={producerBrands}
