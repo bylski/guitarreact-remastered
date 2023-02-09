@@ -13,9 +13,9 @@ const useFilterProducts = (productsArray: ProductType[] | null) => {
   const ctx = useContext(AppContext);
   const appliedFilters = ctx?.appliedFilters || null;
 
-if (productsArray === null) {
-  return productsArray;
-}
+  if (productsArray === null) {
+    return productsArray;
+  }
 
   // If there are no filters applied, return the unchanged productsArray
   if (appliedFilters === null) {
@@ -32,25 +32,59 @@ if (productsArray === null) {
   } = appliedFilters;
 
   // Function to filter through checkboxes filters
+  // function FilterCheckboxes<K>(
+  //   filterCheckboxesArray: any,
+  //   productsArray: K[],
+  //   comparedPropertyName: keyof K
+  // ) {
+  //   // Check if filter array is defined and has elements
+  //   if (filterCheckboxesArray && filterCheckboxesArray.length !== 0) {
+  //     productsArray = productsArray.filter((product) => {
+  //       let productMatchesFilters = false;
+  //       for (let filter of filterCheckboxesArray) {
+  //         if (filter === product[comparedPropertyName as keyof K]) {
+  //           productMatchesFilters = true;
+  //           break;
+  //         }
+  //       }
+
+  //       if (productMatchesFilters) {
+  //         return true;
+  //       } else return false;
+  //     });
+  //   }
+
+  //   return productsArray;
+  // }
+
   function FilterCheckboxes<K>(
     filterCheckboxesArray: any,
     productsArray: K[],
-    comparedPropertyName: keyof K
+    comparedFilterNames: Array<keyof K>
   ) {
     // Check if filter array is defined and has elements
     if (filterCheckboxesArray && filterCheckboxesArray.length !== 0) {
       productsArray = productsArray.filter((product) => {
-        let productMatchesFilters = false;
-        for (let filter of filterCheckboxesArray) {
-          if (filter === product[comparedPropertyName as keyof K]) {
-            productMatchesFilters = true;
-            break;
+        // Loop through every given filter name (bodyType, fretsNum etc.)
+        for (let filterName of comparedFilterNames) {
+          if (
+            filterCheckboxesArray[filterName] &&
+            filterCheckboxesArray[filterName].length !== 0
+          ) {
+            let productMatchesFilter = false;
+            // Compare the values of the appliedFilter array and product's specification
+            for (let filterValue of filterCheckboxesArray[filterName]) {
+              if (filterValue === product[filterName]) {
+                productMatchesFilter = true;
+                break;
+              }
+            }
+
+            if (!productMatchesFilter) return false;
           }
         }
 
-        if (productMatchesFilters) {
-          return true;
-        } else return false;
+        return true;
       });
     }
 
@@ -84,20 +118,32 @@ if (productsArray === null) {
 
   // **************** ELECTRIC GUITAR FILTERS *********************
 
-  console.log(ctx?.appliedFilters)
+  console.log(ctx?.appliedFilters);
 
   // Filter through checkboxes filters
   if (electricGuitarFilters) {
-    for (let filter in electricGuitarFilters) {
-      if (filter.length !== 0) {
-        console.log(filter);
-        newProductsArray = FilterCheckboxes(
-          electricGuitarFilters[filter as keyof ElectricGuitarFiltersInterface],
-          newProductsArray as ElectricGuitarProduct[],
-          filter as keyof ElectricGuitarProduct
-        );
-      }
-    }
+    // for (let filter in electricGuitarFilters) {
+    //   if (filter.length !== 0) {
+    //     console.log(filter);
+    //     newProductsArray = FilterCheckboxes(
+    //       electricGuitarFilters[filter as keyof ElectricGuitarFiltersInterface],
+    //       newProductsArray as ElectricGuitarProduct[],
+    //       filter as keyof ElectricGuitarProduct
+    //     );
+    //   }
+    // }
+    newProductsArray = FilterCheckboxes(
+      electricGuitarFilters,
+      newProductsArray as ElectricGuitarProduct[],
+      [
+        "bodyType",
+        "brand",
+        "bridgeType",
+        "fretsNum",
+        "pickupConfig",
+        "stringsNum",
+      ]
+    );
   }
 
   return newProductsArray;
