@@ -1,5 +1,5 @@
 import { AppContext } from "../../store/AppContext";
-import { ProductType } from "../../types/product-interfaces";
+import { AmplifiersProduct, ProductType } from "../../types/product-interfaces";
 import React, { useContext } from "react";
 import { ElectricGuitarProduct } from "../../types/product-interfaces";
 import {
@@ -91,6 +91,31 @@ const useFilterProducts = (productsArray: ProductType[] | null) => {
     return productsArray;
   }
 
+  function FilterRadioInputs<T, K>(
+    radioFilters: any,
+    productsArray: K[],
+    comparedFilterNames: Array<keyof K>
+  ) {
+    productsArray = productsArray.filter((product) => {
+      // Loop through every given filter name (amplifierType, technology etc.)
+      for (let filterName of comparedFilterNames) {
+
+        if (!product[filterName]) {
+          return false;
+        }
+
+        if (radioFilters[filterName]) {
+          if (radioFilters[filterName] !== product[filterName]) {
+            return false;
+          }
+        }
+      }
+      return true;
+    });
+    console.log(productsArray);
+    return productsArray;
+  }
+
   // **************** BASE FILTERS *********************
 
   // PRICE FILTER
@@ -143,6 +168,19 @@ const useFilterProducts = (productsArray: ProductType[] | null) => {
         "pickupConfig",
         "stringsNum",
       ]
+    );
+  }
+
+  if (amplifierFilters) {
+    newProductsArray = FilterRadioInputs(
+      amplifierFilters,
+      newProductsArray as AmplifiersProduct[],
+      ["amplifierType"]
+    );
+    newProductsArray = FilterCheckboxes(
+      amplifierFilters,
+      newProductsArray as AmplifiersProduct[],
+      ["wattage"]
     );
   }
 

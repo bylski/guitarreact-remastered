@@ -171,6 +171,7 @@ const ProductsDisplay: React.FC<{
       price: 229.99,
       rating: 4.5,
       ratingsNum: 96,
+      amplifierType: "combo",
     },
     {
       name: "Marshall DSL20CR 20W 1x12",
