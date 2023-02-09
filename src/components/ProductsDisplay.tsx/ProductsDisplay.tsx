@@ -179,7 +179,7 @@ const ProductsDisplay: React.FC<{
       ratingsNum: 96,
     },
     {
-      name: "Fender Mustang LT25 25W 1x8 Guitar Comb",
+      name: "Fender Mustang LT25 25W 1x8 Guitar Combo",
       price: 3399.99,
       rating: 0,
       ratingsNum: 0,
@@ -280,7 +280,6 @@ const ProductsDisplay: React.FC<{
   ];
 
 
-  const filteredProducts = useFilterProducts(guitarProducts);
 
   const [productsToDisplay, setProductsToDisplay] = useState<
     ProductType[] | null
@@ -296,7 +295,8 @@ const ProductsDisplay: React.FC<{
     }
   }, [props.productType]);
 
-
+  
+  const filteredProducts = useFilterProducts(productsToDisplay);
 
   return (
     <Grid2
@@ -318,10 +318,10 @@ const ProductsDisplay: React.FC<{
         borderRadius={"15px"}
         p="1rem"
       >
-        {productsToDisplay && (
+        {filteredProducts && (
           <Products
             productType={props.productType}
-            products={filteredProducts!}
+            products={filteredProducts}
           />
         )}
       </Grid2>

@@ -9,9 +9,13 @@ import {
 } from "../../types/filter-interfaces";
 import ElectricGuitarFilters from "../../components/FiltersMenu/GuitarFilters/ElectricGuitarFilters";
 
-const useFilterProducts = (productsArray: ProductType[]) => {
+const useFilterProducts = (productsArray: ProductType[] | null) => {
   const ctx = useContext(AppContext);
   const appliedFilters = ctx?.appliedFilters || null;
+
+if (productsArray === null) {
+  return productsArray;
+}
 
   // If there are no filters applied, return the unchanged productsArray
   if (appliedFilters === null) {
@@ -28,7 +32,7 @@ const useFilterProducts = (productsArray: ProductType[]) => {
   } = appliedFilters;
 
   // Function to filter through checkboxes filters
-  function FilterCheckboxes<T, K>(
+  function FilterCheckboxes<K>(
     filterCheckboxesArray: any,
     productsArray: K[],
     comparedPropertyName: keyof K
@@ -86,6 +90,7 @@ const useFilterProducts = (productsArray: ProductType[]) => {
   if (electricGuitarFilters) {
     for (let filter in electricGuitarFilters) {
       if (filter.length !== 0) {
+        console.log(filter);
         newProductsArray = FilterCheckboxes(
           electricGuitarFilters[filter as keyof ElectricGuitarFiltersInterface],
           newProductsArray as ElectricGuitarProduct[],
@@ -94,39 +99,6 @@ const useFilterProducts = (productsArray: ProductType[]) => {
       }
     }
   }
-
-  //   if (electricGuitarFilters?.bodyType) {
-  //     newProductsArray = FilterCheckboxes(
-  //       electricGuitarFilters?.bodyType,
-  //       newProductsArray as ElectricGuitarProduct[],
-  //       "bodyType"
-  //     );
-  //   }
-
-  //   if (electricGuitarFilters?.pickupConfig) {
-  //     newProductsArray = FilterCheckboxes(
-  //       electricGuitarFilters?.pickupConfig,
-  //       newProductsArray as ElectricGuitarProduct[],
-  //       "pickupConfig"
-  //     );
-  //   }
-
-  //   if (electricGuitarFilters?.bridgeType) {
-  //     newProductsArray = FilterCheckboxes(
-  //       electricGuitarFilters?.pickupConfig,
-  //       newProductsArray as ElectricGuitarProduct[],
-  //       "pickupConfig"
-  //     );
-  //   }
-
-  //   export interface ElectricGuitarFiltersInterface extends GuitarFiltersInterface {
-  //     pickupConfig?: Array<"HH" | "HSH" | "HSS" | "SS" | "SSS">;
-  //     bridgeType?: Array<"Fixed" | "Tremolo" | "Floyd Rose">;
-  //     bodyType?: Array<
-  //       "Stratocaster" | "Telecaster" | "Superstrat" | "Les Paul" | "Other"
-  //     >;
-  //     fretsNum?: Array<string>;
-  //   }
 
   return newProductsArray;
 };
