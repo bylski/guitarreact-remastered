@@ -297,6 +297,7 @@ const ProductsDisplay: React.FC<{
   }, [props.productType]);
 
   
+  console.log(ctx?.appliedFilters)
   const filteredProducts = useFilterProducts(productsToDisplay);
 
   return (

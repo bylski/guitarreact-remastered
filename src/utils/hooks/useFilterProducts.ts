@@ -1,5 +1,9 @@
 import { AppContext } from "../../store/AppContext";
-import { AmplifiersProduct, ProductType } from "../../types/product-interfaces";
+import {
+  AccessoriesProduct,
+  AmplifiersProduct,
+  ProductType,
+} from "../../types/product-interfaces";
 import React, { useContext } from "react";
 import { ElectricGuitarProduct } from "../../types/product-interfaces";
 import {
@@ -30,32 +34,6 @@ const useFilterProducts = (productsArray: ProductType[] | null) => {
     accesoriesFilters,
     baseFilters,
   } = appliedFilters;
-
-  // Function to filter through checkboxes filters
-  // function FilterCheckboxes<K>(
-  //   filterCheckboxesArray: any,
-  //   productsArray: K[],
-  //   comparedPropertyName: keyof K
-  // ) {
-  //   // Check if filter array is defined and has elements
-  //   if (filterCheckboxesArray && filterCheckboxesArray.length !== 0) {
-  //     productsArray = productsArray.filter((product) => {
-  //       let productMatchesFilters = false;
-  //       for (let filter of filterCheckboxesArray) {
-  //         if (filter === product[comparedPropertyName as keyof K]) {
-  //           productMatchesFilters = true;
-  //           break;
-  //         }
-  //       }
-
-  //       if (productMatchesFilters) {
-  //         return true;
-  //       } else return false;
-  //     });
-  //   }
-
-  //   return productsArray;
-  // }
 
   function FilterCheckboxes<K>(
     filterCheckboxesArray: any,
@@ -99,7 +77,6 @@ const useFilterProducts = (productsArray: ProductType[] | null) => {
     productsArray = productsArray.filter((product) => {
       // Loop through every given filter name (amplifierType, technology etc.)
       for (let filterName of comparedFilterNames) {
-
         if (!product[filterName]) {
           return false;
         }
@@ -112,7 +89,6 @@ const useFilterProducts = (productsArray: ProductType[] | null) => {
       }
       return true;
     });
-    console.log(productsArray);
     return productsArray;
   }
 
@@ -143,20 +119,9 @@ const useFilterProducts = (productsArray: ProductType[] | null) => {
 
   // **************** ELECTRIC GUITAR FILTERS *********************
 
-  console.log(ctx?.appliedFilters);
 
   // Filter through checkboxes filters
   if (electricGuitarFilters) {
-    // for (let filter in electricGuitarFilters) {
-    //   if (filter.length !== 0) {
-    //     console.log(filter);
-    //     newProductsArray = FilterCheckboxes(
-    //       electricGuitarFilters[filter as keyof ElectricGuitarFiltersInterface],
-    //       newProductsArray as ElectricGuitarProduct[],
-    //       filter as keyof ElectricGuitarProduct
-    //     );
-    //   }
-    // }
     newProductsArray = FilterCheckboxes(
       electricGuitarFilters,
       newProductsArray as ElectricGuitarProduct[],
@@ -175,12 +140,20 @@ const useFilterProducts = (productsArray: ProductType[] | null) => {
     newProductsArray = FilterRadioInputs(
       amplifierFilters,
       newProductsArray as AmplifiersProduct[],
-      ["amplifierType"]
+      ["amplifierType", "speakerConfiguration", "technology"]
     );
     newProductsArray = FilterCheckboxes(
       amplifierFilters,
       newProductsArray as AmplifiersProduct[],
       ["wattage"]
+    );
+  }
+
+  if (accesoriesFilters) {
+    newProductsArray = FilterRadioInputs(
+      amplifierFilters,
+      newProductsArray as AccessoriesProduct[],
+      ["categories"]
     );
   }
 
