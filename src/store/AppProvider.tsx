@@ -17,6 +17,7 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   const [appliedFilters, setAppliedFilters] = useState<ProductFilters>({});
   const [isCartWindowOpen, setIsCartWindowOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartProducts>([]);
+  const [hasFiltersChanged, setHasFiltersChanged] = useState(false);
 
   // CART STATE LOGIC
   const onOpenCartWindow = () => {
@@ -70,8 +71,19 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   // FILTERS STATE LOGIC
 
   const onApplyFilters = (newFilters: ProductFilters) => {
+    if (appliedFilters !== newFilters) {
+      setHasFiltersChanged(true);
+    }
+
     setAppliedFilters(newFilters);
   };
+
+  const resetFilterChange = () => {
+    setHasFiltersChanged(false);
+  }
+
+
+  // PATH STATE LOGIC
 
   const location = useLocation();
   const [currentPath, setCurrentPath] = useState(location.pathname);
@@ -86,6 +98,8 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
     currentPath,
     appliedFilters,
     onApplyFilters,
+    hasFiltersChanged,
+    resetFilterChange,
     isCartWindowOpen,
     onOpenCartWindow,
     onCloseCartWindow,

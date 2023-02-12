@@ -8,6 +8,8 @@ type Categories = "none" | "guitars" | "amplifiers" | "accessories";
 type AppContextType = {
   appliedFilters: ProductFilters;
   onApplyFilters: (newFilters: ProductFilters) => void;
+  hasFiltersChanged: boolean;
+  resetFilterChange: () => void;
   selectedCategory: Categories;
   onSelectCategory: (selectedCategory: Categories) => void;
   currentPath: string;

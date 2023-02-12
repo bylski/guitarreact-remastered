@@ -280,25 +280,31 @@ const ProductsDisplay: React.FC<{
     },
   ];
 
-
-
   const [productsToDisplay, setProductsToDisplay] = useState<
+    ProductType[] | null
+  >(null);
+  const [filteredProductsToDisplay, setFilteredProductsToDisplay] = useState<
     ProductType[] | null
   >(null);
 
   useEffect(() => {
     if (props.productType === "guitars") {
       setProductsToDisplay(guitarProducts);
+      setFilteredProductsToDisplay(guitarProducts);
     } else if (props.productType === "amplifiers") {
       setProductsToDisplay(amplifierProducts);
+      setFilteredProductsToDisplay(amplifierProducts);
     } else if (props.productType === "accessories") {
       setProductsToDisplay(accessoriesProducts);
+      setFilteredProductsToDisplay(accessoriesProducts);
     }
   }, [props.productType]);
 
-  
-  console.log(ctx?.appliedFilters)
   const filteredProducts = useFilterProducts(productsToDisplay);
+  const submitFiltersHandler = () => {
+    setFilteredProductsToDisplay(filteredProducts);
+  };
+
 
   return (
     <Grid2
@@ -310,7 +316,7 @@ const ProductsDisplay: React.FC<{
       width="101%"
     >
       <Grid2 display="flex" justifyContent="flex-start" xs={4}>
-        <FiltersMenu />
+        <FiltersMenu onSubmitFilters={submitFiltersHandler} />
       </Grid2>
       <Grid2
         display="flex"
@@ -320,10 +326,10 @@ const ProductsDisplay: React.FC<{
         borderRadius={"15px"}
         p="1rem"
       >
-        {filteredProducts && (
+        {filteredProductsToDisplay && (
           <Products
             productType={props.productType}
-            products={filteredProducts}
+            products={filteredProductsToDisplay}
           />
         )}
       </Grid2>

@@ -8,7 +8,9 @@ import AmplifierFilters from "./AmplifierFilters";
 import AccessoriesFilters from "./AccessoriesFilters";
 import SubmitFiltersButton from "./SubmitFiltersButton";
 
-const FiltersMenu: React.FC = (props) => {
+const FiltersMenu: React.FC<{ onSubmitFilters: () => void }> = (
+  props
+) => {
   const theme = useTheme();
   const { palette, typography } = theme;
   const ctx = useContext(AppContext);
@@ -40,7 +42,11 @@ const FiltersMenu: React.FC = (props) => {
       {ctx?.selectedCategory === "guitars" ? <GuitarFilters /> : null}
       {ctx?.selectedCategory === "amplifiers" ? <AmplifierFilters /> : null}
       {ctx?.selectedCategory === "accessories" ? <AccessoriesFilters /> : null}
-      <SubmitFiltersButton />
+      <SubmitFiltersButton
+        isVisible={ctx?.hasFiltersChanged!}
+        onResetFilterChange={ctx?.resetFilterChange!}
+        onSubmitFilters={props.onSubmitFilters}
+      />
     </Stack>
   );
 };
