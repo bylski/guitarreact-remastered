@@ -6,14 +6,13 @@ import { AppContext } from "../../store/AppContext";
 import GuitarFilters from "./GuitarFilters/GuitarFilters";
 import AmplifierFilters from "./AmplifierFilters";
 import AccessoriesFilters from "./AccessoriesFilters";
+import SubmitFiltersButton from "./SubmitFiltersButton";
 
 const FiltersMenu: React.FC = (props) => {
   const theme = useTheme();
   const { palette, typography } = theme;
   const ctx = useContext(AppContext);
 
-
- 
   return (
     <Stack
       width="100%"
@@ -22,6 +21,7 @@ const FiltersMenu: React.FC = (props) => {
       px={"2rem"}
       bgcolor={palette.secondary.dark}
       borderRadius={"15px"}
+      position={"relative"}
     >
       <Box mb="1rem">
         <Typography
@@ -30,16 +30,17 @@ const FiltersMenu: React.FC = (props) => {
           fontFamily={typography.h2.fontFamily}
           fontSize="28px"
           fontWeight="300"
-          textAlign={"center"}  
+          textAlign={"center"}
           borderBottom={"1px solid"}
-          borderColor={ palette.secondary.light }
+          borderColor={palette.secondary.light}
         >
           Filter Products
         </Typography>
       </Box>
-      {ctx?.selectedCategory === "guitars" ? <GuitarFilters/> : null}
-      {ctx?.selectedCategory === "amplifiers" ? <AmplifierFilters/> : null}
-      {ctx?.selectedCategory === "accessories" ? <AccessoriesFilters/> : null}
+      {ctx?.selectedCategory === "guitars" ? <GuitarFilters /> : null}
+      {ctx?.selectedCategory === "amplifiers" ? <AmplifierFilters /> : null}
+      {ctx?.selectedCategory === "accessories" ? <AccessoriesFilters /> : null}
+      <SubmitFiltersButton />
     </Stack>
   );
 };

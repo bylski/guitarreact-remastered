@@ -21,6 +21,10 @@ const RadioFilter: React.FC<{
   const radioChangeHandler = (event: React.SyntheticEvent<Element, Event>, checked: boolean) => {
     const target = event.currentTarget as HTMLInputElement;
     setSelectedRadio(target.value);
+
+    if (props.onChange) {
+      props.onChange(target.value);
+    }
   }
 
   const optionsToRender = props.options.map((option, i) => {
@@ -35,13 +39,6 @@ const RadioFilter: React.FC<{
     );
   });
 
-
-
-  useEffect(() => {
-    if (props.onChange) {
-      props.onChange(selectedRadio);
-    }
-  }, [selectedRadio]);
 
   return (
     <Fragment>

@@ -37,6 +37,7 @@ const AccordionFilter: React.FC<{
   const checkboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
     const checkboxToChange = { name: value, isChecked: checked };
+    console.log("SMTH CHANGED")
     setCheckBoxes((prev) => {
       const newContent = prev.content;
       for (let i = 0; i < newContent.length; i++) {
@@ -46,17 +47,18 @@ const AccordionFilter: React.FC<{
       }
       return { content: newContent, change: !prev.change };
     });
-  };
 
-  useEffect(() => {
     if (props.onChange) {
       const selectedCheckBoxesData = checkBoxes.content
         .filter((checkbox) => checkbox.isChecked)
         .map((filteredCheckbox) => filteredCheckbox.name);
 
+
       props.onChange(selectedCheckBoxesData);
     }
-  }, [checkBoxes]);
+  };
+
+ 
 
   const children = checkBoxes.content.map((checkbox, i) => {
     let additionalAttributes: CheckboxProps = {};

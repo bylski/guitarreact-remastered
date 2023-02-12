@@ -37,37 +37,71 @@ const PriceFilter: React.FC = () => {
   };
 
   // If input is valid, update the state
-  const priceFromHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const priceFromChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fieldValue = e.target.value;
     if (isInputValid(fieldValue) === true) {
       setPriceFromValue(fieldValue);
     }
   };
-  const priceToHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const priceFromBlurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
+    const fieldValue = e.target.value;
+    const price = { from: parseInt(fieldValue), to: parseInt(priceToValue) };
+    if (ctx?.appliedFilters !== undefined) {
+      const prevFilters = ctx?.appliedFilters;
+      ctx?.onApplyFilters({
+        ...prevFilters,
+        baseFilters: { ...prevFilters.baseFilters, price },
+      });
+    } else {
+      ctx?.onApplyFilters({
+        baseFilters: { price },
+      });
+    }
+  };
+
+  const priceToChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fieldValue = e.target.value;
     if (isInputValid(fieldValue) === true) {
       setPriceToValue(fieldValue);
     }
   };
 
-  // Pass the state of the text fields to the context to use in other components
-  useEffect(() => {
-    const newFilters: BaseFilters = {
-      price: { from: parseInt(priceFromValue), to: parseInt(priceToValue) },
-    };
+  const priceToBlurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
+    const fieldValue = e.target.value;
+    const price = { from: parseInt(priceFromValue), to: parseInt(fieldValue) };
 
     if (ctx?.appliedFilters !== undefined) {
       const prevFilters = ctx?.appliedFilters;
       ctx?.onApplyFilters({
         ...prevFilters,
-        baseFilters: { ...prevFilters.baseFilters, ...newFilters },
+        baseFilters: { ...prevFilters.baseFilters, price },
       });
     } else {
       ctx?.onApplyFilters({
-        baseFilters: { ...newFilters },
+        baseFilters: { price },
       });
     }
-  }, [priceFromValue, priceToValue]);
+  };
+
+  // Pass the state of the text fields to the context to use in other components
+  // useEffect(() => {
+  //   const newFilters: BaseFilters = {
+  //     price: { from: parseInt(priceFromValue), to: parseInt(priceToValue) },
+  //   };
+
+  //   if (ctx?.appliedFilters !== undefined) {
+  //     const prevFilters = ctx?.appliedFilters;
+  //     ctx?.onApplyFilters({
+  //       ...prevFilters,
+  //       baseFilters: { ...prevFilters.baseFilters, ...newFilters },
+  //     });
+  //   } else {
+  //     ctx?.onApplyFilters({
+  //       baseFilters: { ...newFilters },
+  //     });
+  //   }
+  // }, [priceFromValue, priceToValue]);
 
   return (
     <Filter name="Price ($)" mt={"1.5rem"}>
@@ -82,7 +116,8 @@ const PriceFilter: React.FC = () => {
         <TextField
           sx={{ flexGrow: "1" }}
           value={priceFromValue}
-          onChange={priceFromHandler}
+          onChange={priceFromChangeHandler}
+          onBlur={priceFromBlurHandler}
           onKeyDown={keyValidationHandler}
           variant="outlined"
           label="From"
@@ -102,7 +137,8 @@ const PriceFilter: React.FC = () => {
         <TextField
           sx={{ flexGrow: "1" }}
           value={priceToValue}
-          onChange={priceToHandler}
+          onChange={priceToChangeHandler}
+          onBlur={priceToBlurHandler}
           onKeyDown={keyValidationHandler}
           variant="outlined"
           label="To"
