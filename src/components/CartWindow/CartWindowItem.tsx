@@ -56,7 +56,7 @@ const CartWindowItem: React.FC<{
             sx={{ paddingBottom: "0.3rem" }}
             color={palette.secondary.contrastText}
             fontFamily={typography.h1.fontFamily}
-            fontSize="18px"
+            fontSize="16px"
             fontWeight="300"
             textAlign={"left"}
           >
@@ -66,7 +66,7 @@ const CartWindowItem: React.FC<{
             sx={{}}
             color={palette.secondary.contrastText}
             fontFamily={typography.h1.fontFamily}
-            fontSize="15px"
+            fontSize="13px"
             fontWeight="400"
             textAlign={"left"}
           >
@@ -76,7 +76,7 @@ const CartWindowItem: React.FC<{
             sx={{}}
             color={palette.primary.main}
             fontFamily={typography.h1.fontFamily}
-            fontSize="22px"
+            fontSize="20px"
             fontWeight="600"
             textAlign={"left"}
           >
@@ -91,7 +91,7 @@ const CartWindowItem: React.FC<{
             size="medium"
           >
             <DeleteSharpIcon
-              sx={{ fill: palette.complementary.alert }}
+              sx={{ fill: palette.complementary.alert, fontSize: "20px" }}
               fontSize="medium"
             />
           </IconButton>

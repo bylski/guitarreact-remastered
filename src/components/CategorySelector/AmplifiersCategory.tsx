@@ -67,7 +67,7 @@ const AmplifiersCategory: React.FC<{
       >
         <SvgIcon
           sx={{
-            fontSize: "35px",
+            fontSize: "32px",
             fill: "white",
             position: "relative",
             left: "-8px",

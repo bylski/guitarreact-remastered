@@ -54,7 +54,7 @@ const CartWindow: React.FC = () => {
         <Box
           sx={{
             opacity: "1 !important",
-            maxWidth: "700px",
+            maxWidth: "650px",
             minWidth: "500px",
             width: "30%",
             height: "100%",
@@ -80,7 +80,7 @@ const CartWindow: React.FC = () => {
                 sx={{ flexGrow: 1 }}
                 color={palette.secondary.contrastText}
                 fontFamily={typography.h1.fontFamily}
-                fontSize="28px"
+                fontSize="25px"
                 fontWeight="600"
                 textAlign={"center"}
               >
@@ -104,7 +104,7 @@ const CartWindow: React.FC = () => {
                 }}
                 color={palette.secondary.contrastText}
                 fontFamily={typography.h1.fontFamily}
-                fontSize="20px"
+                fontSize="18px"
                 fontWeight="300"
                 textAlign={"left"}
               >
@@ -123,7 +123,7 @@ const CartWindow: React.FC = () => {
                   marginTop: "2rem",
                   backgroundColor: palette.primary.onHoverDark,
                   borderRadius: "10px",
-                  fontSize: 18,
+                  fontSize: 16,
                   "&:hover": {
                     backgroundColor: palette.primary.dark,
                   },

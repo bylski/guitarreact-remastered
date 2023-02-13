@@ -12,7 +12,7 @@ const NavbarLogo: React.FC = (props) => {
         sx={{ flexGrow: 1, maxWidth: "fit-content" }}
         color={palette.secondary.contrastText}
         variant="h1"
-        fontSize="30px"
+        fontSize="27px"
         fontWeight="600"
         component="div"
       >
@@ -21,7 +21,7 @@ const NavbarLogo: React.FC = (props) => {
           sx={{ flexGrow: 1 }}
           color={palette.primary.main}
           variant="h1"
-          fontSize="30px"
+          fontSize="27px"
           fontWeight="600"
           component="div"
           display={"inline"}
@@ -33,7 +33,7 @@ const NavbarLogo: React.FC = (props) => {
       <SvgIcon
         sx={{
           [breakpoints.down("md")]: {fontSize: "27px", top: "4px"},
-          fontSize: "35px",
+          fontSize: "32px",
           width: "fit-content",
           fill: palette.primary.main,
           marginLeft: "2px",

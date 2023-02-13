@@ -90,7 +90,7 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
             minHeight: "60px",
             paddingRight: 0,
           },
-          [theme.breakpoints.up("md")]: { height: "70px", minHeight: "70px" },
+          [theme.breakpoints.up("md")]: { height: "62px", minHeight: "62px" },
         },
       },
     },
@@ -112,8 +112,15 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
     MuiAccordionSummary: {
       styleOverrides: {
         content: {
-          marginBottom: "10px !important",
+          marginBottom: "6px !important",
         },
+      }
+    },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        label: {
+          fontSize: "14px",
+        }
       }
     },
   };

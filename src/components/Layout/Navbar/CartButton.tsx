@@ -45,38 +45,18 @@ const Cart: React.FC = (props) => {
       <Typography
         color={"white"}
         variant="h1"
-        fontSize="21px"
+        fontSize="19px"
         fontWeight="600"
         marginRight="0.5rem"
         sx={{ flexGrow: 1, [breakpoints.down("md")]: { fontSize: "16px" } }}
       >
         Cart
       </Typography>
-      {/* <Badge
-        badgeContent={5}
-        overlap="rectangular"
-        max={99}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        sx={[
-          { color: palette.secondary.contrastText },
-          {
-            "& span": {
-              backgroundColor: "white",
-              border: "2px solid red",
-              color: "red",
-              right: "-2px",
-              top: "-2px"
-            },
-          },
-        ]}
-      > */}
       <ShoppingCartIcon
-        // fontSize={"medium"}
         sx={{
-          fontSize: "24px",
+          position: "relative",
+          top: "-1px",
+          fontSize: "21px",
           fill: "white",
           transition: "0.2s ease-in-out",
           [breakpoints.down("md")]: { fontSize: "18px" },

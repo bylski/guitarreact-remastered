@@ -84,25 +84,6 @@ const PriceFilter: React.FC = () => {
     }
   };
 
-  // Pass the state of the text fields to the context to use in other components
-  // useEffect(() => {
-  //   const newFilters: BaseFilters = {
-  //     price: { from: parseInt(priceFromValue), to: parseInt(priceToValue) },
-  //   };
-
-  //   if (ctx?.appliedFilters !== undefined) {
-  //     const prevFilters = ctx?.appliedFilters;
-  //     ctx?.onApplyFilters({
-  //       ...prevFilters,
-  //       baseFilters: { ...prevFilters.baseFilters, ...newFilters },
-  //     });
-  //   } else {
-  //     ctx?.onApplyFilters({
-  //       baseFilters: { ...newFilters },
-  //     });
-  //   }
-  // }, [priceFromValue, priceToValue]);
-
   return (
     <Filter name="Price ($)" mt={"1.5rem"}>
       <Box
@@ -114,7 +95,7 @@ const PriceFilter: React.FC = () => {
         }}
       >
         <TextField
-          sx={{ flexGrow: "1" }}
+          sx={{  }}
           value={priceFromValue}
           onChange={priceFromChangeHandler}
           onBlur={priceFromBlurHandler}
@@ -135,7 +116,7 @@ const PriceFilter: React.FC = () => {
           -
         </Typography>
         <TextField
-          sx={{ flexGrow: "1" }}
+          sx={{  }}
           value={priceToValue}
           onChange={priceToChangeHandler}
           onBlur={priceToBlurHandler}

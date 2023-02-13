@@ -67,7 +67,7 @@ const GuitarsCategory: React.FC<{
       >
         <SvgIcon
           sx={{
-            fontSize: "35px",
+            fontSize: "32px",
             fill: "white",
             position: "relative",
             top: "-8px",

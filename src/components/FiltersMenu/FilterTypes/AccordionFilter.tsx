@@ -37,7 +37,6 @@ const AccordionFilter: React.FC<{
   const checkboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
     const checkboxToChange = { name: value, isChecked: checked };
-    console.log("SMTH CHANGED")
     setCheckBoxes((prev) => {
       const newContent = prev.content;
       for (let i = 0; i < newContent.length; i++) {
@@ -68,13 +67,14 @@ const AccordionFilter: React.FC<{
     return (
       <FormGroup key={`checkboxElement${i}`}>
         <FormControlLabel
-          sx={{ color: palette.secondary.contrastText }}
+          sx={{ color: palette.secondary.contrastText, position: "relative", top: "1px" }}
           label={checkbox.name}
           control={
             <Checkbox
               {...additionalAttributes}
               value={checkbox.name}
               onChange={checkboxHandler}
+              sx={{fontSize: "12px"}}
             />
           }
         ></FormControlLabel>
@@ -134,7 +134,7 @@ const AccordionFilter: React.FC<{
           sx={{ flexGrow: 1 }}
           color={palette.secondary.contrastText}
           fontFamily={typography.h2.fontFamily}
-          fontSize="16px"
+          fontSize="14px"
           fontWeight="500"
           textAlign={"left"}
           marginBottom="0.5rem"

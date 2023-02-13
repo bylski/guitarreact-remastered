@@ -34,6 +34,7 @@ const SwitchButton: React.FC<{
     color: palette.secondary.contrastText,
     paddingBlock: "0.5rem",
     transition: "0.2s ease",
+    fontSize: "13px",
     "&:hover": {
       color: palette.primary.main,
     },

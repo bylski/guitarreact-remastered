@@ -12,7 +12,6 @@ const SubmitFiltersButton: React.FC<{
   const submitFiltersHandler = () => {
     props.onResetFilterChange();
     props.onSubmitFilters();
-    console.log("FIRE")
   };
 
   return (
