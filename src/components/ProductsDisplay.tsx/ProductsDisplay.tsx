@@ -311,17 +311,17 @@ const ProductsDisplay: React.FC<{
       minHeight="fit-content"
       container
       sx={{ marginTop: "1rem" }}
-      columns={20}
+      columns={100}
       columnSpacing={4}
       width="101%"
     >
-      <Grid2 display="flex" justifyContent="flex-start" xs={4}>
+      <Grid2 display="flex" justifyContent="flex-start" xs={21}>
         <FiltersMenu onSubmitFilters={submitFiltersHandler} />
       </Grid2>
       <Grid2
         display="flex"
         justifyContent="flex-start"
-        xs={16}
+        xs={79}
         bgcolor={palette.secondary.dark}
         borderRadius={"15px"}
         p="1rem"

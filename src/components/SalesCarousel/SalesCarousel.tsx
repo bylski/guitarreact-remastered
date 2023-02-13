@@ -11,7 +11,7 @@ import {
 
 const SalesCarousel: React.FC = () => {
   const { palette } = useTheme();
-  const imgWidth = 800;
+  const imgWidth = 730;
 
   // STYLES
   const carouselElementStyles = getCarouselElementStyles(imgWidth);
@@ -71,7 +71,7 @@ const SalesCarousel: React.FC = () => {
         position: "relative",
         display: "flex",
         justifyContent: "center",
-        height: "325px",
+        height: "290px",
       }}
     >
       <Container

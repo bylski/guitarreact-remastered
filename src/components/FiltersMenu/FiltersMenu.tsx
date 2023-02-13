@@ -30,7 +30,7 @@ const FiltersMenu: React.FC<{ onSubmitFilters: () => void }> = (
           sx={{ flexGrow: 1 }}
           color={palette.secondary.contrastText}
           fontFamily={typography.h2.fontFamily}
-          fontSize="28px"
+          fontSize="25px"
           fontWeight="300"
           textAlign={"center"}
           borderBottom={"1px solid"}

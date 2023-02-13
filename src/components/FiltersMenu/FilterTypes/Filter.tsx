@@ -28,7 +28,7 @@ const Filter: React.FC<{
         sx={{ flexGrow: 1 }}
         color={palette.secondary.contrastText}
         fontFamily={typography.h2.fontFamily}
-        fontSize="16px"
+        fontSize="14px"
         fontWeight="500"
         textAlign={"left"}
         marginBottom="0.5rem"

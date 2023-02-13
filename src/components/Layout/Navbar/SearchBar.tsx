@@ -14,6 +14,7 @@ const SearchBar: React.FC = (props) => {
         sx={{
           input: { color: palette.secondary.contrastText },
           fontFamily: typography.h1.fontFamily,
+          fontSize: "12px",
           marginLeft: "3rem",
           marginRight: "1.5rem",
           flexGrow: 2,

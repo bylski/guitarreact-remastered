@@ -14,6 +14,7 @@ const NavLinks: React.FC = (props) => {
           height: "100%",
           paddingInline: "1rem",
           fontFamily: typography.h1.fontFamily,
+          fontSize: "13px"
         }}
       >
         Guitars
@@ -25,6 +26,7 @@ const NavLinks: React.FC = (props) => {
           height: "100%",
           paddingInline: "1rem",
           fontFamily: typography.h1.fontFamily,
+          fontSize: "13px"
         }}
       >
         Amplifiers
@@ -36,6 +38,7 @@ const NavLinks: React.FC = (props) => {
           height: "100%",
           paddingInline: "1rem",
           fontFamily: typography.h1.fontFamily,
+          fontSize: "13px"
         }}
       >
         Accessories

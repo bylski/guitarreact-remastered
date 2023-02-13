@@ -50,7 +50,7 @@ const CategorySelector: React.FC = (props) => {
   };
 
   const typographyAttributes = {
-    fontSize: "20px",
+    fontSize: "18px",
     fontFamily: typography.h1.fontFamily,
   };
 
@@ -72,7 +72,7 @@ const CategorySelector: React.FC = (props) => {
       container
       columnSpacing={2}
       sx={{
-        height: "100px",
+        height: "90px",
         marginTop: "50px",
         backgroundColor: palette.secondary.main,
       }}
