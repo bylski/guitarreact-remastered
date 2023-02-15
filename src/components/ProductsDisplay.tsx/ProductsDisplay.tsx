@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, Fragment } from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { useTheme } from "@mui/material/styles";
 import FiltersMenu from "../FiltersMenu/FiltersMenu";
@@ -305,35 +305,36 @@ const ProductsDisplay: React.FC<{
     setFilteredProductsToDisplay(filteredProducts);
   };
 
-
   return (
-    <Grid2
-      minHeight="fit-content"
-      container
-      sx={{ marginTop: "1rem" }}
-      columns={100}
-      columnSpacing={4}
-      width="101%"
-    >
-      <Grid2 display="flex" justifyContent="flex-start" xs={21}>
-        <FiltersMenu onSubmitFilters={submitFiltersHandler} />
-      </Grid2>
+    <Fragment>
       <Grid2
-        display="flex"
-        justifyContent="flex-start"
-        xs={79}
-        bgcolor={palette.secondary.dark}
-        borderRadius={"15px"}
-        p="1rem"
+        minHeight="fit-content"
+        container
+        sx={{ marginTop: "1rem" }}
+        columns={100}
+        columnSpacing={4}
+        width="101%"
       >
-        {filteredProductsToDisplay && (
-          <Products
-            productType={props.productType}
-            products={filteredProductsToDisplay}
-          />
-        )}
+        <Grid2 display="flex" justifyContent="flex-start" xs={21}>
+          <FiltersMenu onSubmitFilters={submitFiltersHandler} />
+        </Grid2>
+        <Grid2
+          display="flex"
+          justifyContent="flex-start"
+          xs={79}
+          bgcolor={palette.secondary.dark}
+          borderRadius={"15px"}
+          p="1rem"
+        >
+          {filteredProductsToDisplay && (
+            <Products
+              productType={props.productType}
+              products={filteredProductsToDisplay}
+            />
+          )}
+        </Grid2>
       </Grid2>
-    </Grid2>
+    </Fragment>
   );
 };
 

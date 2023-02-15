@@ -12,13 +12,8 @@ const SubmitFiltersButton: React.FC<{
   const submitFiltersHandler = () => {
     props.onResetFilterChange();
     props.onSubmitFilters();
-<<<<<<< HEAD
     // Scroll to the top of the products display
     window.scrollTo({ top: 400, behavior: "smooth" });
-||||||| c4e6705
-    console.log("FIRE")
-=======
->>>>>>> master
   };
 
   return (
