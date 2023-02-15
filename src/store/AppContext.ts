@@ -19,6 +19,8 @@ type AppContextType = {
   cartItems: Array<{ product: ProductType; quantity: number }>;
   onAddToCart: (item: CartProduct) => void;
   onRemoveFromCart: (itemName: string) => void;
+  isCompareWindowCollapsed: boolean;
+  onSetCompareWindowState: (state: "expand" | "collapse") => void;
   // onSetPath: (currentPath: "string") => void;
 };
 

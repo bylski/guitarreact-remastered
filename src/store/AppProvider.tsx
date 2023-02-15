@@ -80,8 +80,7 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
 
   const resetFilterChange = () => {
     setHasFiltersChanged(false);
-  }
-
+  };
 
   // PATH STATE LOGIC
 
@@ -91,6 +90,19 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   useEffect(() => {
     setCurrentPath(location.pathname);
   }, [location]);
+
+  // COMPARE WINDOW STATE LOGIC
+
+  const [isCompareWindowCollapsed, setIsCompareWindowCollapsed] =
+    useState(true);
+
+  const onSetCompareWindowState = (state: "expand" | "collapse") => {
+    if (state === "collapse") {
+      setIsCompareWindowCollapsed(true);
+    } else {
+      setIsCompareWindowCollapsed(false);
+    }
+  };
 
   const AppContextValues: AppContextType = {
     selectedCategory: selectedCategory,
@@ -106,6 +118,8 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
     cartItems,
     onAddToCart,
     onRemoveFromCart,
+    isCompareWindowCollapsed,
+    onSetCompareWindowState
   };
 
   return (

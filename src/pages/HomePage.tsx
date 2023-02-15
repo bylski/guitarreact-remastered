@@ -7,6 +7,7 @@ import CategorySelector from "../components/CategorySelector/CategorySelector";
 import ProductsDisplay from "../components/ProductsDisplay.tsx/ProductsDisplay";
 import { Outlet } from "react-router";
 import ComparisonWindow from "../components/ComparisonWindow/ComparisonWindow";
+import ComparisonWindowExpander from "../components/ComparisonWindow/ComparisonWindowExpander";
 
 const HomePage: React.FC = () => {
   const theme = useTheme();
@@ -40,6 +41,7 @@ const HomePage: React.FC = () => {
         <Outlet />
       </Container>
       <ComparisonWindow />
+      <ComparisonWindowExpander />
     </Container>
   );
 };
