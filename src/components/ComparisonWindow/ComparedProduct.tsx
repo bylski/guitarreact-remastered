@@ -6,13 +6,18 @@ import { useTheme } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { ProductType } from "../../types/product-interfaces";
+import { AppContext } from "../../store/AppContext";
 
 const ComparedProduct: React.FC<{
   order: "first" | "second";
   product: ProductType;
 }> = (props) => {
   const { palette, typography } = useTheme();
+  const ctx = useContext(AppContext)
 
+  const removeComapredHandler = () => {
+    ctx?.onRemoveProductToCompare(props.product)
+  }
 
   return (
     <Box
@@ -25,6 +30,7 @@ const ComparedProduct: React.FC<{
     >
       <Tooltip title={"Remove"}>
         <IconButton
+        onClick={removeComapredHandler}
           sx={
             props.order === "first"
               ? {

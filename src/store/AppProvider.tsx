@@ -8,6 +8,7 @@ import {
 } from "../types/filter-interfaces";
 
 import { CartProduct, CartProducts } from "../types/cart-interfaces";
+import { ProductType } from "../types/product-interfaces";
 
 const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   type Categories = "none" | "guitars" | "amplifiers" | "accessories";
@@ -95,6 +96,55 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
 
   const [isCompareWindowCollapsed, setIsCompareWindowCollapsed] =
     useState(true);
+  const [comparedProducts, setComparedProducts] = useState<{
+    product1: ProductType | null;
+    product2: ProductType | null;
+  }>({
+    product1: null,
+    product2: null,
+  });
+
+  const onAddProductToCompare = (productToAdd: ProductType) => {
+    const { product1, product2 } = comparedProducts;
+    let isAlreadyBeingCompared = false;
+    if (
+      productToAdd.name === product1?.name ||
+      productToAdd.name === product1?.name
+    ) {
+      isAlreadyBeingCompared = true;
+    }
+    if (product1 === null || (product2 === null && !isAlreadyBeingCompared)) {
+      setComparedProducts((prev) => {
+        // if (prev.product1 === null && prev.product2 === null) {
+        //   setIsCompareWindowCollapsed(false);
+        // }
+        if (prev.product1 === null) {
+          setIsCompareWindowCollapsed(false);
+          return { product1: productToAdd, product2: prev.product2 };
+        } else {
+          setIsCompareWindowCollapsed(false);
+          return { product1: prev.product1, product2: productToAdd };
+        }
+      });
+    }
+  };
+
+  const onRemoveProductToCompare = (productToRemove: ProductType) => {
+    const { product1, product2 } = comparedProducts;
+    if (productToRemove.name === product1?.name) {
+      setComparedProducts((prev) => ({
+        product1: null,
+        product2: prev.product2,
+      }));
+    } else if (productToRemove.name === product2?.name) {
+      setComparedProducts((prev) => ({
+        product1: prev.product1,
+        product2: null,
+      }));
+    } else {
+      console.log("NO SUCH PRODUCT IS BEING COMPARED")
+    }
+  };
 
   const onSetCompareWindowState = (state: "expand" | "collapse") => {
     if (state === "collapse") {
@@ -104,22 +154,37 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
     }
   };
 
+  // useEffect(() => {
+  //   const { product1, product2 } = comparedProducts;
+  //   if (product1 !== null || product2 !== null) {
+
+  //   }
+  // }, [comparedProducts])
+
   const AppContextValues: AppContextType = {
+    // Category values
     selectedCategory: selectedCategory,
     onSelectCategory,
+    // Path values
     currentPath,
+    // Filters values
     appliedFilters,
     onApplyFilters,
     hasFiltersChanged,
     resetFilterChange,
+    // Cart values
     isCartWindowOpen,
     onOpenCartWindow,
     onCloseCartWindow,
     cartItems,
     onAddToCart,
     onRemoveFromCart,
+    // Compare window values
     isCompareWindowCollapsed,
-    onSetCompareWindowState
+    onSetCompareWindowState,
+    comparedProducts,
+    onAddProductToCompare,
+    onRemoveProductToCompare,
   };
 
   return (

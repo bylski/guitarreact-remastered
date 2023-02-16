@@ -17,7 +17,13 @@ const ComparisonWindowExpander: React.FC = (props) => {
   };
 
   return (
-    <Slide direction="up" in={ctx?.isCompareWindowCollapsed}>
+    <Slide
+      direction="up"
+      in={
+        ctx?.isCompareWindowCollapsed &&
+        (ctx.comparedProducts.product1 !== null || ctx.comparedProducts.product2 !== null)
+      }
+    >
       <Tooltip title="Expand Product Comparison">
         <Fab
           onClick={expandHandler}
@@ -32,7 +38,7 @@ const ComparisonWindowExpander: React.FC = (props) => {
             borderBottomLeftRadius: "0px",
             borderBottomRightRadius: "0px",
             backgroundColor: "rgba(0,102,128,0.96)",
-            transition: "0.2s ease", 
+            transition: "0.2s ease",
             "&:hover": {
               backgroundColor: palette.primary.onHoverLight,
             },

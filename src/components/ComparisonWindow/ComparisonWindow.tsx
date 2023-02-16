@@ -17,8 +17,12 @@ const ComparisonWindow: React.FC = (props) => {
 
   const collapseHandler = () => {
     ctx?.onSetCompareWindowState("collapse");
-  }
+  };
 
+  const { product1, product2 } = ctx?.comparedProducts || {
+    product1: null,
+    product2: null,
+  };
 
   return (
     <Slide in={!ctx?.isCompareWindowCollapsed} direction="up" unmountOnExit>
@@ -53,14 +57,9 @@ const ComparisonWindow: React.FC = (props) => {
               <ExpandMoreIcon fontSize="large" />
             </IconButton>
           </Tooltip>
-          <ComparedProduct
-            order="first"
-            product={
-              {
-                name: "Gibson SG Standard Electric Guitar Ebony",
-              } as ElectricGuitarProduct
-            }
-          />
+          {product1 ? (
+            <ComparedProduct order="first" product={product1} />
+          ) : null}
           <Stack
             sx={{
               alignItems: "center",
@@ -79,6 +78,8 @@ const ComparisonWindow: React.FC = (props) => {
                 borderColor: palette.primary.onHoverLight,
                 "&:hover": {
                   borderWidth: "2px",
+                  color: palette.primary.main,
+                  svg: { fill: palette.primary.main },
                 },
               }}
               variant="outlined"
@@ -94,14 +95,9 @@ const ComparisonWindow: React.FC = (props) => {
               />
             </Button>
           </Stack>
-          <ComparedProduct
-            order="second"
-            product={
-              {
-                name: "Ibanez GRGR120EX",
-              } as ElectricGuitarProduct
-            }
-          />
+          {product2 ? (
+            <ComparedProduct order="second" product={product2} />
+          ) : null}
         </Box>
       </Stack>
     </Slide>

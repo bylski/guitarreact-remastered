@@ -50,6 +50,11 @@ const Product: React.FC<{
     ctx?.onAddToCart({ product: props.product, quantity: 1 });
   };
 
+  const addToCompareHandler = () => {
+    ctx?.onAddProductToCompare(props.product);
+  };
+
+  console.log(ctx?.comparedProducts);
 
   return (
     <Grid2 xl={12} lg={15} height="fit-content" minHeight="460px">
@@ -187,6 +192,7 @@ const Product: React.FC<{
               }}
             >
               <IconButton
+                onClick={addToCompareHandler}
                 size="large"
                 title="Compare Products"
                 sx={{ borderRadius: "0px", paddingInline: "12px" }}

@@ -21,7 +21,12 @@ type AppContextType = {
   onRemoveFromCart: (itemName: string) => void;
   isCompareWindowCollapsed: boolean;
   onSetCompareWindowState: (state: "expand" | "collapse") => void;
-  // onSetPath: (currentPath: "string") => void;
+  comparedProducts: {
+    product1: ProductType | null;
+    product2: ProductType | null;
+  };
+  onAddProductToCompare: (productToAdd: ProductType) => void;
+  onRemoveProductToCompare: (productToRemove: ProductType) => void;
 };
 
 const AppContext = createContext<AppContextType | null>(null);
