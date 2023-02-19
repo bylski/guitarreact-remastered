@@ -124,6 +124,16 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
         }
       }
     },
+    MuiBadge: {
+      styleOverrides: {
+        badge: {
+          right: "-5px",
+          top: "-7px",
+          // left: "5px",
+          fontSize: "11px",
+        }
+      }
+    }
   };
 
   const getTheme = (mode: PaletteMode) => ({

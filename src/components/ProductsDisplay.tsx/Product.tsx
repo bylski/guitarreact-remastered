@@ -1,4 +1,11 @@
-import { Box, Fade, IconButton, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Fade,
+  IconButton,
+  Stack,
+  Typography,
+  Tooltip,
+} from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
@@ -191,22 +198,24 @@ const Product: React.FC<{
                 justifyContent: "flex-end",
               }}
             >
-              <IconButton
-                onClick={addToCompareHandler}
-                size="large"
-                title="Compare Products"
-                sx={{ borderRadius: "0px", paddingInline: "12px" }}
-              >
-                <CompareArrowsIcon fontSize="inherit" />
-              </IconButton>
-              <IconButton
-                onClick={addToCartHandler}
-                size="large"
-                title="Add to Cart"
-                sx={{ borderRadius: "0px", paddingInline: "12px" }}
-              >
-                <AddShoppingCartIcon fontSize="inherit" />
-              </IconButton>
+              <Tooltip title="Compare Products">
+                <IconButton
+                  onClick={addToCompareHandler}
+                  size="large"
+                  sx={{ borderRadius: "0px", paddingInline: "12px" }}
+                >
+                  <CompareArrowsIcon fontSize="inherit" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Add to Cart">
+                <IconButton
+                  onClick={addToCartHandler}
+                  size="large"
+                  sx={{ borderRadius: "0px", paddingInline: "12px" }}
+                >
+                  <AddShoppingCartIcon fontSize="inherit" />
+                </IconButton>
+              </Tooltip>
             </Box>
           </Box>
         </Stack>

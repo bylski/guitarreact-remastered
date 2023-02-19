@@ -12,7 +12,9 @@ const Cart: React.FC = (props) => {
 
   const openCartHandler = () => {
     ctx?.onOpenCartWindow();
-  }
+  };
+
+  console.log(ctx?.cartItemsQuantity)
 
   return (
     <IconButton
@@ -52,17 +54,18 @@ const Cart: React.FC = (props) => {
       >
         Cart
       </Typography>
-      <ShoppingCartIcon
-        sx={{
-          position: "relative",
-          top: "-1px",
-          fontSize: "21px",
-          fill: "white",
-          transition: "0.2s ease-in-out",
-          [breakpoints.down("md")]: { fontSize: "18px" },
-        }}
-      />
-      {/* </Badge> */}
+      <Badge color="error" overlap={"rectangular"} max={99} sx={{ color: palette.primary.contrastText}} badgeContent={ctx?.cartItemsQuantity}>
+        <ShoppingCartIcon
+          sx={{
+            position: "relative",
+            top: "-1px",
+            fontSize: "21px",
+            fill: "white",
+            transition: "0.2s ease-in-out",
+            [breakpoints.down("md")]: { fontSize: "18px" },
+          }}
+        />
+      </Badge>
     </IconButton>
   );
 };

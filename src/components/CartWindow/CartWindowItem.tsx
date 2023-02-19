@@ -1,4 +1,4 @@
-import { Stack, Box, Typography, IconButton } from "@mui/material";
+import { Stack, Box, Typography, IconButton, Tooltip } from "@mui/material";
 import React, { useContext } from "react";
 import { useTheme } from "@mui/material/styles";
 import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
@@ -14,10 +14,10 @@ const CartWindowItem: React.FC<{
 }> = (props) => {
   const { palette, typography } = useTheme();
 
-  const ctx = useContext(AppContext)
+  const ctx = useContext(AppContext);
   const removeFromCartHandler = () => {
     ctx?.onRemoveFromCart(props.name);
-  }
+  };
 
   return (
     <Box
@@ -60,7 +60,7 @@ const CartWindowItem: React.FC<{
             fontWeight="300"
             textAlign={"left"}
           >
-            { limitStr(props.name, 20) }
+            {limitStr(props.name, 20)}
           </Typography>
           <Typography
             sx={{}}
@@ -80,21 +80,22 @@ const CartWindowItem: React.FC<{
             fontWeight="600"
             textAlign={"left"}
           >
-            { `$${props.price}` }
+            {`$${props.price}`}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <IconButton
-            onClick={removeFromCartHandler}
-            title={"Delete from Cart"}
-            sx={{ border: `3px solid ${palette.complementary.alert}` }}
-            size="medium"
-          >
-            <DeleteSharpIcon
-              sx={{ fill: palette.complementary.alert, fontSize: "20px" }}
-              fontSize="medium"
-            />
-          </IconButton>
+          <Tooltip title={"Delete from Cart"}>
+            <IconButton
+              onClick={removeFromCartHandler}
+              sx={{ border: `3px solid ${palette.complementary.alert}` }}
+              size="medium"
+            >
+              <DeleteSharpIcon
+                sx={{ fill: palette.complementary.alert, fontSize: "20px" }}
+                fontSize="medium"
+              />
+            </IconButton>
+          </Tooltip>
         </Box>
       </Stack>
     </Box>

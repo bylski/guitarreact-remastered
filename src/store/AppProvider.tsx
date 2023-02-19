@@ -19,6 +19,7 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   const [isCartWindowOpen, setIsCartWindowOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartProducts>([]);
   const [hasFiltersChanged, setHasFiltersChanged] = useState(false);
+  const [cartItemsQuantity, setCartItemsQuantity] = useState(0);
 
   // CART STATE LOGIC
   const onOpenCartWindow = () => {
@@ -38,11 +39,13 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
         if (itemInCart.product.name === item.product.name) {
           newCartState[i].quantity += item.quantity;
           itemWasInCart = true;
+          setCartItemsQuantity((prev) => (prev + 1));
         }
       });
 
       // If product isn't already in the cart, push it to the cart array
       if (!itemWasInCart) {
+        setCartItemsQuantity((prev) => (prev + 1));
         newCartState.push(item);
       }
       return newCartState;
@@ -54,6 +57,7 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
       // Filter through the previous state array to find the product that needs to be removed from cart
       const newCartState = prevCartState.filter((itemInCart) => {
         if (itemInCart.product.name === itemName) {
+          setCartItemsQuantity((prev) => (prev - itemInCart.quantity));
           return false;
         } else return true;
       });
@@ -183,6 +187,7 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
     comparedProducts,
     onAddProductToCompare,
     onRemoveProductToCompare,
+    cartItemsQuantity,
   };
 
   return (
