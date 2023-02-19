@@ -24,6 +24,17 @@ const ComparisonWindow: React.FC = (props) => {
     product2: null,
   };
 
+  
+  let isButtonDisabled = false;
+  if (
+    ctx?.comparedProducts.product1 === null ||
+    ctx?.comparedProducts.product2 === null
+  ) {
+    isButtonDisabled = true;
+  } else {
+    isButtonDisabled = false;
+  }
+
   return (
     <Slide in={!ctx?.isCompareWindowCollapsed} direction="up" unmountOnExit>
       <Stack
@@ -67,6 +78,7 @@ const ComparisonWindow: React.FC = (props) => {
             }}
           >
             <Button
+              disabled={isButtonDisabled}
               sx={{
                 fontSize: "16px",
                 display: "flex",
@@ -79,6 +91,11 @@ const ComparisonWindow: React.FC = (props) => {
                   borderWidth: "2px",
                   color: palette.primary.main,
                   svg: { fill: palette.primary.main },
+                },
+                "&:disabled": {
+                  borderWidth: "2px",
+                  color: palette.secondary.grayedOutText,
+                  svg: { fill: palette.secondary.grayedOutText },
                 },
               }}
               variant="outlined"

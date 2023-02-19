@@ -89,6 +89,7 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   const [currentPath, setCurrentPath] = useState(location.pathname);
 
   useEffect(() => {
+    setComparedProducts({product1: null, product2: null})
     setCurrentPath(location.pathname);
   }, [location]);
 
@@ -115,9 +116,6 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
     }
     if (product1 === null || (product2 === null && !isAlreadyBeingCompared)) {
       setComparedProducts((prev) => {
-        // if (prev.product1 === null && prev.product2 === null) {
-        //   setIsCompareWindowCollapsed(false);
-        // }
         if (prev.product1 === null) {
           setIsCompareWindowCollapsed(false);
           return { product1: productToAdd, product2: prev.product2 };
