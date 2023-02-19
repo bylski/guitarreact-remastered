@@ -51,6 +51,7 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
     secondary: {
       main: "#272727",
       contrastText: "#FFFFFF", 
+      grayedOutText: "#e6e6e6"
     },
     complementary: {
       background: "#000000", 

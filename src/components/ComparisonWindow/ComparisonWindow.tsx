@@ -57,11 +57,10 @@ const ComparisonWindow: React.FC = (props) => {
               <ExpandMoreIcon fontSize="large" />
             </IconButton>
           </Tooltip>
-          {product1 ? (
-            <ComparedProduct order="first" product={product1} />
-          ) : null}
+          <ComparedProduct order="first" product={product1} />
           <Stack
             sx={{
+              width: "fit-content",
               alignItems: "center",
               justifyContent: "center",
               paddingInline: "1.5rem",
@@ -95,9 +94,7 @@ const ComparisonWindow: React.FC = (props) => {
               />
             </Button>
           </Stack>
-          {product2 ? (
-            <ComparedProduct order="second" product={product2} />
-          ) : null}
+          <ComparedProduct order="second" product={product2} />
         </Box>
       </Stack>
     </Slide>

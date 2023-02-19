@@ -20,6 +20,7 @@
       onHoverLight?: string;
       background?: string,
       alert?: string,
+      grayedOutText?: string,
     //   darker?: string;
     }
     interface SimplePaletteColorOptions {
