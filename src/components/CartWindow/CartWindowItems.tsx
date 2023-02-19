@@ -58,7 +58,7 @@ const CartWindowItems: React.FC<{ items: CartProducts | null }> = (props) => {
   return (
     <Stack
       sx={{
-        maxHeight: "65vh",
+        maxHeight: "50vh",
         paddingTop: "1rem",
         overflowY: "auto",
         overflowX: "hidden",

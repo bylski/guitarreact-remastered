@@ -8,6 +8,7 @@ import { AppContext } from "../../store/AppContext";
 import CartWindowItems from "./CartWindowItems";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { BackdropTypeMap } from "@mui/material";
+import { ProductType } from "../../types/product-interfaces";
 
 const CartWindow: React.FC = () => {
   const { palette, typography } = useTheme();
@@ -36,11 +37,23 @@ const CartWindow: React.FC = () => {
     isCartWindowOpen = true;
   }
 
-  let cartItems = null;
+  let cartItems: { product: ProductType; quantity: number }[] | null = null;
 
   if (ctx?.cartItems !== undefined) {
     cartItems = ctx?.cartItems;
   }
+
+  const countCartTotal = () => {
+    let total = 0;
+
+    if (cartItems) {
+      cartItems.forEach((cartItem) => {
+        total += cartItem.product.price * cartItem.quantity;
+      });
+    }
+
+    return total;
+  };
 
   return (
     <Backdrop
@@ -113,6 +126,23 @@ const CartWindow: React.FC = () => {
             ) : null}
 
             <CartWindowItems items={cartItems} />
+            {cartItems !== null && cartItems.length !== 0 ? (
+              <Typography
+                sx={{
+                  flexGrow: 1,
+                  marginLeft: "1rem",
+                  marginTop: "2rem",
+                  alignSelf: "center",
+                }}
+                color={palette.primary.main}
+                fontFamily={typography.h1.fontFamily}
+                fontSize="23px"
+                fontWeight="700"
+                textAlign={"left"}
+              >
+                {`Total: ${countCartTotal().toFixed(2)}$`}
+              </Typography>
+            ) : null}
             {cartItems !== null && cartItems.length !== 0 ? (
               <Button
                 variant="contained"

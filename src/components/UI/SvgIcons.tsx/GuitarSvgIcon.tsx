@@ -31,7 +31,7 @@ const GuitarSvgIcon: React.FC<{
           cx="221"
           cy="284"
           r="44.5"
-          stroke="white"
+          stroke={props.fill}
           strokeWidth="22"
         />
         <motion.path
