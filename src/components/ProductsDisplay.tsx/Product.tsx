@@ -61,8 +61,6 @@ const Product: React.FC<{
     ctx?.onAddProductToCompare(props.product);
   };
 
-  console.log(ctx?.comparedProducts);
-
   return (
     <Grid2 xl={12} lg={15} height="fit-content" minHeight="460px">
       <Stack

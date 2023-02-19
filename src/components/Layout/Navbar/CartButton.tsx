@@ -14,8 +14,6 @@ const Cart: React.FC = (props) => {
     ctx?.onOpenCartWindow();
   };
 
-  console.log(ctx?.cartItemsQuantity)
-
   return (
     <IconButton
       onClick={openCartHandler}
