@@ -34,6 +34,7 @@ const SubmitFiltersButton: React.FC<{
           "&:hover": {
             backgroundColor: palette.primary.onHoverLight,
           },
+          zIndex: "1",
         }}
       >
         <Typography

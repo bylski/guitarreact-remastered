@@ -14,11 +14,21 @@ const AlertHandler: React.FC = () => {
   let alertQuantity = "1";
   if (alertToDisplay?.quantity) {
     alertQuantity =
-      alertToDisplay?.quantity <= 10 ? `${alertToDisplay?.quantity - 1}` : `9+`;
+      alertToDisplay?.quantity <= 100
+        ? `${alertToDisplay?.quantity - 1}`
+        : `99+`;
   }
 
-  const timeoutAlertClose = (time: number) => {
-    // Wait until timeout
+  const closeAlertHandler = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      ctx?.onRemoveAlert(alertToDisplay?.alertContent.title!);
+      setIsClosing(false);
+    }, 500);
+  };
+
+  // Start timeout count on first render and every time quantity changes
+  useEffect(() => {
     const alertTimeout = setTimeout(() => {
       if (alertToDisplay?.alertContent) {
         // If timeout - close alert and remove it from context
@@ -28,14 +38,14 @@ const AlertHandler: React.FC = () => {
           setIsClosing(false);
         }, 500);
       }
-    }, time);
+    }, 5000);
 
-    return alertTimeout;
-  };
-
-  // Close alert after timeout
-  // const alertTimeout = timeoutAlertClose(6000)
-
+    // Clear the timeout when the component unmouns or if clear the previous render's timout
+    // if new render occurs due to quantity or alert change
+    return () => {
+      clearTimeout(alertTimeout);
+    };
+  }, [alertToDisplay?.quantity]);
 
   return (
     <Slide
@@ -52,13 +62,7 @@ const AlertHandler: React.FC = () => {
           width: "fit-content",
         }}
         severity={alertToDisplay?.alertContent.severity}
-        onClose={() => {
-          setIsClosing(true);
-          setTimeout(() => {
-            ctx?.onRemoveAlert(alertToDisplay?.alertContent.title!);
-            setIsClosing(false);
-          }, 500);
-        }}
+        onClose={closeAlertHandler}
       >
         <AlertTitle>{`${alertToDisplay?.alertContent.title} ${
           alertToDisplay?.quantity! > 1 ? `(${alertQuantity})` : ""

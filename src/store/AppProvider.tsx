@@ -115,10 +115,17 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   const onAddProductToCompare = (productToAdd: ProductType) => {
     const { product1, product2 } = comparedProducts;
     let isAlreadyBeingCompared = false;
+    let alertTriggered = false;
     if (
       productToAdd.name === product1?.name ||
-      productToAdd.name === product1?.name
+      productToAdd.name === product2?.name
     ) {
+      onAddAlert({
+        title: "Already being compared!",
+        text: "Product you are trying to compare is already being compared",
+        severity: "info",
+      });
+      alertTriggered = true;
       isAlreadyBeingCompared = true;
     }
     if (product1 === null || (product2 === null && !isAlreadyBeingCompared)) {
@@ -131,23 +138,39 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
           return { product1: prev.product1, product2: productToAdd };
         }
       });
+    } else {
+      if (!alertTriggered) {
+        onAddAlert({
+          title: "Compare Window Full!",
+          text: "You cannot compare more products as compare window is already full",
+          severity: "info",
+        });
+      }
     }
   };
 
   const onRemoveProductToCompare = (productToRemove: ProductType) => {
     const { product1, product2 } = comparedProducts;
     if (productToRemove.name === product1?.name) {
-      setComparedProducts((prev) => ({
-        product1: null,
-        product2: prev.product2,
-      }));
+      setComparedProducts((prev) => {
+        if (prev.product2 === null) {
+          onSetCompareWindowState("collapse");
+        }
+        return { product1: null, product2: prev.product2 };
+      });
     } else if (productToRemove.name === product2?.name) {
-      setComparedProducts((prev) => ({
-        product1: prev.product1,
-        product2: null,
-      }));
+      setComparedProducts((prev) => {
+        if (prev.product1 === null) {
+          onSetCompareWindowState("collapse");
+        }
+        return { product1: prev.product1, product2: null };
+      });
     } else {
-      console.log("NO SUCH PRODUCT IS BEING COMPARED");
+      onAddAlert({
+        title: "No such item is being compared!",
+        text: "The item you want to remove does not exist",
+        severity: "info",
+      });
     }
   };
 
