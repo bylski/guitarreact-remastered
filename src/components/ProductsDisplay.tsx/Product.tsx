@@ -55,6 +55,7 @@ const Product: React.FC<{
 
   const addToCartHandler = () => {
     ctx?.onAddToCart({ product: props.product, quantity: 1 });
+    ctx?.onAddAlert({title: "Added to Cart", text: "Successfully added item to cart!", severity: "success"});
   };
 
   const addToCompareHandler = () => {

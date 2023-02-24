@@ -9,6 +9,8 @@ import {
 
 import { CartProduct, CartProducts } from "../types/cart-interfaces";
 import { ProductType } from "../types/product-interfaces";
+import { Alert, AlertContent } from "../types/alert-interfaces";
+import { forEachChild } from "typescript";
 
 const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   type Categories = "none" | "guitars" | "amplifiers" | "accessories";
@@ -20,6 +22,7 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   const [cartItems, setCartItems] = useState<CartProducts>([]);
   const [hasFiltersChanged, setHasFiltersChanged] = useState(false);
   const [cartItemsQuantity, setCartItemsQuantity] = useState(0);
+  const [currentAlert, setCurrentAlert] = useState<Alert | null>(null);
 
   // CART STATE LOGIC
   const onOpenCartWindow = () => {
@@ -39,13 +42,13 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
         if (itemInCart.product.name === item.product.name) {
           newCartState[i].quantity += item.quantity;
           itemWasInCart = true;
-          setCartItemsQuantity((prev) => (prev + 1));
+          setCartItemsQuantity((prev) => prev + 1);
         }
       });
 
       // If product isn't already in the cart, push it to the cart array
       if (!itemWasInCart) {
-        setCartItemsQuantity((prev) => (prev + 1));
+        setCartItemsQuantity((prev) => prev + 1);
         newCartState.push(item);
       }
       return newCartState;
@@ -57,7 +60,7 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
       // Filter through the previous state array to find the product that needs to be removed from cart
       const newCartState = prevCartState.filter((itemInCart) => {
         if (itemInCart.product.name === itemName) {
-          setCartItemsQuantity((prev) => (prev - itemInCart.quantity));
+          setCartItemsQuantity((prev) => prev - itemInCart.quantity);
           return false;
         } else return true;
       });
@@ -93,7 +96,7 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   const [currentPath, setCurrentPath] = useState(location.pathname);
 
   useEffect(() => {
-    setComparedProducts({product1: null, product2: null})
+    setComparedProducts({ product1: null, product2: null });
     setCurrentPath(location.pathname);
   }, [location]);
 
@@ -144,7 +147,7 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
         product2: null,
       }));
     } else {
-      console.log("NO SUCH PRODUCT IS BEING COMPARED")
+      console.log("NO SUCH PRODUCT IS BEING COMPARED");
     }
   };
 
@@ -156,12 +159,27 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
     }
   };
 
-  // useEffect(() => {
-  //   const { product1, product2 } = comparedProducts;
-  //   if (product1 !== null || product2 !== null) {
+  // Alerts
 
-  //   }
-  // }, [comparedProducts])
+  const onAddAlert = (newAlert: AlertContent) => {
+    setCurrentAlert((prev) => {
+      const prevAlertContent = prev?.alertContent;
+      const newAlertContent = newAlert;
+      if (
+        prevAlertContent?.severity === newAlertContent.severity &&
+        prevAlertContent?.title === newAlertContent.title &&
+        prev !== null
+      ) {
+        return { ...prev, quantity: prev.quantity + 1 };
+      } else {
+        return { alertContent: { ...newAlert }, quantity: 1 };
+      }
+    });
+  };
+
+  const onRemoveAlert = (alertTitle: string) => {
+    setCurrentAlert(null);
+  };
 
   const AppContextValues: AppContextType = {
     // Category values
@@ -181,13 +199,17 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
     cartItems,
     onAddToCart,
     onRemoveFromCart,
+    cartItemsQuantity,
     // Compare window values
     isCompareWindowCollapsed,
     onSetCompareWindowState,
     comparedProducts,
     onAddProductToCompare,
     onRemoveProductToCompare,
-    cartItemsQuantity,
+    // A;erts
+    currentAlert,
+    onAddAlert,
+    onRemoveAlert,
   };
 
   return (
