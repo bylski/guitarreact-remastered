@@ -5,6 +5,7 @@ import { useTheme } from "@mui/material/styles";
 import { createTextChangeRange } from "typescript";
 import { AppContext } from "../../../store/AppContext";
 import { BaseFilters } from "../../../types/filter-interfaces";
+import { Button, Fade } from "@mui/material";
 
 const RatingFilter: React.FC = () => {
   const theme = useTheme();
@@ -35,6 +36,20 @@ const RatingFilter: React.FC = () => {
     }
   };
 
+  const resetRatingHandler = () => {
+    setRatingVal(0);
+    const newFilters: BaseFilters = {
+      ratingFrom: 0,
+    };
+    if (ctx?.appliedFilters !== undefined) {
+      const prevFilters = ctx?.appliedFilters;
+      ctx?.onApplyFilters({
+        ...prevFilters,
+        baseFilters: { ...prevFilters.baseFilters, ...newFilters },
+      });
+    }
+  };
+
   return (
     <Filter name="Minimum Rating" mt="1.5rem">
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -57,6 +72,21 @@ const RatingFilter: React.FC = () => {
           {ratingVal} &#38; Up
         </Typography>
       </Box>
+      <Fade in={ratingVal !== null && ratingVal !== 0} unmountOnExit>
+        <Button
+          sx={{
+            fontSize: "12px",
+            alignSelf: "flex-start",
+            padding: "0.1rem",
+            marginTop: "0.5rem",
+          }}
+          onClick={resetRatingHandler}
+          type="button"
+          variant="outlined"
+        >
+          Clear
+        </Button>
+      </Fade>
     </Filter>
   );
 };
