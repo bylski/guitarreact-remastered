@@ -28,17 +28,17 @@ export interface AcousticGuitarProduct extends GuitarProduct {
 // AMPLIFIER PRODUCT
 
 export interface AmplifiersProduct extends ProductBase {
-  amplifierType?: "combo" | "head" | "miniamps";
-  technology?: "tube" | "solid state" | "hybrid";
+  amplifierType?: "Combo" | "Head" | "MiniAmps";
+  technology?: "Tube" | "Solid State" | "Hybrid";
   speakerConfiguration?: "1x12" | "1x8" | "2x3";
-  wattage?: "20-45 Watts" | "50-100 Watts";
+  wattage?: "20-45 Watts" | "50-100 Watts" | "1-15 Watts"
 }
 
 // ACCESSORIES PRODUCT
 
 export interface AccessoriesProduct extends ProductBase {
   categories?:
-    | "String"
+    | "Strings"
     | "Guitar Picks"
     | "Audio Interfaces"
     | "Guitar Cases"

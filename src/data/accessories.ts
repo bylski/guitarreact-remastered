@@ -1,0 +1,88 @@
+import { AccessoriesProduct } from "../types/product-interfaces";
+
+export const accessoriesProducts: AccessoriesProduct[] = [
+  {
+    name: "Dunlop Tortex Flow Guitar Picks STD-12",
+    price: 4.99,
+    rating: 5,
+    ratingsNum: 21,
+    categories: "Guitar Picks",
+  },
+  {
+    name: "Mogami Gold Series Instrument Cable 6 ft",
+    price: 59.95,
+    rating: 5,
+    ratingsNum: 69,
+    categories: "Cables",
+  },
+  {
+    name: "Road Runner RRGS6 6-Guitar Stand Case Black Tolex",
+    price: 159.99,
+    rating: 4.5,
+    ratingsNum: 102,
+    categories: "Guitar Cases",
+  },
+  {
+    name: "Gator GWE-Acou-3/4 Hardshell 3/4-Size Acoustic Guitar Case Black",
+    price: 119.99,
+    rating: 4.5,
+    ratingsNum: 51,
+    categories: "Guitar Cases",
+  },
+  {
+    name: "Dunlop White Fang James Hetfield Signature Picks 1.14 mm 24 Pack",
+    price: 32.99,
+    rating: 4.5,
+    ratingsNum: 6,
+    categories: "Guitar Picks",
+  },
+  {
+    name: "D'Addario Chris Thile Signature Casein 1.4mm Mandolin Pick 1.4 mm 1",
+    price: 28.99,
+    rating: 5,
+    ratingsNum: 1,
+    categories: "Guitar Picks",
+  },
+  {
+    name: "Focusrite Scarlett 2i2 USB Audio Interface (Gen 3)",
+    price: 159.99,
+    rating: 4.5,
+    ratingsNum: 105,
+    categories: "Audio Interfaces",
+  },
+  {
+    name: "D'Addario Pro-Winder String Winder/Cutter",
+    price: 10.99,
+    rating: 4.5,
+    ratingsNum: 123,
+    categories: "Tools",
+  },
+  {
+    name: "D'Addario Equinox Headstock Tuner Black",
+    price: 26.99,
+    rating: 4.5,
+    ratingsNum: 216,
+    categories: "Tools",
+  },
+  {
+    name: "Ernie Ball 2221 Nickel Regular Slinky Electric Guitar Strings 3-Pack",
+    price: 17.99,
+    rating: 4.5,
+    ratingsNum: 69,
+    categories: "Strings",
+  },
+  {
+    name: "Ernie Ball 2723 Cobalt Super Slinky Electric Guitar Strings",
+    price: 9.99,
+    rating: 4.5,
+    ratingsNum: 51,
+    categories: "Strings",
+  },
+  {
+    name: "Musician's Gear Braided Instrument Cable 1/4 30 Ft 4-Pack Black",
+    price: 59.0,
+    rating: 5,
+    ratingsNum: 73,
+    categories: "Cables",
+  },
+];

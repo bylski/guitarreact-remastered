@@ -48,13 +48,14 @@ const useApplyFilters = () => {
           };
           break;
         case "accessories":
-          prevFilterGroupState = appliedFilters.accesoriesFilters;
+          prevFilterGroupState = appliedFilters.accessoriesFilters;
           newFilters = {
             ...newFilters,
-            accesoriesFilters: { ...prevFilterGroupState, ...newFilter },
+            accessoriesFilters: { ...prevFilterGroupState, ...newFilter },
           };
       }
     }
+
 
     if (ctx?.onApplyFilters !== undefined) {
       ctx?.onApplyFilters({

@@ -31,7 +31,7 @@ const useFilterProducts = (productsArray: ProductType[] | null) => {
     electricGuitarFilters,
     acousticGuitarFilters,
     amplifierFilters,
-    accesoriesFilters,
+    accessoriesFilters,
     baseFilters,
   } = appliedFilters;
 
@@ -77,13 +77,12 @@ const useFilterProducts = (productsArray: ProductType[] | null) => {
     productsArray = productsArray.filter((product) => {
       // Loop through every given filter name (amplifierType, technology etc.)
       for (let filterName of comparedFilterNames) {
-        if (!product[filterName]) {
-          return false;
-        }
-
-        if (radioFilters[filterName]) {
-          if (radioFilters[filterName] !== product[filterName]) {
-            return false;
+        const ampProduct = product as AmplifiersProduct;
+        if (product[filterName]) {
+          if (radioFilters[filterName]) {
+            if (radioFilters[filterName] !== product[filterName]) {
+              return false;
+            }
           }
         }
       }
@@ -119,7 +118,6 @@ const useFilterProducts = (productsArray: ProductType[] | null) => {
 
   // **************** ELECTRIC GUITAR FILTERS *********************
 
-
   // Filter through checkboxes filters
   if (electricGuitarFilters) {
     newProductsArray = FilterCheckboxes(
@@ -137,6 +135,7 @@ const useFilterProducts = (productsArray: ProductType[] | null) => {
   }
 
   if (amplifierFilters) {
+    console.log(ctx?.appliedFilters);
     newProductsArray = FilterRadioInputs(
       amplifierFilters,
       newProductsArray as AmplifiersProduct[],
@@ -149,9 +148,9 @@ const useFilterProducts = (productsArray: ProductType[] | null) => {
     );
   }
 
-  if (accesoriesFilters) {
+  if (accessoriesFilters) {
     newProductsArray = FilterRadioInputs(
-      amplifierFilters,
+      accessoriesFilters,
       newProductsArray as AccessoriesProduct[],
       ["categories"]
     );

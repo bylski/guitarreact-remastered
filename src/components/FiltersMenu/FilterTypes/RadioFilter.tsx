@@ -31,7 +31,7 @@ const RadioFilter: React.FC<{
     return (
       <FormControlLabel
         onChange={radioChangeHandler}
-        value={option.toLocaleLowerCase()}
+        value={option}
         control={<Radio />}
         label={option}
         key={`radio_${option}`}

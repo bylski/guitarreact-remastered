@@ -16,7 +16,7 @@ const AmplifierFilters: React.FC = (props) => {
   const ampTypes = ["Combo", "Head", "MiniAmps"];
   const ampTechnology = ["Tube", "Solid State", "Hybrid"];
   const speakerConfigurations = ["1x12", "1x8", "2x3"];
-  const wattageOptions = ["20-45 Watts", "50-100 Watts"];
+  const wattageOptions = ["20-45 Watts", "50-100 Watts", "1-15 Watts"];
 
 
 

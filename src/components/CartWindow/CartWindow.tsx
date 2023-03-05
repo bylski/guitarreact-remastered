@@ -1,4 +1,4 @@
-import { IconButton, Typography, Fade, Button } from "@mui/material";
+import { IconButton, Typography, Fade, Slide, Button } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import Backdrop from "@mui/material/Backdrop";
 import React, { useContext, useState, useRef } from "react";
@@ -63,7 +63,7 @@ const CartWindow: React.FC = () => {
       open={isCartWindowOpen}
       transitionDuration={{ enter: 200, exit: 200 }}
     >
-      <Fade in={isCartWindowOpen} unmountOnExit>
+      <Slide direction="left" in={isCartWindowOpen} unmountOnExit>
         <Box
           sx={{
             opacity: "1 !important",
@@ -164,7 +164,7 @@ const CartWindow: React.FC = () => {
             ) : null}
           </Stack>
         </Box>
-      </Fade>
+      </Slide>
     </Backdrop>
   );
 };

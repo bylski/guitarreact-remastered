@@ -22,7 +22,7 @@ const AccessoriesFilters: React.FC = (props) => {
   };
 
   const category = [
-    "String",
+    "Strings",
     "Guitar Picks",
     "Audio Interfaces",
     "Guitar Cases",
