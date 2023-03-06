@@ -6,12 +6,15 @@ import {
   SxProps,
 } from "@mui/material";
 import React, { Fragment, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SwitchButton: React.FC<{
-  buttons: { text: string; additionalSx?: SxProps }[];
+  buttons: { text: string; buttonLink: string; additionalSx?: SxProps }[];
   preActivate?: { buttonText: string };
   getSelectedButton?: (selectedButton: string) => void;
 }> = (props) => {
+  const navigate = useNavigate();
   const theme = useTheme();
   const { palette } = theme;
 
@@ -19,11 +22,19 @@ const SwitchButton: React.FC<{
     props.preActivate?.buttonText.toUpperCase() || ""
   );
 
+
+
   // Diffrentiate between active buttons with innerText of the button
   const buttonSelectHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.currentTarget as HTMLButtonElement;
     const buttonSelected = target.innerText.toUpperCase();
     setActiveButton(buttonSelected);
+    if (buttonSelected === "ACOUSTIC GUITARS") {
+      navigate("/guitars/acoustic");
+    }
+    if (buttonSelected === "ELECTRIC GUITARS") {
+      navigate("/guitars/electric");
+    }
     if (props.getSelectedButton) {
       props.getSelectedButton(buttonSelected);
     }

@@ -15,6 +15,8 @@ type AppContextType = {
   // Category
   selectedCategory: Categories;
   onSelectCategory: (selectedCategory: Categories) => void;
+  selectedGuitarType?: "electric" | "acoustic"
+  onSelectGuitarType: (selectedType: "electric" | "acoustic") => void,
   // Path
   currentPath: string;
   // Cart Window / Cart

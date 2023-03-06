@@ -16,12 +16,19 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   type Categories = "none" | "guitars" | "amplifiers" | "accessories";
 
   //  CONTEXT INTERNAL STATES
+  // Category
   const [selectedCategory, setSelectedCategory] = useState<Categories>("none");
+  const [selectedGuitarType, setSelectedGuitarType] = useState<
+    undefined | "acoustic" | "electric"
+  >("electric");
+  // Filters
   const [appliedFilters, setAppliedFilters] = useState<ProductFilters>({});
+  const [hasFiltersChanged, setHasFiltersChanged] = useState(false);
+  // Cart
   const [isCartWindowOpen, setIsCartWindowOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartProducts>([]);
-  const [hasFiltersChanged, setHasFiltersChanged] = useState(false);
   const [cartItemsQuantity, setCartItemsQuantity] = useState(0);
+  // Alerts
   const [currentAlert, setCurrentAlert] = useState<Alert | null>(null);
 
   // CART STATE LOGIC
@@ -76,6 +83,10 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
     setSelectedCategory(selectedCategory);
   };
 
+  const onSelectGuitarType = (selectedType: "acoustic" | "electric") => {
+    setSelectedGuitarType(selectedType);
+  };
+
   // FILTERS STATE LOGIC
 
   const onApplyFilters = (newFilters: ProductFilters) => {
@@ -98,6 +109,15 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   useEffect(() => {
     setComparedProducts({ product1: null, product2: null });
     setCurrentPath(location.pathname);
+
+    switch (location.pathname) {
+      case "/guitars/electric":
+        setSelectedGuitarType("electric");
+        break;
+      case "/guitars/acoustic":
+        setSelectedGuitarType("acoustic");
+        break;
+    }
   }, [location]);
 
   // COMPARE WINDOW STATE LOGIC
@@ -208,6 +228,8 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
     // Category values
     selectedCategory: selectedCategory,
     onSelectCategory,
+    selectedGuitarType,
+    onSelectGuitarType,
     // Path values
     currentPath,
     // Filters values
@@ -229,7 +251,7 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
     comparedProducts,
     onAddProductToCompare,
     onRemoveProductToCompare,
-    // A;erts
+    // Alerts
     currentAlert,
     onAddAlert,
     onRemoveAlert,

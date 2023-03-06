@@ -22,7 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />}>
             <Route
-              path="guitars"
+              path="guitars/*"
               element={<ProductsDisplay productType="guitars" />}
             ></Route>
             <Route

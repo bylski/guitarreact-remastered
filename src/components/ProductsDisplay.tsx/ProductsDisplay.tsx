@@ -13,6 +13,7 @@ import useFilterProducts from "../../utils/hooks/useFilterProducts";
 import { electricGuitarProducts } from "../../data/electric-guitars";
 import { amplifierProducts } from "../../data/amplifiers";
 import { accessoriesProducts } from "../../data/accessories";
+import { acousticGuitarProducts } from "../../data/acoustic-guitars";
 
 const ProductsDisplay: React.FC<{
   productType: "guitars" | "amplifiers" | "accessories";
@@ -20,7 +21,7 @@ const ProductsDisplay: React.FC<{
   const ctx = useContext(AppContext);
   const theme = useTheme();
   const { palette } = theme;
-  
+
   const [productsToDisplay, setProductsToDisplay] = useState<
     ProductType[] | null
   >(null);
@@ -28,10 +29,16 @@ const ProductsDisplay: React.FC<{
     ProductType[] | null
   >(null);
 
+  console.log(ctx)
   useEffect(() => {
     if (props.productType === "guitars") {
-      setProductsToDisplay(electricGuitarProducts);
-      setFilteredProductsToDisplay(electricGuitarProducts);
+      if (ctx?.selectedGuitarType === "electric") {
+        setProductsToDisplay(electricGuitarProducts);
+        setFilteredProductsToDisplay(electricGuitarProducts);
+      } else if (ctx?.selectedGuitarType === "acoustic") {
+        setProductsToDisplay(acousticGuitarProducts);
+        setFilteredProductsToDisplay(acousticGuitarProducts);
+      }
     } else if (props.productType === "amplifiers") {
       setProductsToDisplay(amplifierProducts);
       setFilteredProductsToDisplay(amplifierProducts);
@@ -39,7 +46,7 @@ const ProductsDisplay: React.FC<{
       setProductsToDisplay(accessoriesProducts);
       setFilteredProductsToDisplay(accessoriesProducts);
     }
-  }, [props.productType]);
+  }, [props.productType, ctx?.selectedGuitarType]);
 
   const filteredProducts = useFilterProducts(productsToDisplay);
   const submitFiltersHandler = () => {
