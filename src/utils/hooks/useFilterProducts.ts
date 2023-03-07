@@ -1,6 +1,7 @@
 import { AppContext } from "../../store/AppContext";
 import {
   AccessoriesProduct,
+  AcousticGuitarProduct,
   AmplifiersProduct,
   ProductType,
 } from "../../types/product-interfaces";
@@ -134,8 +135,9 @@ const useFilterProducts = (productsArray: ProductType[] | null) => {
     );
   }
 
+  // **************** AMPLIFIERS FILTERS *********************
+
   if (amplifierFilters) {
-    console.log(ctx?.appliedFilters);
     newProductsArray = FilterRadioInputs(
       amplifierFilters,
       newProductsArray as AmplifiersProduct[],
@@ -148,11 +150,28 @@ const useFilterProducts = (productsArray: ProductType[] | null) => {
     );
   }
 
+  // **************** ACCESSORIES FILTERS *********************
+
   if (accessoriesFilters) {
     newProductsArray = FilterRadioInputs(
       accessoriesFilters,
       newProductsArray as AccessoriesProduct[],
       ["categories"]
+    );
+  }
+
+  // **************** ACOUSTIC GUITAR FILTERS *********************
+
+  if (acousticGuitarFilters) {
+    newProductsArray = FilterCheckboxes(
+      acousticGuitarFilters,
+      newProductsArray as AcousticGuitarProduct[],
+      ["brand", "stringsNum"]
+    );
+    newProductsArray = FilterRadioInputs(
+      acousticGuitarFilters,
+      newProductsArray as AcousticGuitarProduct[],
+      ["electroAcoustic"]
     );
   }
 

@@ -9,6 +9,7 @@ import { useTheme } from "@mui/material/styles";
 import { Categories } from "../../store/AppContext";
 import { useNavigate } from "react-router";
 import GuitarSvgIcon from "../UI/SvgIcons.tsx/GuitarSvgIcon";
+import { createTextChangeRange } from "typescript";
 
 const GuitarsCategory: React.FC<{
   animationVariant: Variants;
@@ -40,7 +41,7 @@ const GuitarsCategory: React.FC<{
   };
 
   const mouseClickHandler = () => {
-    navigate("/guitars");
+    navigate("/guitars/electric");
     props.onSelectCategory("guitars");
   };
 

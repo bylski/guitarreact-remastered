@@ -46,7 +46,11 @@ const Product: React.FC<{
 
   let imagePath = "";
   if (props.productType === "guitars") {
-    imagePath = "/products/electric-guitars";
+    if (ctx?.selectedGuitarType === "electric") {
+      imagePath = "/products/electric-guitars";
+    } else if (ctx?.selectedGuitarType === "acoustic") {
+      imagePath = "/products/acoustic-guitars"
+    }
   } else if (props.productType === "amplifiers") {
     imagePath = "/products/amplifiers";
   } else if (props.productType === "accessories") {
@@ -55,7 +59,11 @@ const Product: React.FC<{
 
   const addToCartHandler = () => {
     ctx?.onAddToCart({ product: props.product, quantity: 1 });
-    ctx?.onAddAlert({title: "Added to Cart", text: "Successfully added item to cart!", severity: "success"});
+    ctx?.onAddAlert({
+      title: "Added to Cart",
+      text: "Successfully added item to cart!",
+      severity: "success",
+    });
   };
 
   const addToCompareHandler = () => {

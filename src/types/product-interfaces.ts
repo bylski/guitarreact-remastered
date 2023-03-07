@@ -22,7 +22,7 @@ export interface ElectricGuitarProduct extends GuitarProduct {
 }
 
 export interface AcousticGuitarProduct extends GuitarProduct {
-  electroAcoustic: boolean;
+  electroAcoustic: "Yes" | "No";
 }
 
 // AMPLIFIER PRODUCT

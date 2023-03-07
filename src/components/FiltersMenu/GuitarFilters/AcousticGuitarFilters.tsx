@@ -9,7 +9,9 @@ import Rating from "@mui/material/Rating";
 import RatingFilter from "../FilterTypes/RatingFilter";
 import PriceFilter from "../FilterTypes/PriceFilter";
 import { AppContext } from "../../../store/AppContext";
-
+import RadioFilter from "../FilterTypes/RadioFilter";
+import { AcousticGuitarFiltersInterface } from "../../../types/filter-interfaces";
+import useApplyFilters from "../../../utils/hooks/useApplyFilters";
 
 const AcousticGuitarFilters: React.FC = () => {
     const theme = useTheme();
@@ -17,15 +19,24 @@ const AcousticGuitarFilters: React.FC = () => {
     const ctx = useContext(AppContext);
   
     const producerBrands = [
-      "Fender",
+      "Takamine",
       "Yamaha",
+      "Guild",
+      "Epiphone",
+      "Savannah",
       "Lag",
-      "Ibanez",
-      "Harley Benton",
     ];
     const numberOfStrings = ["6 String", "12 String"];
     const electroAcoustic = ["Yes", "No"];
-  
+
+    const applyFilters = useApplyFilters();
+
+    const filterChangeHandler = (filtersToUpdate: AcousticGuitarFiltersInterface) => {
+      applyFilters({
+        filterGroup: "acousticGuitar",
+        newFilter: filtersToUpdate,
+      });
+    };
   
     return (
       <Fragment>
@@ -52,6 +63,16 @@ const AcousticGuitarFilters: React.FC = () => {
           isRevealed
           mt={"0.5rem"}
         ></AccordionFilter>
+        <RadioFilter
+        onChange={(state) => {
+          filterChangeHandler({
+            electroAcoustic: state,
+          } as AcousticGuitarFiltersInterface);
+        }}
+        options={electroAcoustic}
+        name="Electro-acoustic"
+        mt="2rem"
+      ></RadioFilter>
       </Fragment>
     );
   };

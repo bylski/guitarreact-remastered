@@ -23,7 +23,7 @@ export interface ElectricGuitarFiltersInterface extends GuitarFiltersInterface {
 }
 
 export interface AcousticGuitarFiltersInterface extends GuitarFiltersInterface {
-  electroAcoustic?: boolean;
+  electroAcoustic?: "Yes" | "No";
 }
 
 // AMPLIFIERS
