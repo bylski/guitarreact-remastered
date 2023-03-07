@@ -14,56 +14,61 @@ import { AcousticGuitarFiltersInterface } from "../../../types/filter-interfaces
 import useApplyFilters from "../../../utils/hooks/useApplyFilters";
 
 const AcousticGuitarFilters: React.FC = () => {
-    const theme = useTheme();
-    const { palette, typography } = theme;
-    const ctx = useContext(AppContext);
-  
-    const producerBrands = [
-      "Takamine",
-      "Yamaha",
-      "Guild",
-      "Epiphone",
-      "Savannah",
-      "Lag",
-    ];
-    const numberOfStrings = ["6 String", "12 String"];
-    const electroAcoustic = ["Yes", "No"];
+  const theme = useTheme();
+  const { palette, typography } = theme;
+  const ctx = useContext(AppContext);
 
-    const applyFilters = useApplyFilters();
+  const producerBrands = [
+    "Takamine",
+    "Yamaha",
+    "Guild",
+    "Epiphone",
+    "Savannah",
+    "Lag",
+  ];
+  const numberOfStrings = ["6 String", "12 String"];
+  const electroAcoustic = ["Yes", "No"];
 
-    const filterChangeHandler = (filtersToUpdate: AcousticGuitarFiltersInterface) => {
-      applyFilters({
-        filterGroup: "acousticGuitar",
-        newFilter: filtersToUpdate,
-      });
-    };
-  
-    return (
-      <Fragment>
-       
-        <PriceFilter />
-        <RatingFilter />
-  
-        <AccordionFilter
-          onChange={(state) => {
-            if (ctx?.onApplyFilters !== undefined) {
-                const prevAcousticGuitarFilters = ctx.appliedFilters.acousticGuitarFilters;
-                ctx?.onApplyFilters({ ...ctx.appliedFilters, acousticGuitarFilters: {...prevAcousticGuitarFilters, brand: state} });
-            }
-          }}
-          filterOptions={producerBrands}
-          maxOptionsShown={5}
-          isRevealed
-          name="Brand"
-          mt={"1.5rem"}
-        ></AccordionFilter>
-        <AccordionFilter
-          filterOptions={numberOfStrings}
-          name="Number of Strings"
-          isRevealed
-          mt={"0.5rem"}
-        ></AccordionFilter>
-        <RadioFilter
+  const applyFilters = useApplyFilters();
+
+  const filterChangeHandler = (
+    filtersToUpdate: AcousticGuitarFiltersInterface
+  ) => {
+    applyFilters({
+      filterGroup: "acousticGuitar",
+      newFilter: filtersToUpdate,
+    });
+  };
+
+  return (
+    <Fragment>
+      <PriceFilter />
+      <RatingFilter />
+
+      <AccordionFilter
+        onChange={(state) => {
+          filterChangeHandler({
+            brand: state,
+          } as AcousticGuitarFiltersInterface);
+        }}
+        filterOptions={producerBrands}
+        maxOptionsShown={5}
+        isRevealed
+        name="Brand"
+        mt={"1.5rem"}
+      ></AccordionFilter>
+      <AccordionFilter
+        onChange={(state) => {
+          filterChangeHandler({
+            stringsNum: state,
+          } as AcousticGuitarFiltersInterface);
+        }}
+        filterOptions={numberOfStrings}
+        name="Number of Strings"
+        isRevealed
+        mt={"0.5rem"}
+      ></AccordionFilter>
+      <RadioFilter
         onChange={(state) => {
           filterChangeHandler({
             electroAcoustic: state,
@@ -73,8 +78,8 @@ const AcousticGuitarFilters: React.FC = () => {
         name="Electro-acoustic"
         mt="2rem"
       ></RadioFilter>
-      </Fragment>
-    );
-  };
-  
-  export default AcousticGuitarFilters;
+    </Fragment>
+  );
+};
+
+export default AcousticGuitarFilters;

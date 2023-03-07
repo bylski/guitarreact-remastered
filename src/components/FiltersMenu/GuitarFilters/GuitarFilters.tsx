@@ -6,29 +6,39 @@ import ElectricGuitarFilters from "./ElectricGuitarFilters";
 import AcousticGuitarFilters from "./AcousticGuitarFilters";
 
 const GuitarFilters: React.FC = () => {
-  const [guitarType, setGuitarType] = useState("Electric");
   const ctx = useContext(AppContext);
   const switchGuitarTypeHandler = (selectedType: string) => {
-    if (selectedType === "ACOUSTIC GUITARS") {
-      setGuitarType("Acoustic");
+    if (
+      selectedType === "ACOUSTIC GUITARS" ||
+      ctx?.selectedGuitarType === "acoustic"
+    ) {
       ctx?.onSelectGuitarType("acoustic");
     } else {
-
-      setGuitarType("Electric");
       ctx?.onSelectGuitarType("electric");
     }
   };
 
-  const preActivateButton = ctx?.currentPath === "/guitars/acoustic" ? "Acoustic Guitars" : "Electric Guitars"
+  useEffect(() => {
+    if (ctx?.selectedGuitarType) {
+    }
+  }, [ctx?.selectedGuitarType]);
+
+  const preActivateButton =
+    ctx?.currentPath === "/guitars/acoustic"
+      ? "Acoustic Guitars"
+      : "Electric Guitars";
 
   return (
     <Fragment>
       <SwitchButton
         getSelectedButton={switchGuitarTypeHandler}
-        buttons={[{ text: "Acoustic Guitars", buttonLink: "/guitars/acoustic" }, { text: "Electric Guitars", buttonLink: "/guitars/electric" }]}
+        buttons={[
+          { text: "Acoustic Guitars", buttonLink: "/guitars/acoustic" },
+          { text: "Electric Guitars", buttonLink: "/guitars/electric" },
+        ]}
         preActivate={{ buttonText: preActivateButton }}
       />
-      {guitarType === "Electric" ? (
+      {ctx?.selectedGuitarType === "electric" ? (
         <ElectricGuitarFilters />
       ) : (
         <AcousticGuitarFilters />
