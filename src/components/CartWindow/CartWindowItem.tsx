@@ -50,8 +50,6 @@ const CartWindowItem: React.FC<{
       break;
   }
 
-  console.log(props.productType)
-  console.log(`${imagePath}/${props.name}.png`);
 
   return (
     <Box

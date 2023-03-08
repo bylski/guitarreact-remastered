@@ -31,6 +31,42 @@ const ComparedProduct: React.FC<{
     }
   };
 
+  let firstImagePath = "";
+  let secondImagePath = "";
+  if (props.order === "first") {
+    switch (props.product?.productType) {
+      case "electric guitar":
+        firstImagePath = "products/electric-guitars";
+        break;
+      case "acoustic guitar":
+        firstImagePath = "products/acoustic-guitars";
+        break;
+      case "accessory":
+        firstImagePath = "products/accessories";
+        break;
+      case "amplifier":
+        firstImagePath = "products/amplifiers";
+        break;
+    }
+  } else {
+    switch (props.product?.productType) {
+      case "electric guitar":
+        secondImagePath = "products/electric-guitars";
+        break;
+      case "acoustic guitar":
+        secondImagePath = "products/acoustic-guitars";
+        break;
+      case "accessory":
+        secondImagePath = "products/accessories";
+        break;
+      case "amplifier":
+        secondImagePath = "products/amplifiers";
+        break;
+    }
+  }
+
+  console.log(`products/electric-guitars/${props.product?.name}.png`);
+
   const noProductFallback: JSX.Element = (
     <Fade in={true}>
       <Box
@@ -149,7 +185,7 @@ const ComparedProduct: React.FC<{
           {props.order === "second" ? (
             <img
               style={{ objectFit: "contain", height: "100%", width: "100%" }}
-              src={`products/electric-guitars/${props.product?.name}.png`}
+              src={`/${secondImagePath}/${props.product?.name}.png`}
             ></img>
           ) : null}
           <Box>
@@ -168,7 +204,7 @@ const ComparedProduct: React.FC<{
           {props.order === "first" ? (
             <img
               style={{ objectFit: "contain", height: "100%", width: "100%" }}
-              src={`products/electric-guitars/${props.product?.name}.png`}
+              src={`/${firstImagePath}/${props.product?.name}.png`}
             ></img>
           ) : null}
         </Box>
