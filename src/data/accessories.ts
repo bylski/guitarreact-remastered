@@ -7,6 +7,7 @@ export const accessoriesProducts: AccessoriesProduct[] = [
     rating: 5,
     ratingsNum: 21,
     categories: "Guitar Picks",
+    productType: "accessory",
   },
   {
     name: "Mogami Gold Series Instrument Cable 6 ft",
@@ -14,6 +15,7 @@ export const accessoriesProducts: AccessoriesProduct[] = [
     rating: 5,
     ratingsNum: 69,
     categories: "Cables",
+    productType: "accessory",
   },
   {
     name: "Road Runner RRGS6 6-Guitar Stand Case Black Tolex",
@@ -21,6 +23,7 @@ export const accessoriesProducts: AccessoriesProduct[] = [
     rating: 4.5,
     ratingsNum: 102,
     categories: "Guitar Cases",
+    productType: "accessory",
   },
   {
     name: "Gator GWE-Acou-3/4 Hardshell 3/4-Size Acoustic Guitar Case Black",
@@ -28,6 +31,7 @@ export const accessoriesProducts: AccessoriesProduct[] = [
     rating: 4.5,
     ratingsNum: 51,
     categories: "Guitar Cases",
+    productType: "accessory",
   },
   {
     name: "Dunlop White Fang James Hetfield Signature Picks 1.14 mm 24 Pack",
@@ -35,6 +39,7 @@ export const accessoriesProducts: AccessoriesProduct[] = [
     rating: 4.5,
     ratingsNum: 6,
     categories: "Guitar Picks",
+    productType: "accessory",
   },
   {
     name: "D'Addario Chris Thile Signature Casein 1.4mm Mandolin Pick 1.4 mm 1",
@@ -42,6 +47,7 @@ export const accessoriesProducts: AccessoriesProduct[] = [
     rating: 5,
     ratingsNum: 1,
     categories: "Guitar Picks",
+    productType: "accessory",
   },
   {
     name: "Focusrite Scarlett 2i2 USB Audio Interface (Gen 3)",
@@ -49,6 +55,7 @@ export const accessoriesProducts: AccessoriesProduct[] = [
     rating: 4.5,
     ratingsNum: 105,
     categories: "Audio Interfaces",
+    productType: "accessory",
   },
   {
     name: "D'Addario Pro-Winder String Winder/Cutter",
@@ -56,6 +63,7 @@ export const accessoriesProducts: AccessoriesProduct[] = [
     rating: 4.5,
     ratingsNum: 123,
     categories: "Tools",
+    productType: "accessory",
   },
   {
     name: "D'Addario Equinox Headstock Tuner Black",
@@ -63,6 +71,7 @@ export const accessoriesProducts: AccessoriesProduct[] = [
     rating: 4.5,
     ratingsNum: 216,
     categories: "Tools",
+    productType: "accessory",
   },
   {
     name: "Ernie Ball 2221 Nickel Regular Slinky Electric Guitar Strings 3-Pack",
@@ -70,6 +79,7 @@ export const accessoriesProducts: AccessoriesProduct[] = [
     rating: 4.5,
     ratingsNum: 69,
     categories: "Strings",
+    productType: "accessory",
   },
   {
     name: "Ernie Ball 2723 Cobalt Super Slinky Electric Guitar Strings",
@@ -77,6 +87,7 @@ export const accessoriesProducts: AccessoriesProduct[] = [
     rating: 4.5,
     ratingsNum: 51,
     categories: "Strings",
+    productType: "accessory",
   },
   {
     name: "Musician's Gear Braided Instrument Cable 1/4 30 Ft 4-Pack Black",
@@ -84,5 +95,6 @@ export const accessoriesProducts: AccessoriesProduct[] = [
     rating: 5,
     ratingsNum: 73,
     categories: "Cables",
+    productType: "accessory",
   },
 ];

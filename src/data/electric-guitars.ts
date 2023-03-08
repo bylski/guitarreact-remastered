@@ -12,6 +12,7 @@ export const electricGuitarProducts: ElectricGuitarProduct[] = [
     pickupConfig: "HH",
     bodyType: "Superstrat",
     bridgeType: "Floyd Rose",
+    productType: "electric guitar",
   },
   {
     name: "Ibanez RGA42HPTQM Blue Iceberg Gradation",
@@ -24,6 +25,7 @@ export const electricGuitarProducts: ElectricGuitarProduct[] = [
     pickupConfig: "HH",
     bodyType: "Superstrat",
     bridgeType: "Floyd Rose",
+    productType: "electric guitar",
   },
   {
     name: "Jackson Dinky JS11 Electric Guitar Black",
@@ -36,6 +38,7 @@ export const electricGuitarProducts: ElectricGuitarProduct[] = [
     pickupConfig: "HH",
     bodyType: "Superstrat",
     bridgeType: "Floyd Rose",
+    productType: "electric guitar",
   },
   {
     name: "Jackson X Series Signature Scott Ian King V KVXT Electric Guitar Ivory",
@@ -48,6 +51,7 @@ export const electricGuitarProducts: ElectricGuitarProduct[] = [
     pickupConfig: "HH",
     bodyType: "Other",
     bridgeType: "Fixed",
+    productType: "electric guitar",
   },
   {
     name: "Charvel Pro-Mod DK24 HSS FR M Poplar Electric Guitar Purple Sunset",
@@ -60,6 +64,7 @@ export const electricGuitarProducts: ElectricGuitarProduct[] = [
     pickupConfig: "HSS",
     bodyType: "Superstrat",
     bridgeType: "Floyd Rose",
+    productType: "electric guitar",
   },
   {
     name: "Gibson Les Paul Traditional Pro V Flame Top Electric Guitar Washed Cherry Burst",
@@ -72,6 +77,7 @@ export const electricGuitarProducts: ElectricGuitarProduct[] = [
     pickupConfig: "HH",
     bodyType: "Les Paul",
     bridgeType: "Fixed",
+    productType: "electric guitar",
   },
   {
     name: "Gibson SG Standard Electric Guitar Ebony",
@@ -84,6 +90,7 @@ export const electricGuitarProducts: ElectricGuitarProduct[] = [
     pickupConfig: "HH",
     bodyType: "Other",
     bridgeType: "Floyd Rose",
+    productType: "electric guitar",
   },
   {
     name: "Gibson Les Paul Studio Limited-Edition Electric Guitar Black Cherry Burst",
@@ -96,6 +103,7 @@ export const electricGuitarProducts: ElectricGuitarProduct[] = [
     pickupConfig: "HH",
     bodyType: "Les Paul",
     bridgeType: "Fixed",
+    productType: "electric guitar",
   },
   {
     name: "Chapman ML1 Modern V2 Electric Guitar Abyss",
@@ -108,6 +116,7 @@ export const electricGuitarProducts: ElectricGuitarProduct[] = [
     pickupConfig: "HH",
     bodyType: "Superstrat",
     bridgeType: "Fixed",
+    productType: "electric guitar",
   },
   {
     name: "Epiphone Riviera Semi-Hollow Electric Guitar Royal Tan",
@@ -120,6 +129,7 @@ export const electricGuitarProducts: ElectricGuitarProduct[] = [
     pickupConfig: "HH",
     bodyType: "Other",
     bridgeType: "Fixed",
+    productType: "electric guitar",
   },
   {
     name: "Epiphone SG Special (P-90) Electric Guitar",
@@ -132,6 +142,7 @@ export const electricGuitarProducts: ElectricGuitarProduct[] = [
     pickupConfig: "HH",
     bodyType: "Other",
     bridgeType: "Fixed",
+    productType: "electric guitar",
   },
   {
     name: "Fender American Ultra Stratocaster Maple Fingerboard",
@@ -144,5 +155,6 @@ export const electricGuitarProducts: ElectricGuitarProduct[] = [
     pickupConfig: "SSS",
     bodyType: "Stratocaster",
     bridgeType: "Tremolo",
+    productType: "electric guitar",
   },
 ];

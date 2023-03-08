@@ -10,6 +10,7 @@ export const amplifierProducts: AmplifiersProduct[] = [
     technology: "Solid State",
     speakerConfiguration: "1x12",
     wattage: "50-100 Watts",
+    productType: "amplifier",
   },
   {
     name: "Marshall DSL20CR 20W 1x12",
@@ -20,6 +21,7 @@ export const amplifierProducts: AmplifiersProduct[] = [
     technology: "Tube",
     speakerConfiguration: "1x12",
     wattage: "20-45 Watts",
+    productType: "amplifier",
   },
   {
     name: "Fender Mustang LT25 25W 1x8 Guitar Combo",
@@ -30,6 +32,7 @@ export const amplifierProducts: AmplifiersProduct[] = [
     technology: "Solid State",
     speakerConfiguration: "1x8",
     wattage: "20-45 Watts",
+    productType: "amplifier",
   },
   {
     name: "Orange Amplifiers Rockerverb 100 MKIII 100W",
@@ -39,6 +42,7 @@ export const amplifierProducts: AmplifiersProduct[] = [
     amplifierType: "Head",
     technology: "Tube",
     wattage: "50-100 Watts",
+    productType: "amplifier",
   },
   {
     name: "MESA/Boogie Mark V 1x12 90W Tube Guitar Combo Amp Black",
@@ -49,6 +53,7 @@ export const amplifierProducts: AmplifiersProduct[] = [
     technology: "Tube",
     wattage: "50-100 Watts",
     speakerConfiguration: "1x12",
+    productType: "amplifier",
   },
   {
     name: "Marshall Origin50H 50W Tube Guitar Amp Head",
@@ -58,6 +63,7 @@ export const amplifierProducts: AmplifiersProduct[] = [
     amplifierType: "Head",
     technology: "Tube",
     wattage: "50-100 Watts",
+    productType: "amplifier",
   },
   {
     name: "BOSS Katana-Head MkII 100W Guitar Amplifier Head",
@@ -67,6 +73,7 @@ export const amplifierProducts: AmplifiersProduct[] = [
     amplifierType: "Head",
     technology: "Solid State",
     wattage: "50-100 Watts",
+    productType: "amplifier",
   },
   {
     name: "VOX Custom AC15C1 15W 1x12 Tube Guitar Combo Amp Vintage",
@@ -77,6 +84,7 @@ export const amplifierProducts: AmplifiersProduct[] = [
     technology: "Tube",
     wattage: "1-15 Watts",
     speakerConfiguration: "1x12",
+    productType: "amplifier",
   },
   {
     name: "Fender Limited-Edition '65 Princeton Reverb 12W 1x12",
@@ -87,6 +95,7 @@ export const amplifierProducts: AmplifiersProduct[] = [
     technology: "Tube",
     wattage: "1-15 Watts",
     speakerConfiguration: "1x12",
+    productType: "amplifier",
   },
   {
     name: "Yamaha THR30II Wireless 30W 2x3",
@@ -97,6 +106,7 @@ export const amplifierProducts: AmplifiersProduct[] = [
     technology: "Solid State",
     wattage: "20-45 Watts",
     speakerConfiguration: "2x3",
+    productType: "amplifier",
   },
   {
     name: "Blackstar HT Venue Series Club 40 40W 1x12",
@@ -107,6 +117,7 @@ export const amplifierProducts: AmplifiersProduct[] = [
     technology: "Tube",
     wattage: "20-45 Watts",
     speakerConfiguration: "1x12",
+    productType: "amplifier",
   },
   {
     name: "VOX Valvetronix VT20X 20W 1x8",
@@ -117,5 +128,6 @@ export const amplifierProducts: AmplifiersProduct[] = [
     technology: "Hybrid",
     wattage: "20-45 Watts",
     speakerConfiguration: "1x8",
+    productType: "amplifier",
   },
 ];

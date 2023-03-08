@@ -9,6 +9,7 @@ export const acousticGuitarProducts: AcousticGuitarProduct[] = [
     brand: "Lag",
     stringsNum: "6 String",
     electroAcoustic: "Yes",
+    productType: "acoustic guitar",
   },
   {
     name: "Savannah SGD-10 Dreadnought Acoustic Guitar Satin Sunburst",
@@ -18,6 +19,7 @@ export const acousticGuitarProducts: AcousticGuitarProduct[] = [
     brand: "Savannah",
     stringsNum: "6 String",
     electroAcoustic: "No",
+    productType: "acoustic guitar",
   },
   {
     name: "Guild M-40 Troubadour Acoustic Guitar Natural",
@@ -27,6 +29,7 @@ export const acousticGuitarProducts: AcousticGuitarProduct[] = [
     brand: "Guild",
     stringsNum: "6 String",
     electroAcoustic: "No",
+    productType: "acoustic guitar",
   },
   {
     name: "Takamine Pro Series 3 Dreadnought Cutaway 12-String",
@@ -36,6 +39,7 @@ export const acousticGuitarProducts: AcousticGuitarProduct[] = [
     brand: "Takamine",
     stringsNum: "12 String",
     electroAcoustic: "Yes",
+    productType: "acoustic guitar",
   },
   {
     name: "Takamine GN75CE Acoustic-Electric guitar Wine Red",
@@ -45,6 +49,7 @@ export const acousticGuitarProducts: AcousticGuitarProduct[] = [
     brand: "Takamine",
     stringsNum: "6 String",
     electroAcoustic: "Yes",
+    productType: "acoustic guitar",
   },
   {
     name: "Yamaha FG800 Folk Acoustic Guitar Natural",
@@ -54,6 +59,7 @@ export const acousticGuitarProducts: AcousticGuitarProduct[] = [
     brand: "Yamaha",
     stringsNum: "6 String",
     electroAcoustic: "No",
+    productType: "acoustic guitar",
   },
   {
     name: "Yamaha FX335C Dreadnought Acoustic-Electric",
@@ -63,6 +69,7 @@ export const acousticGuitarProducts: AcousticGuitarProduct[] = [
     brand: "Yamaha",
     stringsNum: "6 String",
     electroAcoustic: "Yes",
+    productType: "acoustic guitar",
   },
   {
     name: "Epiphone PR-150 Acoustic Guitar Natural",
@@ -72,6 +79,7 @@ export const acousticGuitarProducts: AcousticGuitarProduct[] = [
     brand: "Epiphone",
     stringsNum: "6 String",
     electroAcoustic: "No",
+    productType: "acoustic guitar",
   },
 ];
 

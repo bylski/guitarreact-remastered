@@ -14,7 +14,7 @@ const CartWindowItems: React.FC<{ items: CartProducts | null }> = (props) => {
   let cartItems: JSX.Element[] | null = null;
   if (props.items !== null) {
     cartItems = props.items.map((item, i) => {
-      const { name, price, imgSrc } = item.product;
+      const { name, price, imgSrc, productType } = item.product;
       const { quantity } = item;
       return (
         <Collapse key={name}>
@@ -24,6 +24,7 @@ const CartWindowItems: React.FC<{ items: CartProducts | null }> = (props) => {
             quantity={quantity}
             imgSrc={imgSrc || "noimg"}
             key={name}
+            productType={productType}
           />
         </Collapse>
       );

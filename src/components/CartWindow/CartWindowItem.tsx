@@ -20,6 +20,12 @@ const CartWindowItem: React.FC<{
   price: number;
   quantity: number;
   imgSrc: string;
+  productType:
+    | "electric guitar"
+    | "acoustic guitar"
+    | "amplifier"
+    | "accessory"
+    | undefined;
 }> = (props) => {
   const { palette, typography } = useTheme();
 
@@ -27,6 +33,25 @@ const CartWindowItem: React.FC<{
   const removeFromCartHandler = () => {
     ctx?.onRemoveFromCart(props.name);
   };
+
+  let imagePath = "";
+  switch (props.productType) {
+    case "electric guitar":
+      imagePath = "products/electric-guitars";
+      break;
+    case "acoustic guitar":
+      imagePath = "products/acoustic-guitars";
+      break;
+    case "accessory":
+      imagePath = "products/accessories";
+      break;
+    case "amplifier":
+      imagePath = "products/amplifiers";
+      break;
+  }
+
+  console.log(props.productType)
+  console.log(`${imagePath}/${props.name}.png`);
 
   return (
     <Box
@@ -48,7 +73,7 @@ const CartWindowItem: React.FC<{
       >
         <img
           style={{ width: "100%", height: "100%", objectFit: "contain" }}
-          src={`/products/electric-guitars/${props.name}.png`}
+          src={`/${imagePath}/${props.name}.png`}
         ></img>
       </Box>
       <Stack
@@ -91,8 +116,7 @@ const CartWindowItem: React.FC<{
             </Typography>
             <Box sx={{ marginLeft: "0.5rem" }}>
               <Button
-              onClick={() => ctx?.onIncrementItem(props.name)}
-
+                onClick={() => ctx?.onIncrementItem(props.name)}
                 variant="outlined"
                 sx={{
                   width: "20px",
@@ -109,7 +133,7 @@ const CartWindowItem: React.FC<{
                 +
               </Button>
               <Button
-              onClick={() => ctx?.onDecrementItem(props.name)}
+                onClick={() => ctx?.onDecrementItem(props.name)}
                 variant="outlined"
                 sx={{
                   width: "20px",
