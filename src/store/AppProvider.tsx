@@ -46,7 +46,7 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
       const newCartState = prevCartState;
       let itemWasInCart = false;
       prevCartState.forEach((itemInCart, i) => {
-        if (itemInCart.product.name === item.product.name) {
+        if (itemInCart.product.name.toLowerCase() === item.product.name.toLowerCase()) {
           newCartState[i].quantity += item.quantity;
           itemWasInCart = true;
           setCartItemsQuantity((prev) => prev + 1);
@@ -75,6 +75,63 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
       return newCartState;
     });
   };
+
+  const onIncrementItem = (itemName: string) => {
+      // Check if products isn't already in the cart, if it is, increment the quantity accordingly
+      setCartItems((prevCartState) => {
+        // Check if products isn't already in the cart, if it is, increment the quantity accordingly
+        const newCartState = prevCartState;
+        let itemWasInCart = false;
+        prevCartState.forEach((itemInCart, i) => {
+          if (itemInCart.product.name.toLowerCase() === itemName.toLowerCase()) {
+            newCartState[i].quantity += 1;
+            itemWasInCart = true;
+            setCartItemsQuantity((prev) => prev + 1);
+          }
+        });
+  
+        // If product isn't already in the cart, push it to the cart array
+        if (!itemWasInCart) {
+          onAddAlert({
+            title: "No such item in cart!",
+            text: "Product you are trying to increment is not present in the cart!",
+            severity: "warning",
+          });
+        }
+        return newCartState;
+      });
+  }
+
+  const onDecrementItem = (itemName: string) => {
+    // Check if products isn't already in the cart, if it is, increment the quantity accordingly
+    setCartItems((prevCartState) => {
+      // Check if products isn't already in the cart, if it is, increment the quantity accordingly
+      const newCartState = prevCartState;
+      let itemWasInCart = false;
+      prevCartState.forEach((itemInCart, i) => {
+        if (itemInCart.product.name.toLowerCase() === itemName.toLowerCase()) {
+          newCartState[i].quantity -= 1;
+          itemWasInCart = true;
+          setCartItemsQuantity((prev) => prev - 1);
+          // Remove from array when product quantity equals 0
+          if (newCartState[i].quantity === 0) {
+            newCartState.splice(i, 1);
+          }
+        }
+      });
+
+      // If product isn't already in the cart, push it to the cart array
+      if (!itemWasInCart) {
+        onAddAlert({
+          title: "No such item in cart!",
+          text: "Product you are trying to decrement is not present in the cart!",
+          severity: "warning",
+        });
+      }
+      return newCartState;
+    });
+}
+
 
   // CATEGORY SELECT STATE LOGIC
 
@@ -245,6 +302,8 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
     onAddToCart,
     onRemoveFromCart,
     cartItemsQuantity,
+    onIncrementItem,
+    onDecrementItem,
     // Compare window values
     isCompareWindowCollapsed,
     onSetCompareWindowState,

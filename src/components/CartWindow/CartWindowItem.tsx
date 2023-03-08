@@ -1,10 +1,19 @@
-import { Stack, Box, Typography, IconButton, Tooltip } from "@mui/material";
+import {
+  Stack,
+  Box,
+  Typography,
+  IconButton,
+  Tooltip,
+  Button,
+} from "@mui/material";
 import React, { useContext } from "react";
 import { useTheme } from "@mui/material/styles";
 import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
 import { createTextChangeRange } from "typescript";
 import { AppContext } from "../../store/AppContext";
 import { limitStr } from "../../utils/helper-functions/helper-functions";
+import { CartProduct } from "../../types/cart-interfaces";
+import { ProductType } from "../../types/product-interfaces";
 
 const CartWindowItem: React.FC<{
   name: string;
@@ -53,7 +62,7 @@ const CartWindowItem: React.FC<{
       >
         <Box>
           <Typography
-            sx={{ paddingBottom: "0.3rem" }}
+            sx={{ paddingBottom: "0.1rem" }}
             color={palette.secondary.contrastText}
             fontFamily={typography.h1.fontFamily}
             fontSize="16px"
@@ -62,16 +71,60 @@ const CartWindowItem: React.FC<{
           >
             {limitStr(props.name, 20)}
           </Typography>
-          <Typography
-            sx={{}}
-            color={palette.secondary.contrastText}
-            fontFamily={typography.h1.fontFamily}
-            fontSize="13px"
-            fontWeight="400"
-            textAlign={"left"}
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              paddingBottom: "0.2rem",
+            }}
           >
-            {`Quantity: ${props.quantity}`}
-          </Typography>
+            <Typography
+              sx={{}}
+              color={palette.secondary.contrastText}
+              fontFamily={typography.h1.fontFamily}
+              fontSize="13px"
+              fontWeight="400"
+              textAlign={"left"}
+            >
+              {`Quantity: ${props.quantity}`}
+            </Typography>
+            <Box sx={{ marginLeft: "0.5rem" }}>
+              <Button
+              onClick={() => ctx?.onIncrementItem(props.name)}
+
+                variant="outlined"
+                sx={{
+                  width: "20px",
+                  maxWidth: "25px",
+                  minWidth: "0px",
+                  minHeight: "0px",
+                  height: "20px",
+                  padding: "0",
+                  paddingInline: "0.1rem",
+                  marginRight: "0.5rem",
+                  fontSize: "12px",
+                }}
+              >
+                +
+              </Button>
+              <Button
+              onClick={() => ctx?.onDecrementItem(props.name)}
+                variant="outlined"
+                sx={{
+                  width: "20px",
+                  minWidth: "0px",
+                  minHeight: "0px",
+                  height: "20px",
+                  padding: "0",
+                  paddingInline: "0.1rem",
+                  fontSize: "12px",
+                }}
+              >
+                -
+              </Button>
+            </Box>
+          </Box>
           <Typography
             sx={{}}
             color={palette.primary.main}
