@@ -190,7 +190,7 @@ const ComparedProduct: React.FC<{
           ) : null}
           <Box>
             <Typography
-              sx={{ marginTop: "2rem" }}
+              sx={{ marginTop: "2rem", paddingInline: "0.5rem" }}
               color={palette.secondary.contrastText}
               fontFamily={typography.h1.fontFamily}
               fontSize="14px"

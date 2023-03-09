@@ -84,6 +84,7 @@ const ComparisonWindow: React.FC = (props) => {
                 display: "flex",
                 flexDirection: "column",
                 paddingInline: "2rem",
+                marginInline: "1rem",
                 color: palette.primary.contrastText,
                 borderWidth: "2px",
                 borderColor: palette.primary.onHoverLight,
