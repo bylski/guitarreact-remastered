@@ -12,6 +12,8 @@ type AppContextType = {
   onApplyFilters: (newFilters: ProductFilters) => void;
   hasFiltersChanged: boolean;
   resetFilterChange: () => void;
+  mobileFilterWindowVisibility: boolean;
+  onSetMobileFilterWindowVisibility: (isVisible: boolean) => void,
   // Category
   selectedCategory: Categories;
   onSelectCategory: (selectedCategory: Categories) => void;

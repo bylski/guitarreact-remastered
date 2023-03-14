@@ -67,7 +67,7 @@ const Product: React.FC<{
 
   return (
     <Fade in={true}>
-      <Grid2 xl={12} md={20} lg={15}  height="fit-content" minHeight="460px">
+      <Grid2 xl={12} md={20} lg={15} sm={15}  height="fit-content" minHeight="460px">
         <Stack
           onMouseEnter={quickShowHandler}
           onMouseLeave={quickShowHandler}

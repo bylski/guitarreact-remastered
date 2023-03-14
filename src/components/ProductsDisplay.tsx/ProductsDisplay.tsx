@@ -3,17 +3,17 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 import { useTheme } from "@mui/material/styles";
 import FiltersMenu from "../FiltersMenu/FiltersMenu";
 import Products from "./Products";
-import {
-  ElectricGuitarProduct,
-  ProductType,
-} from "../../types/product-interfaces";
-import { useDeprecatedAnimatedState } from "framer-motion";
+import { ProductType } from "../../types/product-interfaces";
 import { AppContext } from "../../store/AppContext";
 import useFilterProducts from "../../utils/hooks/useFilterProducts";
 import { electricGuitarProducts } from "../../data/electric-guitars";
 import { amplifierProducts } from "../../data/amplifiers";
 import { accessoriesProducts } from "../../data/accessories";
 import { acousticGuitarProducts } from "../../data/acoustic-guitars";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { Box, IconButton, Slide, Stack } from "@mui/material";
+import TuneIcon from "@mui/icons-material/Tune";
+import { Tooltip, Collapse } from "@mui/material";
 
 const ProductsDisplay: React.FC<{
   productType: "guitars" | "amplifiers" | "accessories";
@@ -50,26 +50,63 @@ const ProductsDisplay: React.FC<{
   const filteredProducts = useFilterProducts(productsToDisplay);
   const submitFiltersHandler = () => {
     setFilteredProductsToDisplay(filteredProducts);
+    ctx?.onSetMobileFilterWindowVisibility(false);
   };
 
+  const staticFilterMenu = useMediaQuery("(min-width:1200px)");
+
   return (
-    <Fragment>
+    <Stack sx={{ marginTop: "1rem" }}>
+      {!staticFilterMenu && (
+        <Box>
+          <Tooltip title={ctx?.mobileFilterWindowVisibility ? "Close Filters Window" : "Open Filters Window"} sx={{ zIndex: "1500" }}>
+            <IconButton
+              onClick={() =>
+                ctx?.onSetMobileFilterWindowVisibility(
+                  !ctx.mobileFilterWindowVisibility
+                )
+              }
+              sx={{
+                paddingInline: "2rem",
+                borderRadius: "50vw",
+                zIndex: ctx?.mobileFilterWindowVisibility ? 1501: 1,
+                backgroundColor: palette.primary.dark,
+                "&:hover": { backgroundColor: palette.primary.onHoverLight },
+              }}
+            >
+              <TuneIcon />
+            </IconButton>
+          </Tooltip>
+        </Box>
+      )}
       <Grid2
         minHeight="fit-content"
         container
-        sx={{ marginTop: "1rem" }}
+        sx={{ marginTop: "0.5rem" }}
         columns={100}
-        columnSpacing={4}
-        width="101%"
+        columnSpacing={{ md: 4, sm: 0 }}
+        // width="100%"
+        marginRight={"0 !important"}
+        position={"relative"}
       >
-        <Grid2 display="flex" justifyContent="flex-start" lg={21}  md={30}>
-          <FiltersMenu onSubmitFilters={submitFiltersHandler} />
-        </Grid2>
         <Grid2
           display="flex"
           justifyContent="flex-start"
+          lg={21}
+          md={30}
+          sm={0}
+        >
+          <FiltersMenu
+            onSubmitFilters={submitFiltersHandler}
+            mobileView={!staticFilterMenu}
+          />
+        </Grid2>
+        <Grid2
+          display="flex"
+          justifyContent="center"
           lg={79}
           md={70}
+          sm={100}
           bgcolor={palette.secondary.dark}
           borderRadius={"15px"}
           p="1rem"
@@ -82,7 +119,7 @@ const ProductsDisplay: React.FC<{
           )}
         </Grid2>
       </Grid2>
-    </Fragment>
+    </Stack>
   );
 };
 
