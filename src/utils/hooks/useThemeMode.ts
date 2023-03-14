@@ -136,8 +136,18 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
     }
   };
 
+  const breakpoints = {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 1200,
+      lg: 1400,
+      xl: 1700,
+    }
+  }
+
   const getTheme = (mode: PaletteMode) => ({
-    breakpoints: theme.breakpoints,
+    breakpoints,
     transitions,
     components,
     typography,

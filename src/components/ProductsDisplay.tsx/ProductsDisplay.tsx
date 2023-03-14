@@ -29,7 +29,6 @@ const ProductsDisplay: React.FC<{
     ProductType[] | null
   >(null);
 
-  console.log(ctx)
   useEffect(() => {
     if (props.productType === "guitars") {
       if (ctx?.selectedGuitarType === "electric") {
@@ -63,13 +62,14 @@ const ProductsDisplay: React.FC<{
         columnSpacing={4}
         width="101%"
       >
-        <Grid2 display="flex" justifyContent="flex-start" xs={21}>
+        <Grid2 display="flex" justifyContent="flex-start" lg={21}  md={30}>
           <FiltersMenu onSubmitFilters={submitFiltersHandler} />
         </Grid2>
         <Grid2
           display="flex"
           justifyContent="flex-start"
-          xs={79}
+          lg={79}
+          md={70}
           bgcolor={palette.secondary.dark}
           borderRadius={"15px"}
           p="1rem"

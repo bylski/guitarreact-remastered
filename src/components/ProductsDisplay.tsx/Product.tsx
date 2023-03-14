@@ -32,11 +32,6 @@ const Product: React.FC<{
   const productSrcName = product.name;
   const ctx = useContext(AppContext);
 
-  // const [variablesByBreakpoints, setVariablesByBreakpoints] = useState({itemsInGridRow: 12});
-  const breakpoints = useBreakpoints({
-    breakpointName: "lgScreen",
-    breakpointVal: 1700,
-  });
 
   const [hideQuickShow, setHideQuickShow] = useState(true);
   const quickShowHandler = (e: React.MouseEvent) => {
@@ -49,7 +44,7 @@ const Product: React.FC<{
     if (ctx?.selectedGuitarType === "electric") {
       imagePath = "/products/electric-guitars";
     } else if (ctx?.selectedGuitarType === "acoustic") {
-      imagePath = "/products/acoustic-guitars"
+      imagePath = "/products/acoustic-guitars";
     }
   } else if (props.productType === "amplifiers") {
     imagePath = "/products/amplifiers";
@@ -72,7 +67,7 @@ const Product: React.FC<{
 
   return (
     <Fade in={true}>
-      <Grid2 xl={12} lg={15} height="fit-content" minHeight="460px">
+      <Grid2 xl={12} md={20} lg={15}  height="fit-content" minHeight="460px">
         <Stack
           onMouseEnter={quickShowHandler}
           onMouseLeave={quickShowHandler}
@@ -210,7 +205,13 @@ const Product: React.FC<{
                   <IconButton
                     onClick={addToCompareHandler}
                     size="large"
-                    sx={{ borderRadius: "0px", paddingInline: "12px" }}
+                    sx={{
+                      borderRadius: "0px",
+                      paddingInline: "12px",
+                      "@media screen and (max-width: 1400px)": {
+                        // fontSize: "20px",
+                      },
+                    }}
                   >
                     <CompareArrowsIcon fontSize="inherit" />
                   </IconButton>
