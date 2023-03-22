@@ -16,12 +16,14 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
   const theme = createTheme({
     breakpoints: {
       values: {
-        xs: 400,
-        sm: 500,
-        md: 700,
-        lg: 1100,
-        xl: 1636,
-      },
+        xxs: 0,
+        xs: 500,
+        sm: 750,
+        semiSm: 1000,
+        md: 1200,
+        lg: 1400,
+        xl: 1700,
+      }
     },
   });
 
@@ -138,8 +140,10 @@ const useThemeMode = (chosenMode: "light" | "dark"): Theme => {
 
   const breakpoints = {
     values: {
-      xs: 0,
-      sm: 600,
+      xxs: 0,
+      xs: 500,
+      sm: 750,
+      semiSm: 1000,
       md: 1200,
       lg: 1400,
       xl: 1700,

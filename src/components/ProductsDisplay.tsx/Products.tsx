@@ -66,8 +66,8 @@ const Products: React.FC<{
       sx={{ width: "100%" }}
       container
       columns={60}
-      columnSpacing={2}
-      rowSpacing={3}
+      columnSpacing={{xxs: 1, xs: 3}}
+      rowSpacing={{xxs: 2, xs: 3}}
       alignContent={"flex-start"}
     >
       {ProductsToRender.length !== 0 && ProductsToRender !== null

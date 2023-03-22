@@ -25,7 +25,7 @@ const AppProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   const [appliedFilters, setAppliedFilters] = useState<ProductFilters>({});
   const [hasFiltersChanged, setHasFiltersChanged] = useState(false);
   const [mobileFilterWindowVisibility, setMobileFilterWindowVisiblity] =
-    useState(true);
+    useState(false);
   // Cart
   const [isCartWindowOpen, setIsCartWindowOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartProducts>([]);

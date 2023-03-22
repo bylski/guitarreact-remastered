@@ -5,6 +5,7 @@ import {
   Stack,
   Typography,
   Tooltip,
+  useMediaQuery,
 } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
@@ -31,7 +32,6 @@ const Product: React.FC<{
   // const productSrcName = product.name.replace(/\s/g, "");
   const productSrcName = product.name;
   const ctx = useContext(AppContext);
-
 
   const [hideQuickShow, setHideQuickShow] = useState(true);
   const quickShowHandler = (e: React.MouseEvent) => {
@@ -65,13 +65,31 @@ const Product: React.FC<{
     ctx?.onAddProductToCompare(props.product);
   };
 
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+
   return (
     <Fade in={true}>
-      <Grid2 xl={12} md={20} lg={15} sm={15}  height="fit-content" minHeight="460px">
+      <Grid2
+        xl={12}
+        md={20}
+        lg={15}
+        semiSm={15}
+        sm={20}
+        xs={30}
+        xxs={30}
+        height="fit-content"
+        minHeight="460px"
+        sx={{
+          [theme.breakpoints.down("xs")]: {
+            minWidth: "80px",
+            minHeight: "300px",
+          },
+        }}
+      >
         <Stack
           onMouseEnter={quickShowHandler}
           onMouseLeave={quickShowHandler}
-          minWidth="200px"
+          minWidth="185px"
           minHeight="400px"
           height="100%"
           px="1rem"
@@ -83,6 +101,11 @@ const Product: React.FC<{
           sx={{
             transition: "border-color 0.2s ease",
             "&:hover": { borderColor: palette.primary.dark },
+            [theme.breakpoints.down("xs")]: {
+              minWidth: "80px",
+              minHeight: "320px",
+              paddingInline: "0.5rem",
+            },
           }}
         >
           <Box
@@ -124,6 +147,11 @@ const Product: React.FC<{
                   fontSize="14px"
                   fontWeight="400"
                   textAlign={"center"}
+                  sx={{
+                    [theme.breakpoints.down("xs")]: {
+                      fontSize: "12px",
+                    },
+                  }}
                 >
                   QuickView
                 </Typography>
@@ -135,6 +163,12 @@ const Product: React.FC<{
               width="fit-content"
               sx={{
                 marginBottom: "0.5rem",
+                [theme.breakpoints.down("md")]: {
+                  fontSize: "12px",
+                },
+                [theme.breakpoints.down("xs")]: {
+                  fontSize: "11px",
+                },
               }}
               color={palette.secondary.contrastText}
               fontFamily={typography.h2.fontFamily}
@@ -162,7 +196,15 @@ const Product: React.FC<{
             <Box sx={{ display: "flex", justifyContent: "start" }}>
               <Stack justifyContent="flex-end">
                 <Typography
-                  sx={{ height: "fit-content" }}
+                  sx={{
+                    height: "fit-content",
+                    [theme.breakpoints.down("md")]: {
+                      fontSize: "21px",
+                    },
+                    [theme.breakpoints.down("xs")]: {
+                      fontSize: "19px",
+                    },
+                  }}
                   color={palette.primary.main}
                   fontFamily={typography.h2.fontFamily}
                   fontSize="23px"
@@ -178,10 +220,26 @@ const Product: React.FC<{
                     precision={0.5}
                     readOnly
                     value={product.rating || 0}
-                    sx={{ position: "relative", top: "1px" }}
+                    sx={{
+                      position: "relative",
+                      top: "1px",
+                      [theme.breakpoints.down("md")]: {
+                        fontSize: "16px",
+                      },
+                      [theme.breakpoints.down("xs")]: {
+                        fontSize: "14px",
+                      },
+                    }}
                   ></Rating>
                   <Typography
-                    sx={{ flexGrow: 1 }}
+                    sx={{
+                      [theme.breakpoints.down("md")]: {
+                        fontSize: "12px",
+                      },
+                      [theme.breakpoints.down("xs")]: {
+                        fontSize: "11px",
+                      },
+                    }}
                     color={palette.secondary.light}
                     fontFamily={typography.h2.fontFamily}
                     fontSize="14px"
@@ -201,26 +259,34 @@ const Product: React.FC<{
                   justifyContent: "flex-end",
                 }}
               >
-                <Tooltip title="Compare Products">
-                  <IconButton
-                    onClick={addToCompareHandler}
-                    size="large"
-                    sx={{
-                      borderRadius: "0px",
-                      paddingInline: "12px",
-                      "@media screen and (max-width: 1400px)": {
-                        // fontSize: "20px",
-                      },
-                    }}
-                  >
-                    <CompareArrowsIcon fontSize="inherit" />
-                  </IconButton>
-                </Tooltip>
+                {!isMobile && (
+                  <Tooltip title="Compare Products">
+                    <IconButton
+                      onClick={addToCompareHandler}
+                      size="large"
+                      sx={{
+                        borderRadius: "0px",
+                        paddingInline: "12px",
+                        [theme.breakpoints.down("md")]: {
+                          fontSize: "22px",
+                        },
+                      }}
+                    >
+                      <CompareArrowsIcon fontSize="inherit" />
+                    </IconButton>
+                  </Tooltip>
+                )}
                 <Tooltip title="Add to Cart">
                   <IconButton
                     onClick={addToCartHandler}
                     size="large"
-                    sx={{ borderRadius: "0px", paddingInline: "12px" }}
+                    sx={{
+                      borderRadius: "0px",
+                      paddingInline: "12px",
+                      [theme.breakpoints.down("md")]: {
+                        fontSize: "22px",
+                      },
+                    }}
                   >
                     <AddShoppingCartIcon fontSize="inherit" />
                   </IconButton>

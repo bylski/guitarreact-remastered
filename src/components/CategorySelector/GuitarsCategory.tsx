@@ -1,4 +1,4 @@
-import { SxProps } from "@mui/material";
+import { SxProps, Box } from "@mui/material";
 import { motion, Variants } from "framer-motion";
 import React, { useState } from "react";
 import SvgIcon from "@mui/material/SvgIcon";
@@ -67,12 +67,13 @@ const GuitarsCategory: React.FC<{
         onMouseLeave={mouseLeaveHandler}
         onClick={mouseClickHandler}
       >
+           <Box sx={{ width: "fit-content", position: "relative" }}>
         <GuitarSvgIcon
           sx={{
             fontSize: "32px",
             fill: "white",
-            position: "relative",
-            left: "-5px",
+            position: "absolute",
+            left: "-40px",
             top: "-8px",
           }}
           fill={palette.secondary.contrastText}
@@ -80,10 +81,10 @@ const GuitarsCategory: React.FC<{
         />
         <Typography
           {...typographyAttributes}
-          sx={{ position: "relative", left: "-20px", paddingInline: "20px" }}
         >
           Guitars
         </Typography>
+        </Box>
       </IconButton>
     </Grid2>
   );

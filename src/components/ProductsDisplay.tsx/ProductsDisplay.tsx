@@ -85,7 +85,6 @@ const ProductsDisplay: React.FC<{
         sx={{ marginTop: "0.5rem" }}
         columns={100}
         columnSpacing={{ md: 4, sm: 0 }}
-        // width="100%"
         marginRight={"0 !important"}
         position={"relative"}
       >
@@ -110,6 +109,10 @@ const ProductsDisplay: React.FC<{
           bgcolor={palette.secondary.dark}
           borderRadius={"15px"}
           p="1rem"
+          sx={{[theme.breakpoints.down("xs")]: {
+            paddingInline: "0.2rem",
+            paddingBlock: "0.7rem",
+          }}}
         >
           {filteredProductsToDisplay && (
             <Products

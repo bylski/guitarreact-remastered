@@ -1,4 +1,4 @@
-import { SxProps } from "@mui/material";
+import { SxProps, Box } from "@mui/material";
 import { motion, Variants } from "framer-motion";
 import React, { useState } from "react";
 import SvgIcon from "@mui/material/SvgIcon";
@@ -51,7 +51,7 @@ const AmplifiersCategory: React.FC<{
   };
 
   return (
-    <Grid2 {...gridElementAttributes} sx={{}}>
+    <Grid2 {...gridElementAttributes}>
       <IconButton
         sx={
           isSelected
@@ -66,23 +66,24 @@ const AmplifiersCategory: React.FC<{
         onMouseLeave={mouseLeaveHandler}
         onClick={mouseClickHandler}
       >
-        <AmplifierSvgIcon
-          sx={{
-            fontSize: "32px",
-            fill: "white",
-            position: "relative",
-            left: "-5px",
-            top: "-8px",
-          }}
-          fill={palette.secondary.contrastText}
-          additionalAttributes={animationAttributes}
-        />
-        <Typography
-          {...typographyAttributes}
-          sx={{ position: "relative", left: "-20px", paddingInline: "25px" }}
-        >
-          Amplifiers
-        </Typography>
+        <Box sx={{ width: "fit-content", position: "relative" }}>
+          <AmplifierSvgIcon
+            sx={{
+              fontSize: "32px",
+              fill: "white",
+              position: "absolute",
+              left: "-45px",
+              top: "-8px",
+            }}
+            fill={palette.secondary.contrastText}
+            additionalAttributes={animationAttributes}
+          />
+          <Typography
+            {...typographyAttributes}
+          >
+            Amplifiers
+          </Typography>
+        </Box>
       </IconButton>
     </Grid2>
   );

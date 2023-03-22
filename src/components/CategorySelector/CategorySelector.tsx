@@ -10,6 +10,7 @@ import { AppContext, AppContextType } from "../../store/AppContext";
 
 const CategorySelector: React.FC = (props) => {
   const ctx = useContext(AppContext);
+  const theme = useTheme();
   const isContext = (ctx: AppContextType | null): ctx is AppContextType => {
     return (ctx as AppContextType).selectedCategory !== undefined;
   };
@@ -22,9 +23,11 @@ const CategorySelector: React.FC = (props) => {
     const { currentPath } = ctx;
     if (currentPath === "/" || "/guitars") {
       ctx.onSelectCategory("guitars");
-    } if (currentPath === "/amplifiers") {
+    }
+    if (currentPath === "/amplifiers") {
       ctx.onSelectCategory("amplifiers");
-    } if (currentPath === "/accessories") {
+    }
+    if (currentPath === "/accessories") {
       ctx.onSelectCategory("accessories");
     }
   }, [ctx.currentPath]);
@@ -33,12 +36,14 @@ const CategorySelector: React.FC = (props) => {
   const gridElementAttributes = {
     display: "flex",
     justifyContent: "center",
-    xs: 4,
+    xxs: 4,
   };
 
   const iconButtonSx: SxProps = {
     width: "100%",
     height: "100%",
+    display: "flex",
+    justifyContent: "center",
     borderRadius: "15px",
     transition: "background-color 0.2s ease",
     backgroundColor: palette.secondary.dark,
@@ -52,6 +57,13 @@ const CategorySelector: React.FC = (props) => {
   const typographyAttributes = {
     fontSize: "18px",
     fontFamily: typography.h1.fontFamily,
+
+    sx: {
+      position: "relative",
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "16px !important",
+      },
+    } as SxProps,
   };
 
   const iconVariants: Variants = {

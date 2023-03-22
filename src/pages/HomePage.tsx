@@ -35,7 +35,16 @@ const HomePage: React.FC = () => {
         id={"pageContent"}
         disableGutters={true}
         maxWidth={false}
-        sx={{ maxWidth: "1800px", paddingInline: "12px" }}
+        sx={{
+          maxWidth: "1800px",
+          paddingInline: "12px",
+          [theme.breakpoints.down("md")]: {
+            paddingInline: "4px",
+          },
+          [theme.breakpoints.down("xs")]: {
+            paddingInline: "0px",
+          },
+        }}
       >
         <CategorySelector />
         <Outlet />

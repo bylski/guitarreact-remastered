@@ -63,7 +63,7 @@ const ComparisonWindow: React.FC = (props) => {
           <Tooltip title={"Collapse"}>
             <IconButton
               onClick={collapseHandler}
-              sx={{ position: "absolute", top: "-10px", right: "5%" }}
+              sx={{ position: "absolute", top: "-10px", right: "6%", backgroundColor: palette.primary.dark, padding: "5px" }}
             >
               <ExpandMoreIcon fontSize="large" />
             </IconButton>
@@ -104,8 +104,6 @@ const ComparisonWindow: React.FC = (props) => {
               Compare{" "}
               <CompareArrowsIcon
                 sx={{
-                  // marginBottom: "1rem",
-                  // margin: "0",
                   fontSize: "30px",
                   fill: palette.primary.contrastText,
                 }}

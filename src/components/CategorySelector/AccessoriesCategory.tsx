@@ -1,4 +1,4 @@
-import { SxProps } from "@mui/material";
+import { SxProps, Box } from "@mui/material";
 import { motion, Variants } from "framer-motion";
 import React, { useState } from "react";
 import SvgIcon from "@mui/material/SvgIcon";
@@ -66,23 +66,22 @@ const AccessoriesCategory: React.FC<{
         onMouseLeave={mouseLeaveHandler}
         onClick={mouseClickHandler}
       >
-        <AccessoriesSvgIcon
-          sx={{
-            fontSize: "32px",
-            fill: "white",
-            position: "relative",
-            left: "-5px",
-            top: "-8px",
-          }}
-          fill={palette.secondary.contrastText}
-          additionalAttributes={animationAttributes}
-        />
-        <Typography
-          {...typographyAttributes}
-          sx={{ position: "relative", left: "-20px", paddingInline: "20px" }}
-        >
-          Accessories
-        </Typography>
+        <Box sx={{width: "fit-content", position: "relative"}}>
+          <AccessoriesSvgIcon
+            sx={{
+              fontSize: "32px",
+              fill: "white",
+              position: "absolute",
+              left: "-40px",
+              top: "-8px",
+            }}
+            fill={palette.secondary.contrastText}
+            additionalAttributes={animationAttributes}
+          />
+          <Typography {...typographyAttributes} >
+            Accessories
+          </Typography>
+        </Box>
       </IconButton>
     </Grid2>
   );
