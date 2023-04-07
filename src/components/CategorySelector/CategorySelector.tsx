@@ -63,6 +63,9 @@ const CategorySelector: React.FC = (props) => {
       [theme.breakpoints.down("sm")]: {
         fontSize: "16px !important",
       },
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "14px !important",
+      },
     } as SxProps,
   };
 
@@ -87,6 +90,9 @@ const CategorySelector: React.FC = (props) => {
         height: "90px",
         marginTop: "50px",
         backgroundColor: palette.secondary.main,
+        [theme.breakpoints.down("xs")]: {
+          height: "65px",
+        }
       }}
     >
       <GuitarsCategory

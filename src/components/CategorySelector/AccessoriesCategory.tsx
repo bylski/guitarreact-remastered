@@ -27,7 +27,7 @@ const AccessoriesCategory: React.FC<{
   } = props;
 
   const navigate = useNavigate();
-  const { palette } = useTheme();
+  const { palette, breakpoints } = useTheme();
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -74,6 +74,9 @@ const AccessoriesCategory: React.FC<{
               position: "absolute",
               left: "-40px",
               top: "-8px",
+              [breakpoints.down("xs")]: {
+                display: "none",
+            }
             }}
             fill={palette.secondary.contrastText}
             additionalAttributes={animationAttributes}

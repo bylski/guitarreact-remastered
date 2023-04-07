@@ -26,7 +26,7 @@ const AmplifiersCategory: React.FC<{
     iconButtonSx,
   } = props;
 
-  const { palette } = useTheme();
+  const { palette, breakpoints } = useTheme();
   const navigate = useNavigate();
 
   const [isHovered, setIsHovered] = useState(false);
@@ -74,6 +74,9 @@ const AmplifiersCategory: React.FC<{
               position: "absolute",
               left: "-45px",
               top: "-8px",
+              [breakpoints.down("xs")]: {
+                display: "none"
+            }
             }}
             fill={palette.secondary.contrastText}
             additionalAttributes={animationAttributes}
