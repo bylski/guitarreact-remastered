@@ -8,19 +8,67 @@ import {
   getCarouselElementStyles,
   getCarouselTrackStyles,
 } from "./styles/carouselStyles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const SalesCarousel: React.FC = () => {
   const { palette } = useTheme();
-  const imgWidth = 730;
+  const matchesDesktop = useMediaQuery("@media (hover: hover)");
+  const matchesSemiSm = useMediaQuery("(max-width: 1000px)");
+  const matchesSm = useMediaQuery("(max-width: 750px)");
+  const matchesXs = useMediaQuery("(max-width: 500px)");
+  const [currentMediaQuery, setCurrentMediaQuery] = useState<
+    "semiSm" | "lg" | "sm" | "xs"
+  >((): "semiSm" | "lg" | "sm" | "xs" => {
+    if (matchesSemiSm) {
+      return "semiSm";
+    }
+    if (matchesSm) {
+      return "sm";
+    }
+    if (matchesXs) {
+      return "sm";
+    } else {
+      return "lg";
+    }
+  });
+  let imgWidth = 730;
+  let imgHeight = 290;
+  if (matchesSemiSm) {
+    imgWidth = 530;
+    imgHeight = 200;
+  }
+  if (matchesSm) {
+    imgWidth = 450;
+    imgHeight = 180;
+  }
+  if (matchesXs) {
+    imgWidth = 330;
+    imgHeight = 130;
+  }
+
+  useEffect(() => {
+    if (matchesSemiSm) {
+      setCurrentMediaQuery("semiSm");
+    }
+    if (matchesSm) {
+      setCurrentMediaQuery("sm");
+    }
+    if (matchesXs) {
+      setCurrentMediaQuery("sm");
+    } else {
+      setCurrentMediaQuery("lg");
+    }
+  }, [matchesSemiSm]);
 
   // STYLES
-  const carouselElementStyles = getCarouselElementStyles(imgWidth);
-  const trackStyles = getCarouselTrackStyles(imgWidth);
-
+  let carouselElementStyles = getCarouselElementStyles(imgWidth);
+  let trackStyles = getCarouselTrackStyles(imgWidth);
   // STATES
   const [carouselPos, setCarouselPos] = useState(0);
   const [inMotion, setInMotion] = useState(false);
-  const [areControlsShown, setAreControlsShown] = useState(false);
+  const [areControlsShown, setAreControlsShown] = useState(
+    matchesDesktop ? false : true
+  );
   const [salesImgs, setSalesImgs] = useState([
     "/sale1.png",
     "/sale2.png",
@@ -54,13 +102,14 @@ const SalesCarousel: React.FC = () => {
   };
 
   const controlsHideHandler = () => {
-    setAreControlsShown(false);
+    if (matchesDesktop) {
+      setAreControlsShown(false);
+    }
   };
 
   const carousetResetHandler = () => {
     setCarouselPos(0);
   };
-
 
   return (
     <Box
@@ -71,7 +120,7 @@ const SalesCarousel: React.FC = () => {
         position: "relative",
         display: "flex",
         justifyContent: "center",
-        height: "290px",
+        height: `${imgHeight}px`,
       }}
     >
       <Container

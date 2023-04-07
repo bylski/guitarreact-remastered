@@ -14,6 +14,11 @@ const Track: React.FC<{
 }> = (props) => {
   const { carouselImgs, carouselElementStyles } = props;
 
+  const [trackImgWidth, setTrackImgWidth] = useState(props.imgWidth);
+  useEffect(() => {
+    setTrackImgWidth(props.imgWidth)
+  }, [props.imgWidth])
+
   const sxStyles: SxProps = {
     ...carouselElementStyles,
     paddingRight: "20px",
@@ -59,7 +64,7 @@ const Track: React.FC<{
     // if (trackRef.current) {
     //   trackRef.current.style.transition = "0.3s transform ease";
     // }
-    if (Math.abs(props.carouselPos) === props.imgWidth * 5) {
+    if (Math.abs(props.carouselPos) === trackImgWidth * 5) {
       setTimeout(() => {
         if (trackRef.current) trackRef.current.style.transition = "none";
         props.onCarouselReset();
@@ -69,7 +74,7 @@ const Track: React.FC<{
         if (trackRef.current) trackRef.current.style.transition = "";
       }, 300);
     }
-  }, [props.carouselPos]);
+  }, [props.carouselPos, trackImgWidth]);
 
   return (
     <Container
