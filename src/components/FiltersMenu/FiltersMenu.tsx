@@ -23,24 +23,26 @@ const FiltersMenu: React.FC<{
         sx={{ color: "#fff", zIndex: (theme) => 1500 }}
         transitionDuration={{ enter: 200, exit: 200 }}
       ></Backdrop>
-      <Slide in={ctx?.mobileFilterWindowVisibility || !props.mobileView} direction="right" appear={false}>
+      <Slide
+        in={ctx?.mobileFilterWindowVisibility || !props.mobileView}
+        direction="right"
+        appear={false}
+      >
         <Box
           width="100%"
           minHeight={"800px"}
           py={"1.5rem"}
-          px={"2rem"}
           bgcolor={palette.secondary.dark}
           borderRadius={"15px"}
           position={props.mobileView ? "absolute" : "relative"}
           top={props.mobileView ? "0px" : "0px"}
           left={props.mobileView ? "0px" : "none"}
-          maxWidth="400px"
+          maxWidth={"400px"}
           zIndex={props.mobileView ? "1500" : "1"}
         >
-          <Stack position={"relative"}>
+          <Stack position={"relative"} sx={{px: "2rem"}}>
             <Box mb="1rem">
               <Typography
-                sx={{ flexGrow: 1 }}
                 color={palette.secondary.contrastText}
                 fontFamily={typography.h2.fontFamily}
                 fontSize="25px"

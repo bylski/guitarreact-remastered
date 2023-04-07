@@ -136,7 +136,6 @@ const AccordionFilter: React.FC<{
         expandIcon={<ExpandMoreIcon />}
       >
         <Typography
-          sx={{ flexGrow: 1 }}
           color={palette.secondary.contrastText}
           fontFamily={typography.h2.fontFamily}
           fontSize="14px"
