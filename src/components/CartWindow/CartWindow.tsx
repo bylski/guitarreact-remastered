@@ -11,7 +11,7 @@ import { BackdropTypeMap } from "@mui/material";
 import { ProductType } from "../../types/product-interfaces";
 
 const CartWindow: React.FC = () => {
-  const { palette, typography } = useTheme();
+  const { palette, typography, breakpoints } = useTheme();
   const ctx = useContext(AppContext);
 
   // Compare the ref of the backdrop with the element clicked
@@ -77,6 +77,10 @@ const CartWindow: React.FC = () => {
             backgroundColor: palette.secondary.dark,
             borderLeft: `2px solid ${palette.primary.dark}`,
             zIndex: 1000000,
+            [breakpoints.down("xs")]: {
+              width: "100%",
+              minWidth: "300px",
+            }
           }}
         >
           <Stack>

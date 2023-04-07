@@ -27,7 +27,7 @@ const CartWindowItem: React.FC<{
     | "accessory"
     | undefined;
 }> = (props) => {
-  const { palette, typography } = useTheme();
+  const { palette, typography, breakpoints } = useTheme();
 
   const ctx = useContext(AppContext);
   const removeFromCartHandler = () => {
@@ -59,6 +59,9 @@ const CartWindowItem: React.FC<{
         display: "flex",
         borderTop: `2px solid ${palette.secondary.light}`,
         paddingInline: "1.5rem",
+        [breakpoints.down("xs")]: {
+          paddingInline: "0rem",
+        }
       }}
     >
       <Box
@@ -81,11 +84,16 @@ const CartWindowItem: React.FC<{
           paddingRight: "2.5rem",
           justifyContent: "space-between",
           width: "100%",
+          [breakpoints.down("xs")]: {
+            paddingRight: "0.5rem",
+          }
         }}
       >
         <Box>
           <Typography
-            sx={{ paddingBottom: "0.1rem" }}
+            sx={{ paddingBottom: "0.1rem", [breakpoints.down("xs")]: {
+              fontSize: "13px"
+            } }}
             color={palette.secondary.contrastText}
             fontFamily={typography.h1.fontFamily}
             fontSize="16px"
@@ -148,7 +156,9 @@ const CartWindowItem: React.FC<{
             </Box>
           </Box>
           <Typography
-            sx={{}}
+            sx={{[breakpoints.down("xs")]: {
+              fontSize: "17px"
+            }}}
             color={palette.primary.main}
             fontFamily={typography.h1.fontFamily}
             fontSize="20px"
